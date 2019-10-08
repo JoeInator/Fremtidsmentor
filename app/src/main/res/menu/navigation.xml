@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"
+        android:layout_height="match_parent"/>
+
+    <item
+        android:id="@+id/discover"
+        android:icon="@drawable/ic_account_box"
+        android:title="@string/Discover"
+        android:layout_height="match_parent"/>
+
+    <item
+        android:id="@+id/Mentor"
+        android:icon="@drawable/ic_account_box"
+        android:title="@string/Find_Mentor"
+        android:layout_height="match_parent" />
+
+<!--    <item-->
+<!--        android:id="@+id/book"-->
+<!--        android:icon="@drawable/ic_account_box"-->
+<!--        android:title="@string/book"-->
+<!--        android:layout_height="match_parent" />-->
+
+    <item
+        android:id="@+id/community"
+        android:icon="@drawable/ic_filter_drama"
+        android:title="@string/community"
+        android:layout_height="match_parent"/>
+
+    <item
+        android:id="@+id/profile"
+        android:icon="@drawable/ic_account_box"
+        android:title="@string/ProfileBtn"
+        android:layout_height="match_parent"/>
+</menu>

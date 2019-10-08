@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Fremtidsmentor</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Login">Login</string>
+
+    <!-- Menu and Frontpage -->
+    <string name="Upgrade">Opgrader til Community</string>
+    <string name="Settings">INDSTILLINGER</string>
+    <string name="Find_Mentor">MENTOR</string>
+    <string name="Discover">DISCOVER</string>
+    <string name="ProfileBtn">PROFIL</string>
+    <string name="profileHead">Profil</string>
+    <string name="home">HJEM</string>
+    <string name="community">COMMUNITY</string>
+    <string name="book">BOOK</string>
+
+    <!-- Settings -->
+    <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
+    <string name="notifications">NOTIFIKATIONER</string>
+    <string name="subscriptions">SUBSCRIPTIONS</string>
+
+
+    <!-- Message for triggering unimplemented methods -->
+    <string name="Not_Implemented">Endnu ikke implementeret</string>
+    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fjøjtende fis og han ved ikke hvad han laver</string>
+
+</resources>

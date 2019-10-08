@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorMaroon">#800000</color>
+    <color name="FragmentBackground">#010E1D</color>
+    <color name="colorButton">#4682B4</color>
+    <color name="coloreggLightwhite">#ffffff</color>
+    <color name="coloreggwhite">#F3F1F1</color>
+    <color name="coloreggInterwhite">#e1dede</color>
+    <color name="coloreggLightWhiteShadow">#eaeaea</color>
+    <color name="coloreggInterWhiteShadow">#d1d1d1</color>
+    <color name="coloreggwhiteShadow">#bfbebe</color>
+    <color name="colordarkEggwhite">#847D78</color>
+    <color name="coloreggWhiteRedish">#dcd1d1</color>
+
+    <color name="colorwarmLightGrey">#f5f3f0</color>
+    <color name="colorwarmGrey">#e8e3de</color>
+    <color name="colorwarmDarkGrey">#ccc3b9</color>
+    <color name="colorlightBlack">#484848</color>
+
+    <color name="colorDarkerRed">#8c1111</color>
+    <color name="colorDarkRed">#9f1717</color>
+    <color name="colorTest">#D86060</color>
+</resources>
