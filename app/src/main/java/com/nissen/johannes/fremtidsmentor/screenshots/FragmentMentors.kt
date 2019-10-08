@@ -9,9 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.nissen.johannes.fremtidsmentor.R
-import com.nissen.johannes.fremtidsmentor.adapters.MentorList_Adapter
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
-import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_mentor.*
 
 class FragmentMentors : Fragment() {
