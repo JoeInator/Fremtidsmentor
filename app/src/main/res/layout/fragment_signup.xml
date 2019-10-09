@@ -13,19 +13,19 @@
         android:background="@android:color/transparent">
 
         <Button
-            android:id="@+id/button2"
-            android:layout_width="233dp"
-            android:layout_height="61dp"
+            android:id="@+id/signup_btn"
+            android:layout_width="280dp"
+            android:layout_height="70dp"
             android:layout_marginBottom="36dp"
             android:background="@drawable/layout_btn"
-            android:text="Button"
+            android:text="@string/RegisterUser"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent" />
 
         <CheckBox
-            android:id="@+id/checkBox"
+            android:id="@+id/signup_checkBox"
             android:layout_width="225dp"
             android:layout_height="34dp"
             android:layout_marginTop="28dp"
@@ -33,7 +33,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText5" />
+            app:layout_constraintTop_toBottomOf="@+id/signup_confpassword" />
 
         <TextView
             android:id="@+id/newUserHeader"
@@ -48,7 +48,7 @@
             tools:textColor="@color/colorWhite" />
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/signup_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="44dp"
@@ -61,7 +61,7 @@
             app:layout_constraintTop_toBottomOf="@+id/newUserHeader" />
 
         <EditText
-            android:id="@+id/editText3"
+            android:id="@+id/signup_typepassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -70,11 +70,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText4"
-            tools:hint="Type password" />
+            app:layout_constraintTop_toBottomOf="@+id/signup_email"
+            android:hint="Type password" />
 
         <EditText
-            android:id="@+id/editText4"
+            android:id="@+id/signup_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -84,10 +84,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText" />
+            app:layout_constraintTop_toBottomOf="@+id/signup_username" />
 
         <EditText
-            android:id="@+id/editText5"
+            android:id="@+id/signup_confpassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -97,7 +97,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.505"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText3" />
+            app:layout_constraintTop_toBottomOf="@+id/signup_typepassword" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

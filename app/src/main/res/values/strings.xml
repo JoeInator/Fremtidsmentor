@@ -6,7 +6,13 @@
 
     <!-- Login and new User -->
     <string name="Login">Login</string>
+    <string name="forgotpassword">Glemt adgangskode</string>
+    <string name="orsignup">Registrer her</string>
+
     <string name="newUsesr">Opret bruger</string>
+    <string name="RegisterUser">Registrer</string>
+    <string name="noMatchOnPassword">Kodeorderne skal være ens</string>
+    <string name="fillEntireForm">Alle felter skal være fyldt ud</string>
     <string name="CheckBox">Opret dig som Comunity bruger</string>
 
     <!-- Menu and Frontpage -->
