@@ -3,7 +3,17 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Login and new User -->
     <string name="Login">Login</string>
+    <string name="forgotpassword">Glemt adgangskode</string>
+    <string name="orsignup">Registrer her</string>
+
+    <string name="newUsesr">Opret bruger</string>
+    <string name="RegisterUser">Registrer</string>
+    <string name="noMatchOnPassword">Kodeorderne skal være ens</string>
+    <string name="fillEntireForm">Alle felter skal være fyldt ud</string>
+    <string name="CheckBox">Opret dig som Comunity bruger</string>
 
     <!-- Menu and Frontpage -->
     <string name="Upgrade">Opgrader til Community</string>
@@ -24,6 +34,7 @@
 
     <!-- Message for triggering unimplemented methods -->
     <string name="Not_Implemented">Endnu ikke implementeret</string>
-    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fjøjtende fis og han ved ikke hvad han laver</string>
+    <string name="dummyPersonName">Kasket Karl</string>
+    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fløjtende fis og han ved ikke hvad han laver</string>
 
 </resources>

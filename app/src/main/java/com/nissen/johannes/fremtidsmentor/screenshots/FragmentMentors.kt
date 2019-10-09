@@ -11,6 +11,8 @@ import androidx.fragment.app.Fragment
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import kotlinx.android.synthetic.main.fragment_mentor.*
+import kotlinx.android.synthetic.main.fragment_mentor.view.*
+import kotlinx.android.synthetic.main.mentor_list_item.view.*
 
 class FragmentMentors : Fragment() {
 
@@ -25,10 +27,11 @@ class FragmentMentors : Fragment() {
         mentorsInList.add(Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
                 "omkring netværkssikkerhed"))
 
-        var adapter = Adapter(this.requireActivity())
-        mentor_list.adapter = adapter
+        view.mentor_list.dividerHeight = 30
+        var adapter = Adapter(this.requireActivity(), mentorsInList)
+        view.mentor_list.adapter = adapter
 
-//        adapter.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
 
         return view
     }
@@ -47,25 +50,36 @@ class FragmentMentors : Fragment() {
 
 
 
-    private class Adapter(context: Context): BaseAdapter() {
+    private class Adapter(context: Context, mentorsInList: ArrayList<Mentor>): BaseAdapter() {
+
+//        private val mentorsInList = arrayListOf<Mentor>(Mentor("1", "Joe Biden", "balle159", "Denne bruger har en gennemgående erfaring med Java"),
+//            Mentor("2", "Poul Nissen","PoulRavnNissen", "Poul er Teknisk i nordea-Danmark,\n" +
+//                    "og har derfor meget erfaring med projektsyring"),
+//            Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
+//                    "omkring netværkssikkerhed"))
+//
 
         private val mContext: Context
+        private val Mentors: ArrayList<Mentor>
 
         init {
             mContext = context
+            Mentors = mentorsInList
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-//            val layoutInflater = LayoutInflater.from(mContext)
-//            val main = layoutInflater.inflate(R.layout.mentor_list_item, parent, false)
-//            return main
-            val textview = TextView(mContext)
-            textview.text = "Why the fuck is this not working!!??"
-            return textview
+            val layoutInflater = LayoutInflater.from(mContext)
+            val main = layoutInflater.inflate(R.layout.mentor_list_item, parent, false)
+            main.mentor_name.text = Mentors.get(position).getUsername().toString()
+            main.mentor_descr.text = Mentors.get(position).getDescription().toString()
+            return main
+//            val textview = TextView(mContext)
+//            textview.text = "Why the fuck is this not working!!??"
+//            return textview
         }
 
         override fun getCount(): Int {
-            return 3
+            return Mentors.size
         }
 
         override fun getItemId(position: Int): Long {
