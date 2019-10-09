@@ -12,6 +12,7 @@ import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import kotlinx.android.synthetic.*
 import kotlinx.android.synthetic.main.fragment_mentor.*
+import kotlinx.android.synthetic.main.fragment_mentor.view.*
 
 class FragmentMentors : Fragment() {
 
@@ -27,9 +28,9 @@ class FragmentMentors : Fragment() {
                 "omkring netværkssikkerhed"))
 
         var adapter = Adapter(this.requireActivity())
-        mentor_list.adapter = adapter
+        view.mentor_list.adapter = adapter
 
-//        adapter.notifyDataSetChanged()
+        adapter.notifyDataSetChanged()
 
         return view
     }
