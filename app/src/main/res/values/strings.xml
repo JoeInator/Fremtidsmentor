@@ -34,6 +34,7 @@
 
     <!-- Message for triggering unimplemented methods -->
     <string name="Not_Implemented">Endnu ikke implementeret</string>
-    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fjøjtende fis og han ved ikke hvad han laver</string>
+    <string name="dummyPersonName">Kasket Karl</string>
+    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fløjtende fis og han ved ikke hvad han laver</string>
 
 </resources>
