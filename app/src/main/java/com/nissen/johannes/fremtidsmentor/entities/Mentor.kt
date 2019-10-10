@@ -1,11 +1,18 @@
 package com.nissen.johannes.fremtidsmentor.entities
 
-class Mentor(id: String, username: String, password: String,descr: String) : User(id, username, password) {
+class Mentor() : User() {
 
     private var description: String? = null
     private var id: String? = null
     private var username: String? = null
     private var password: String? = null
+
+    constructor(id: String, username: String, password: String, descr: String) : this() {
+        this.id = id
+        this.username = username
+        this.password = password
+        this.description = descr
+    }
 
     fun getDescription(): String? {
         return description
