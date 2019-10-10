@@ -1,7 +1,9 @@
 package com.nissen.johannes.fremtidsmentor.entities
 
-abstract class User(id: String, username: String, password: String) {
+abstract class User() {
 
+    constructor(id: String, username: String, password: String) : this() {
 
+    }
 
 }
