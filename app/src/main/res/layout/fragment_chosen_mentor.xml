@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent">
+
+        <Button
+            android:id="@+id/bookingBtn"
+            android:layout_width="0dp"
+            android:layout_height="67dp"
+            android:background="@drawable/layout_btn"
+            android:text="@string/book"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/mentors_pic"
+            android:layout_width="152dp"
+            android:layout_height="157dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bookingBtn"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/mentor_basicinfo"
+            android:layout_width="116dp"
+            android:layout_height="137dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginRight="28dp"
+            android:text="This is happening"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/mentors_pic"
+            app:layout_constraintTop_toBottomOf="@+id/bookingBtn" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/InfoView"
+            android:layout_width="320dp"
+            android:layout_height="320dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mentors_pic">
+
+            <ScrollView
+                android:id="@+id/infoView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+                <LinearLayout
+                    android:id="@+id/vertical_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/mentor_description"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:paddingBottom="4dp"
+                        android:text="Some Detailed Description of mentor\n\n"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/mentor_competencies"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:text="@string/key_competencies"
+                        android:textSize="18sp" />
+
+                    <LinearLayout
+                        android:id="@+id/horisontal_scroll"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/comp_list1"
+                            android:layout_width="143dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="16dp" />
+
+                        <TextView
+                            android:id="@+id/comp_list2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            tools:layout_marginRight="16dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
