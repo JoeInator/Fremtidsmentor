@@ -17,22 +17,39 @@ import kotlinx.android.synthetic.main.mentor_list_item.view.*
 
 class FragmentMentors : Fragment() {
 
-    private val mentorsInList = arrayListOf<Mentor>()
+    private val mentorsInList = arrayListOf<Mentor>(
+            Mentor("1", "Joe Biden", "balle159", "Denne bruger har en gennemgående erfaring med Java",
+                "Some deeper description of the mentors backgroud", arrayListOf<String>("JAVA", "C#", "MySQL", "Domæne analyse", "kldd", "kmlml", "ikjlkoojoj", "jijljlj")),
+            Mentor("2", "Poul Nissen","PoulRavnNissen", "Poul er teknisk chef i nordea-Danmark,\n" +
+                    "og har derfor meget erfaring med projektsyring","Some deeper description of the mentors backgroud", arrayListOf<String>(
+                "Projekt styring", "Python", "DNS", "Datakommunikation")),
+            Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
+                    "omkring netværkssikkerhed","Some deeper description of the mentors backgroud", arrayListOf<String>(
+                "Netværkssikkerhed", "Process og innovation", "Programmering i C", "Front-end developement"
+            ))
+    )
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_mentor, container, false)
 
-        mentorsInList.add(Mentor("1", "Joe Biden", "balle159", "Denne bruger har en gennemgående erfaring med Java"))
-        mentorsInList.add(Mentor("2", "Poul Nissen","PoulRavnNissen", "Poul er Teknisk i nordea-Danmark,\n" +
-                "og har derfor meget erfaring med projektsyring"))
-        mentorsInList.add(Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
-                "omkring netværkssikkerhed"))
+                view.mentor_list.setOnItemClickListener { parent, view, position, id ->
+            val selectedMentor = FragmentChosenMentor()
 
-        view.mentor_list.dividerHeight = 30
+            val pdf_args = Bundle()
+
+            pdf_args.putString("name", mentorsInList.get(position).getUsername())
+            pdf_args.putString("description", mentorsInList.get(position).getDescription())
+            pdf_args.putStringArrayList("competencies", mentorsInList.get(position).getComps())
+            selectedMentor.setArguments(pdf_args)
+
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.community_fragment, selectedMentor)
+                .addToBackStack(null)
+                .commit()
+        }
+
         var adapter = Adapter(this.requireActivity(), mentorsInList)
         view.mentor_list.adapter = adapter
-
-        adapter.notifyDataSetChanged()
 
         return view
     }
@@ -53,30 +70,22 @@ class FragmentMentors : Fragment() {
 
     private class Adapter(context: Context, mentorsInList: ArrayList<Mentor>): BaseAdapter() {
 
-//        private val mentorsInList = arrayListOf<Mentor>(Mentor("1", "Joe Biden", "balle159", "Denne bruger har en gennemgående erfaring med Java"),
-//            Mentor("2", "Poul Nissen","PoulRavnNissen", "Poul er Teknisk i nordea-Danmark,\n" +
-//                    "og har derfor meget erfaring med projektsyring"),
-//            Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
-//                    "omkring netværkssikkerhed"))
-//
-
         private val mContext: Context
-        private val Mentors: ArrayList<Mentor>
 
         init {
             mContext = context
-            Mentors = mentorsInList
         }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
             val main = layoutInflater.inflate(R.layout.mentor_list_item, parent, false)
-            main.mentor_name.text = Mentors.get(position).getUsername().toString()
-            main.mentor_descr.text = Mentors.get(position).getDescription().toString()
+            
+            val mentor = getItem(position) as Mentor
+            main.mentor_img.setImageResource(R.drawable.cv_foto)
+            main.mentor_name.text = mentor.getUsername()
+            main.mentor_descr.text = mentor.getTeaser()
+            
             return main
-//            val textview = TextView(mContext)
-//            textview.text = "Why the fuck is this not working!!??"
-//            return textview
         }
 
         override fun getCount(): Int {
@@ -88,7 +97,7 @@ class FragmentMentors : Fragment() {
         }
 
         override fun getItem(position: Int): Any {
-            return "FragmentMentors.Adapter.getItemID shouldn't be called"
+            return mentorsInList[position]
         }
 
     }
