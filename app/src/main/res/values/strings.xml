@@ -26,6 +26,11 @@
     <string name="community">COMMUNITY</string>
     <string name="book">BOOK</string>
 
+    
+    <!-- MentorSpecifications -->
+    <string name="key_competencies">Primære komtencer\n</string>
+
+
     <!-- Settings -->
     <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
     <string name="notifications">NOTIFIKATIONER</string>
