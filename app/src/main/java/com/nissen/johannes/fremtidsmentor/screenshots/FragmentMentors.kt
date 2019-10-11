@@ -68,7 +68,7 @@ class FragmentMentors : Fragment() {
 
 
 
-    private class Adapter(context: Context, mentorsInList: ArrayList<Mentor>): BaseAdapter() {
+    private class Adapter(context: Context, private val mentorsInList: ArrayList<Mentor>): BaseAdapter() {
 
         private val mContext: Context
 
@@ -89,7 +89,7 @@ class FragmentMentors : Fragment() {
         }
 
         override fun getCount(): Int {
-            return Mentors.size
+            return mentorsInList.size
         }
 
         override fun getItemId(position: Int): Long {
