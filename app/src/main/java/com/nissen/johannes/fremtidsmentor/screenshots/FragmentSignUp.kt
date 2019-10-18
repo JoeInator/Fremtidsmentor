@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.FirebaseDatabase
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.view.*
 
@@ -50,9 +52,26 @@ class FragmentSignUp : Fragment() {
         return "not all are filled"
     }
     private fun nextAct() {
+        saveUser()
         val intent = Intent(this.context, ActivityCommunity::class.java).apply({})
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
+    }
+
+    private fun saveUser() {
+
+        val username = signup_username.text.toString().trim()
+        val email = signup_email.text.toString().trim()
+        val password = signup_typepassword.text.toString().trim()
+        val interests : ArrayList<String> = arrayListOf("hjkl", "fghjklæ")
+
+        val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
+        val newUser = NormalPerson(username, email, password, interests)
+
+        ref.child(email).setValue(newUser).addOnCompleteListener {
+            Toast.makeText(this.requireActivity(), "You did it", Toast.LENGTH_LONG).show()
+        }
+
     }
 
 }
