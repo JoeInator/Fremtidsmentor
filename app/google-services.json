@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "335771853925",
+    "firebase_url": "https://futurementor-caa10.firebaseio.com",
+    "project_id": "futurementor-caa10",
+    "storage_bucket": "futurementor-caa10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:335771853925:android:e4406cf8af6a83359a528c",
+        "android_client_info": {
+          "package_name": "com.nissen.johannes.fremtidsmentor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "335771853925-aphn47nquhvnkj57v6adv3usof0ibh2j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLzt6Vdu9OBcvzAXbfRXx2rBiaLFMbH-0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "335771853925-aphn47nquhvnkj57v6adv3usof0ibh2j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
