@@ -68,7 +68,7 @@ class FragmentSignUp : Fragment() {
         val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
         val newUser = NormalPerson(username, email, password, interests)
 
-        ref.child(email).setValue(newUser).addOnCompleteListener {
+        ref.child(username).setValue(newUser).addOnCompleteListener {
             Toast.makeText(this.requireActivity(), "You did it", Toast.LENGTH_LONG).show()
         }
 

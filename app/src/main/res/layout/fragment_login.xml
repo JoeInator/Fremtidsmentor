@@ -16,6 +16,21 @@
         android:background="@android:color/transparent">
 
 
+        <CheckBox
+            android:id="@+id/remember_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:buttonTint="@color/colorWhite"
+            android:checked="false"
+            android:text="Forbliv logget ind"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintBottom_toTopOf="@+id/loginBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/passwordText"
+            app:layout_constraintVertical_bias="0.744" />
+
         <TextView
             android:id="@+id/LoginText"
             android:layout_width="277dp"
@@ -30,13 +45,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/EmailText"
+            android:id="@+id/UserName_text"
             android:layout_width="260dp"
             android:layout_height="48dp"
             android:layout_marginTop="68dp"
             android:ems="10"
-            android:hint="E-mail"
-            android:inputType="textEmailAddress"
+            android:hint="UserName"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,7 +67,7 @@
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/EmailText" />
+            app:layout_constraintTop_toBottomOf="@id/UserName_text" />
 
         <Button
             android:id="@+id/loginBtn"
