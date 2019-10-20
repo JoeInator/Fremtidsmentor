@@ -5,12 +5,13 @@ class Mentor() : User() {
     private var teaser: String? = null
     private var description: String? = null
     private var id: String? = null
+    private var email: String? = null
     private var username: String? = null
     private var password: String? = null
     private var competencies: ArrayList<String>? = null
     
-    constructor(id: String, username: String, password: String, teaser: String, descr: String, competencies: ArrayList<String>) : this() {
-        this.id = id
+    constructor(username: String, email: String, password: String, teaser: String, descr: String, competencies: ArrayList<String>) : this() {
+        this.email = email
         this.username = username
         this.password = password
         this.teaser = teaser
@@ -83,5 +84,12 @@ class Mentor() : User() {
             competencies!!.remove(comp)
     }
 
-    
+    fun getEmail(): String? {
+        return email
+    }
+
+    fun setEmail(email: String) {
+        this.email = email
+    }
+
 }
