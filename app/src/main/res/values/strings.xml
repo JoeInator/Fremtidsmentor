@@ -30,12 +30,19 @@
     <!-- MentorSpecifications -->
     <string name="key_competencies">Primære komtencer\n</string>
 
-
     <!-- Settings -->
     <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
     <string name="notifications">NOTIFIKATIONER</string>
     <string name="subscriptions">SUBSCRIPTIONS</string>
+    <string name="email">EMAIL</string>
+    <string name="name">BRUGERNAVN</string>
+    <string name="password">KODEORD</string>
+    <string name="interests">INTERESSER</string>
+    <string name="delete_account">SLET BRUGER</string>
 
+    <!-- FireBase messages -->
+    <string name="firebaseListError">Kunne ikke hente listen fra databasen</string>
+    <string name="firebaseError">Noget gik galt - Prøv igen</string>
 
     <!-- Message for triggering unimplemented methods -->
     <string name="Not_Implemented">Endnu ikke implementeret</string>

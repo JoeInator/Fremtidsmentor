@@ -24,7 +24,7 @@
 
             <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/personal_info_botton"
-                android:layout_width="298dp"
+                android:layout_width="300dp"
                 android:layout_height="81dp"
                 android:background="@android:color/transparent"
                 android:src="?attr/selectableItemBackground"

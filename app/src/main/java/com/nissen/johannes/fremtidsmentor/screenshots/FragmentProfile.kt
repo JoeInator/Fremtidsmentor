@@ -12,6 +12,7 @@ import android.widget.Button
 
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.view.*
 import java.util.ArrayList
 
 
@@ -21,6 +22,13 @@ class FragmentProfile : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
 
+        view.personal_info_botton.setOnClickListener {
+            val newfragment = FragmentPersonalSettings()
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.community_fragment, newfragment)
+                .addToBackStack(null)
+                .commit()
+        }
 
         return view
     }
