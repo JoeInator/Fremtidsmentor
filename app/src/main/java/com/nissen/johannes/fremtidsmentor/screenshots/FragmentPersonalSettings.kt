@@ -1,18 +1,27 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
+import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.BaseAdapter
+import android.widget.Button
+import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_personal_settings.*
+import kotlinx.android.synthetic.main.fragment_personal_settings.view.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.mentor_list_item.view.*
+import kotlinx.android.synthetic.main.personal_option_item.view.*
 
 class FragmentPersonalSettings: Fragment() {
 
@@ -22,8 +31,10 @@ class FragmentPersonalSettings: Fragment() {
     private lateinit var mPrefs: SharedPreferences
     private lateinit var prefsEditor: SharedPreferences.Editor
     private lateinit var ref: DatabaseReference
-
+    private lateinit var listView: ListView
+    private lateinit var nextFrag: Fragment
     private lateinit var operatingUser: NormalPerson
+    private lateinit var optionsList: ArrayList<String>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_personal_settings, container, false)
@@ -31,10 +42,35 @@ class FragmentPersonalSettings: Fragment() {
         prefsEditor = mPrefs.edit()
         ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
         Username = mPrefs.getString("name", "0")
+        listView = view.findViewById(R.id.option_list)
 
         getUserInfoFromFirebase(Username)
 
+        view.option_list.setOnItemClickListener { parent, view, position, id ->
+            val next = optionsList[position]
 
+            if (next.contains(resources.getString(R.string.email))) {
+                nextFrag = FragmentChangeEmail()
+                goToNextFrag(nextFrag)
+
+
+            } else if (next.contains(resources.getString(R.string.name))) {
+                nextFrag = FragmentChangeUsername()
+                goToNextFrag(nextFrag)
+
+            } else if (next.contains(resources.getString(R.string.password))) {
+                nextFrag = FragmentChangePassword()
+                goToNextFrag(nextFrag)
+
+            } else if (next.contains(resources.getString(R.string.interests))) {
+                notImplemented()
+
+            } else if (next.contains(resources.getString(R.string.delete_account))) {
+                notImplemented()
+
+            }
+
+        }
 
         return view
     }
@@ -43,7 +79,7 @@ class FragmentPersonalSettings: Fragment() {
 
         ref.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), R.string.firebaseError, Toast.LENGTH_LONG).show()
                 activity!!.supportFragmentManager.popBackStack()
             }
 
@@ -56,18 +92,69 @@ class FragmentPersonalSettings: Fragment() {
                         Email = operatingUser.getEmail().toString().trim()
                         Password = operatingUser.getPassword().toString().trim()
                         Username = operatingUser.getUsername().toString().trim()
-
-                        emailBtn.text = String.format("%s: %s", resources.getString(R.string.email), Email)
-                        usernameBtn.text = String.format("%s: %s", resources.getString(R.string.name), Username)
-                        passwordBtn.text = String.format("%s: %s", resources.getString(R.string.password), Password)
                     }
                 }
             }
         })
 
+        val handler = Handler()
+        handler.postDelayed({
 
+         optionsList = arrayListOf<String>(
+            resources.getString(R.string.email).plus(": ").plus(Email),
+            resources.getString(R.string.name).plus(": ").plus(Username),
+            resources.getString(R.string.password).plus(": ").plus(Password),
+            resources.getString(R.string.interests),
+            resources.getString(R.string.delete_account),
+            resources.getString(R.string.empty_string)
+        )
 
+            var adapter = Adapter(this.requireContext(), optionsList)
+            adapter.notifyDataSetChanged()
+            listView.adapter = adapter
+        }, 2000)
     }
 
+    private fun goToNextFrag(fragment: Fragment) {
+        activity!!.supportFragmentManager.beginTransaction()
+            .replace(R.id.community_fragment, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
+
+    private fun notImplemented() {
+        Toast.makeText(this.context, R.string.Not_Implemented, Toast.LENGTH_SHORT).show()
+    }
+
+    private class Adapter (context: Context, private val Settings: ArrayList<String>): BaseAdapter() {
+
+        private val mContext: Context
+
+        init {
+            mContext = context
+        }
+
+        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
+            val layoutInflater = LayoutInflater.from(mContext)
+            val main = layoutInflater.inflate(R.layout.personal_option_item, parent, false)
+            val option = getItem(position) as String
+            main.optionsBtn.text = option
+            main.optionsBtn.id = getItemId(position).toInt()
+            return main
+        }
+
+        override fun getItem(position: Int): Any {
+            return Settings[position]
+        }
+
+        override fun getItemId(position: Int): Long {
+            return position.toLong()
+        }
+
+        override fun getCount(): Int {
+            return Settings.size
+        }
+
+    }
 
 }
