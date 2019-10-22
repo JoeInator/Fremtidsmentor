@@ -10,7 +10,8 @@ class NormalPerson(): User() {
     private var password: String? = null
     private var Interests: ArrayList<String>? = null
 
-    constructor(username: String, email: String, password: String, interests: ArrayList<String>) : this() {
+    constructor(id: String, username: String, email: String, password: String, interests: ArrayList<String>) : this() {
+        this.id = id
         this.email = email
         this.username = username
         this.password = password

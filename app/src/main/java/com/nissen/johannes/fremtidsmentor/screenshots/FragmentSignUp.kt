@@ -66,9 +66,10 @@ class FragmentSignUp : Fragment() {
         val interests : ArrayList<String> = arrayListOf("hjkl", "fghjklæ")
 
         val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
-        val newUser = NormalPerson(username, email, password, interests)
+        val keyInt = ref.push().getKey()
+        val newUser = NormalPerson(keyInt!!, username, email, password, interests)
 
-        ref.child(username).setValue(newUser).addOnCompleteListener {
+        ref.child(keyInt!!).setValue(newUser).addOnCompleteListener {
             Toast.makeText(this.requireContext(), "You did it", Toast.LENGTH_LONG).show()
         }
 

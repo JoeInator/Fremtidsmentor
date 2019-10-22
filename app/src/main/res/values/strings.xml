@@ -47,6 +47,27 @@
         <string name="current_password">Nuværende kode</string>
         <string name="new_password">Nyt kode</string>
         <string name="repeat_new_password">Gentag ny kode</string>
+        <string name="old_email">Nuværende mail addresse</string>
+        <string name="new_email">Ny mail addresse</string>
+        <string name="confirm_with_password">Bekræft med adgangskode</string>
+        <string name="old_username">Nuværende Brugernavn</string>
+        <string name="new_username">Nyt Brugernavn</string>
+        <string name="change_email">Skift e-mail</string>
+        <string name="change_username">Skift Brugernavn</string>
+        <string name="change">Skift</string>
+
+        <!-- Change errors -->
+        <string name="wrong_username">Du skrive det rigtige brugernavn</string>
+        <string name="username_are_equal">Du må ikke vælge det samme brugernavn</string>
+
+        <string name="wrong_password">Forkert adgagnskode</string>
+        <string name="passwords_are_equal">Du må ikke skifte til den samme adgangskode</string>
+        <string name="new_passwords_not_matching">Du SKAL bekræfte den nye adgangskode ved at skrive den igen</string>
+
+        <string name="emails_are_the_same">Du kan ikke skifte til den nuværende amil addresse</string>
+        <string name="wrong_email">Du skal indtaste din nuværnde e-mail</string>
+
+
 
     <!-- FireBase messages -->
     <string name="firebaseListError">Kunne ikke hente listen fra databasen</string>

@@ -40,7 +40,7 @@ class FragmentLogin : Fragment() {
         remember_me = view.findViewById<CheckBox>(R.id.remember_me)
 
         view.loginBtn.setOnClickListener{
-            Login()
+                Login()
         }
 
         view.sign_up_option.setOnClickListener{
@@ -91,10 +91,13 @@ class FragmentLogin : Fragment() {
                         prefsEditor.putString("name", user!!.getUsername())
                         prefsEditor.apply()
                         prefsEditor.commit()
-
-                        val intent = Intent(requireContext(), ActivityCommunity::class.java).apply({})
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                        startActivity(intent)
+                        if (isAdded) {
+                            val intent =
+                                Intent(requireContext(), ActivityCommunity::class.java).apply({})
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                            startActivity(intent)
+                        }
                     }
                 }
 

@@ -22,6 +22,10 @@ class FragmentProfile : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
 
+//        view.possible_options.setOnClickListener {
+//
+//        }
+
         view.personal_info_botton.setOnClickListener {
             val newfragment = FragmentPersonalSettings()
             activity!!.supportFragmentManager.beginTransaction()

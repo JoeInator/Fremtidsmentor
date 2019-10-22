@@ -1,6 +1,7 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
@@ -9,18 +10,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
-import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
-import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
-import kotlinx.android.synthetic.main.fragment_personal_settings.*
 import kotlinx.android.synthetic.main.fragment_personal_settings.view.*
-import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.mentor_list_item.view.*
 import kotlinx.android.synthetic.main.personal_option_item.view.*
 
 class FragmentPersonalSettings: Fragment() {
@@ -53,7 +49,6 @@ class FragmentPersonalSettings: Fragment() {
                 nextFrag = FragmentChangeEmail()
                 goToNextFrag(nextFrag)
 
-
             } else if (next.contains(resources.getString(R.string.name))) {
                 nextFrag = FragmentChangeUsername()
                 goToNextFrag(nextFrag)
@@ -66,7 +61,7 @@ class FragmentPersonalSettings: Fragment() {
                 notImplemented()
 
             } else if (next.contains(resources.getString(R.string.delete_account))) {
-                notImplemented()
+                deleteUser()
 
             }
 
@@ -97,22 +92,19 @@ class FragmentPersonalSettings: Fragment() {
             }
         })
 
-        val handler = Handler()
-        handler.postDelayed({
-
+        Handler().postDelayed({
          optionsList = arrayListOf<String>(
             resources.getString(R.string.email).plus(": ").plus(Email),
             resources.getString(R.string.name).plus(": ").plus(Username),
             resources.getString(R.string.password).plus(": ").plus(Password),
             resources.getString(R.string.interests),
             resources.getString(R.string.delete_account),
-            resources.getString(R.string.empty_string)
-        )
+            resources.getString(R.string.empty_string))
 
             var adapter = Adapter(this.requireContext(), optionsList)
             adapter.notifyDataSetChanged()
             listView.adapter = adapter
-        }, 2000)
+        }, 1000)
     }
 
     private fun goToNextFrag(fragment: Fragment) {
@@ -124,6 +116,14 @@ class FragmentPersonalSettings: Fragment() {
 
     private fun notImplemented() {
         Toast.makeText(this.context, R.string.Not_Implemented, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun deleteUser() {
+        ref.child(operatingUser.getId().toString()).removeValue().addOnCompleteListener {
+            val intent = Intent(requireContext(), ActivityMain::class.java).apply({})
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
+        }
     }
 
     private class Adapter (context: Context, private val Settings: ArrayList<String>): BaseAdapter() {
