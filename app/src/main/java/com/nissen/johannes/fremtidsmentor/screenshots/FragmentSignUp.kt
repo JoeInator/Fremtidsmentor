@@ -1,7 +1,9 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +18,14 @@ import kotlinx.android.synthetic.main.fragment_signup.view.*
 
 class FragmentSignUp : Fragment() {
 
+    lateinit var mPrefs: SharedPreferences
+    lateinit var prefsEditor: SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        prefsEditor = mPrefs.edit()
 
         view.signup_btn.setOnClickListener{
             onClick()
@@ -70,7 +77,9 @@ class FragmentSignUp : Fragment() {
         val newUser = NormalPerson(keyInt!!, username, email, password, interests)
 
         ref.child(keyInt!!).setValue(newUser).addOnCompleteListener {
-            Toast.makeText(this.requireContext(), "You did it", Toast.LENGTH_LONG).show()
+            prefsEditor.putString("name", newUser!!.getUsername())
+            prefsEditor.apply()
+            prefsEditor.commit()
         }
 
     }
