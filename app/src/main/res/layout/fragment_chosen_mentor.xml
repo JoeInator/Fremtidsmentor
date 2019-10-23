@@ -79,6 +79,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
                         android:paddingBottom="4dp"
                         android:text="Some Detailed Description of mentor\n\n"
                         android:textSize="18sp" />
@@ -107,7 +108,7 @@
                             android:id="@+id/comp_list2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:layout_marginRight="16dp" />
+                            android:layout_marginLeft="16dp" />
 
                     </LinearLayout>
 

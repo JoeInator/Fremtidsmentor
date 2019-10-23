@@ -69,6 +69,7 @@ class FragmentChosenMentor: Fragment() {
         }
         view.InfoView.vertical_scroll.horisontal_scroll.comp_list1.text = builder.toString()
 
+        builder.clear()
         for (i in 0 until compList2.size) {
             builder.append(compList2[i]+"\n")
         }
