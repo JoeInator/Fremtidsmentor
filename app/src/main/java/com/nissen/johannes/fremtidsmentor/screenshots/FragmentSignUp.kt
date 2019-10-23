@@ -59,8 +59,8 @@ class FragmentSignUp : Fragment() {
         }
         return "not all are filled"
     }
+
     private fun nextAct() {
-        saveUser()
         val intent = Intent(this.context, ActivityCommunity::class.java).apply({})
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
