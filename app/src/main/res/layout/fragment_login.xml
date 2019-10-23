@@ -25,7 +25,6 @@
             android:buttonTint="@color/colorWhite"
             android:checked="false"
             android:text="Forbliv logget ind"
-            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toTopOf="@+id/loginBtn"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/passwordText"

@@ -62,10 +62,13 @@
 
         <string name="wrong_password">Forkert adgagnskode</string>
         <string name="passwords_are_equal">Du må ikke skifte til den samme adgangskode</string>
-        <string name="new_passwords_not_matching">Du SKAL bekræfte den nye adgangskode ved at skrive den igen</string>
+        <string name="new_passwords_not_matching">Du skal bekræfte med den samme adgangskode</string>
+        <string name="password_not_confirmed">Du SKAL bekræfte den nye adgangskode ved at skrive den igen</string>
 
         <string name="emails_are_the_same">Du kan ikke skifte til den nuværende amil addresse</string>
         <string name="wrong_email">Du skal indtaste din nuværnde e-mail</string>
+
+        <string name="confirm_delete">Er du sikker på at du vil slette din bruger.\n Det kan ikke gøres om</string>
 
 
 

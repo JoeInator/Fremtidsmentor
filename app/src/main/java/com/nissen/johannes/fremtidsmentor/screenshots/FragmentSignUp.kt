@@ -14,6 +14,7 @@ import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.view.*
+import java.io.DataOutputStream
 
 
 class FragmentSignUp : Fragment() {
@@ -38,7 +39,7 @@ class FragmentSignUp : Fragment() {
         when(checkContent()) {
             "password not the same" -> Toast.makeText(this.context, R.string.noMatchOnPassword, Toast.LENGTH_SHORT).show()
             "not all are filled" -> Toast.makeText(this.context, R.string.fillEntireForm, Toast.LENGTH_SHORT).show()
-            "approved" -> nextAct()
+            "approved" -> saveUser()
         }
     }
 
@@ -76,11 +77,19 @@ class FragmentSignUp : Fragment() {
         val keyInt = ref.push().getKey()
         val newUser = NormalPerson(keyInt!!, username, email, password, interests)
 
-        ref.child(keyInt!!).setValue(newUser).addOnCompleteListener {
+        ref.child(keyInt!!).setValue(newUser)
+            .addOnCompleteListener {
             prefsEditor.putString("name", newUser!!.getUsername())
             prefsEditor.apply()
             prefsEditor.commit()
-        }
+            nextAct()
+            }
+            .addOnCanceledListener {
+                if (isAdded) {
+                    Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_SHORT)
+                        .show()
+                }
+            }
 
     }
 

@@ -61,6 +61,9 @@ class FragmentChangePassword: Fragment() {
             "Passwords are equal" -> {
                 Toast.makeText(requireContext(), R.string.passwords_are_equal, Toast.LENGTH_SHORT).show()
             }
+            "Password not confirmed" -> {
+                Toast.makeText(requireContext(), R.string.password_not_confirmed, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -71,10 +74,14 @@ class FragmentChangePassword: Fragment() {
 
         if (old == Password) {
             if (NewPassword != old) {
-                if (conf == NewPassword) {
-                    return "approved"
+                if (conf.length > 0) {
+                    if (conf == NewPassword) {
+                        return "approved"
+                    } else {
+                        return "No Match"
+                    }
                 }
-                else { return "No Match" }
+                else { return "Password not confirmed" }
             }
             else { return "Passwords are equal" }
         }

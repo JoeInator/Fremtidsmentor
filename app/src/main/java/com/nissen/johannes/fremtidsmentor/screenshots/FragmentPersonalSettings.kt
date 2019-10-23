@@ -1,6 +1,9 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
@@ -12,6 +15,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
@@ -104,7 +108,7 @@ class FragmentPersonalSettings: Fragment() {
             var adapter = Adapter(this.requireContext(), optionsList)
             adapter.notifyDataSetChanged()
             listView.adapter = adapter
-        }, 1000)
+        }, 500)
     }
 
     private fun goToNextFrag(fragment: Fragment) {
@@ -119,11 +123,28 @@ class FragmentPersonalSettings: Fragment() {
     }
 
     private fun deleteUser() {
-        ref.child(operatingUser.getId().toString()).removeValue().addOnCompleteListener {
-            val intent = Intent(requireContext(), ActivityMain::class.java).apply({})
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        }
+        AlertDialog.Builder(requireContext())
+            .setTitle(R.string.delete_account)
+            .setMessage(R.string.confirm_delete)
+            .setCancelable(true)
+            .setPositiveButton(android.R.string.yes, DialogInterface.OnClickListener {
+                    dialog, id -> confirmed()
+            })
+
+            .setNegativeButton(android.R.string.no, DialogInterface.OnClickListener {
+                    dialog, id -> dialog.cancel()
+            })
+            .show()
+    }
+
+    private fun confirmed() {
+        ref.child(operatingUser.getId().toString()).removeValue()
+            .addOnCompleteListener {
+                prefsEditor.clear()
+                val intent = Intent(requireContext(), ActivityMain::class.java).apply({})
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+            }
     }
 
     private class Adapter (context: Context, private val Settings: ArrayList<String>): BaseAdapter() {
