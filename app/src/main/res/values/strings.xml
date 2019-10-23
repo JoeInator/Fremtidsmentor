@@ -30,6 +30,7 @@
     
     <!-- MentorSpecifications -->
     <string name="key_competencies">Primære komtencer\n</string>
+    <string name="calendarView_under_construction">Her kommer der et CalendarView, hvor det bliver muligt at vælge en dag</string>
 
     <!-- Settings -->
     <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
