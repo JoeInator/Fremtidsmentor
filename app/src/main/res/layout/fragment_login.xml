@@ -22,7 +22,6 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:buttonTint="@color/colorWhite"
             android:checked="false"
             android:text="Forbliv logget ind"
             app:layout_constraintBottom_toTopOf="@+id/loginBtn"

@@ -140,7 +140,7 @@ class FragmentPersonalSettings: Fragment() {
     private fun confirmed() {
         ref.child(operatingUser.getId().toString()).removeValue()
             .addOnCompleteListener {
-                prefsEditor.clear()
+                prefsEditor.clear().commit()
                 val intent = Intent(requireContext(), ActivityMain::class.java).apply({})
                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
