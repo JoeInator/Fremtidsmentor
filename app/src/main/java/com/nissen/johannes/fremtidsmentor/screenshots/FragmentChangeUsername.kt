@@ -110,7 +110,8 @@ class FragmentChangeUsername: Fragment() {
 
         Username = newUser
         ref.child(key).child("username").setValue(newUser).addOnCompleteListener {
-            prefsEditor.putString("name", newUser)
+            prefsEditor.putString("name", newUser).apply()
+            prefsEditor.commit()
             activity!!.supportFragmentManager.popBackStack()
         }
     }
