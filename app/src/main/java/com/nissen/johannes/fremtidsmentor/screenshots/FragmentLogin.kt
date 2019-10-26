@@ -27,11 +27,11 @@ class FragmentLogin : Fragment() {
     private var user: NormalPerson? = null
     private var remember: Boolean = false
     private var rememberedUser: Boolean = false
-    private var userApproved: Boolean? = false
+    private var userApproved: Boolean = false
     private lateinit var remember_me: CheckBox
-    lateinit var mPrefs: SharedPreferences
-    lateinit var prefsEditor: SharedPreferences.Editor
-    lateinit var ref: DatabaseReference
+    private lateinit var mPrefs: SharedPreferences
+    private lateinit var prefsEditor: SharedPreferences.Editor
+    private lateinit var ref: DatabaseReference
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
@@ -47,6 +47,7 @@ class FragmentLogin : Fragment() {
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
         } else {
+            prefsEditor.clear().commit()
             view.loginBtn.setOnClickListener {
                 Login()
             }
@@ -68,7 +69,6 @@ class FragmentLogin : Fragment() {
     }
 
     private fun Login() {
-            prefsEditor.clear().commit()
             Username = UserName_text.text.toString().trim()
             Password = passwordText.text.toString().trim()
             getFirebaseUser(Username, Password)
@@ -105,10 +105,12 @@ class FragmentLogin : Fragment() {
                     }
                 }
 
-                if (userApproved == false) {
-                    Toast.makeText(requireContext(), R.string.invalid_user, Toast.LENGTH_LONG).show()
+                if (!userApproved) {
+                    if (isAdded) {
+                        Toast.makeText(requireContext(), R.string.invalid_user, Toast.LENGTH_LONG)
+                            .show()
+                    }
                 }
-
             }
 
         })

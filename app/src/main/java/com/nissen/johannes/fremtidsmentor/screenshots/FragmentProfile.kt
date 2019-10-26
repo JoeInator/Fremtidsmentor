@@ -46,6 +46,14 @@ class FragmentProfile : Fragment() {
             startActivity(intent)
         }
 
+        view.subscription_button.setOnClickListener {
+            val newfragment = FragmentSubscriptions()
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.community_fragment, newfragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
         return view
     }
 

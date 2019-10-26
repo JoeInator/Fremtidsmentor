@@ -44,6 +44,7 @@
     <string name="delete_account">SLET BRUGER</string>
     <string name="language">VÆLG SPROG</string>
     <string name="logout">LOG UD</string>
+    <string name="following_noone">Du følger på nuværende tidspunkt ikke nogen mentorer</string>
 
         <!-- Change settings -->
         <string name="change_password">Ny Kode</string>

@@ -44,7 +44,7 @@ class FragmentPersonalSettings: Fragment() {
         Username = mPrefs.getString("name", "0")
         listView = view.findViewById(R.id.option_list)
 
-        getUserInfoFromFirebase(Username)
+        getUserInfoFromFirebase(Username, requireContext())
 
         view.option_list.setOnItemClickListener { parent, view, position, id ->
             val next = optionsList[position]
@@ -74,7 +74,7 @@ class FragmentPersonalSettings: Fragment() {
         return view
     }
 
-    private fun getUserInfoFromFirebase(username: String) {
+    private fun getUserInfoFromFirebase(username: String, context: Context) {
 
         ref.addValueEventListener(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
@@ -91,24 +91,25 @@ class FragmentPersonalSettings: Fragment() {
                         Email = operatingUser.getEmail().toString().trim()
                         Password = operatingUser.getPassword().toString().trim()
                         Username = operatingUser.getUsername().toString().trim()
+
+                        if (isAdded) {
+                            optionsList = arrayListOf<String>(
+                                resources.getString(R.string.email).plus(": ").plus(Email),
+                                resources.getString(R.string.name).plus(": ").plus(Username),
+                                resources.getString(R.string.password).plus(": ").plus(Password),
+                                resources.getString(R.string.interests),
+                                resources.getString(R.string.delete_account),
+                                resources.getString(R.string.empty_string)
+                            )
+                            var adapter = Adapter(context, optionsList)
+                            adapter.notifyDataSetChanged()
+                            listView.adapter = adapter
+                        }
                     }
                 }
+
             }
         })
-
-        Handler().postDelayed({
-         optionsList = arrayListOf<String>(
-            resources.getString(R.string.email).plus(": ").plus(Email),
-            resources.getString(R.string.name).plus(": ").plus(Username),
-            resources.getString(R.string.password).plus(": ").plus(Password),
-            resources.getString(R.string.interests),
-            resources.getString(R.string.delete_account),
-            resources.getString(R.string.empty_string))
-
-            var adapter = Adapter(this.requireContext(), optionsList)
-            adapter.notifyDataSetChanged()
-            listView.adapter = adapter
-        }, 500)
     }
 
     private fun goToNextFrag(fragment: Fragment) {
