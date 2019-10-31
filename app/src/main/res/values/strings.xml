@@ -59,6 +59,7 @@
         <string name="change_email">Skift e-mail</string>
         <string name="change_username">Skift Brugernavn</string>
         <string name="change">Skift</string>
+        <string name="change_hint">(Skift)</string>
 
         <!-- Change errors -->
         <string name="wrong_username">Du skrive det rigtige brugernavn</string>
