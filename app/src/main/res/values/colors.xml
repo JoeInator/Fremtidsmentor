@@ -8,6 +8,7 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorMaroon">#800000</color>
+    <color name="bottomNavigationcolor">#4682B4</color>
     <color name="FragmentBackground">#010E1D</color>
     <color name="colorButton">#4682B4</color>
     <color name="coloreggLightwhite">#ffffff</color>

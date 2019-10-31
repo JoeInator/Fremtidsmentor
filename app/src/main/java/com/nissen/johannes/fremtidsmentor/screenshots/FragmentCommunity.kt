@@ -20,6 +20,7 @@ class FragmentCommunity : Fragment() {
 
         view.MentorBtn.setOnClickListener {
             val newfragment = FragmentMentors()
+            activity!!.supportFragmentManager.popBackStack()
             activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.community_fragment, newfragment)
             .addToBackStack(null)
@@ -27,6 +28,7 @@ class FragmentCommunity : Fragment() {
         }
         view.ProfilBtn.setOnClickListener{
             val newfragment = FragmentProfile()
+            activity!!.supportFragmentManager.popBackStack()
             activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.community_fragment, newfragment)
             .addToBackStack(null)
@@ -34,6 +36,7 @@ class FragmentCommunity : Fragment() {
         }
         view.DiscoverBtn.setOnClickListener{
             val newfragment = FragmentDiscover()
+            activity!!.supportFragmentManager.popBackStack()
             activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.community_fragment, newfragment)
             .addToBackStack(null)

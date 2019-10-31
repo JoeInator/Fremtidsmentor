@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import kotlinx.android.synthetic.*
@@ -18,28 +21,32 @@ import kotlinx.android.synthetic.main.mentor_list_item.view.*
 class FragmentMentors : Fragment() {
 
     private val mentorsInList = arrayListOf<Mentor>(
-            Mentor("1", "Joe Biden", "balle159", "Denne bruger har en gennemgående erfaring med Java",
+            Mentor("Joe Biden", "nissen.johannes@gmail.com", "balle159", "Denne bruger har en gennemgående erfaring med Java",
                 "Some deeper description of the mentors backgroud", arrayListOf<String>("JAVA", "C#", "MySQL", "Domæne analyse", "kldd", "kmlml", "ikjlkoojoj", "jijljlj")),
-            Mentor("2", "Poul Nissen","PoulRavnNissen", "Poul er teknisk chef i nordea-Danmark,\n" +
+            Mentor("Poul Nissen", "poul@gmail.com","PoulRavnNissen", "Poul er teknisk chef i nordea-Danmark,\n" +
                     "og har derfor meget erfaring med projektsyring","Some deeper description of the mentors backgroud", arrayListOf<String>(
                 "Projekt styring", "Python", "DNS", "Datakommunikation")),
-            Mentor("3","Jakob Melbye","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
+            Mentor("Jakob Melbye","jakobRocks@gmail.com","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
                     "omkring netværkssikkerhed","Some deeper description of the mentors backgroud", arrayListOf<String>(
                 "Netværkssikkerhed", "Process og innovation", "Programmering i C", "Front-end developement"
             ))
     )
 
+    lateinit var ref: DatabaseReference
+    lateinit var listView: ListView
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_mentor, container, false)
 
-                view.mentor_list.setOnItemClickListener { parent, view, position, id ->
+        ref = FirebaseDatabase.getInstance().getReference("users/mentor")
+        listView = view.findViewById(R.id.mentor_list)
+
+        listView.setOnItemClickListener { parent, view, position, id ->
             val selectedMentor = FragmentChosenMentor()
 
             val pdf_args = Bundle()
 
             pdf_args.putString("name", mentorsInList.get(position).getUsername())
-            pdf_args.putString("description", mentorsInList.get(position).getDescription())
-            pdf_args.putStringArrayList("competencies", mentorsInList.get(position).getComps())
             selectedMentor.setArguments(pdf_args)
 
             activity!!.supportFragmentManager.beginTransaction()
@@ -48,43 +55,50 @@ class FragmentMentors : Fragment() {
                 .commit()
         }
 
-        var adapter = Adapter(this.requireActivity(), mentorsInList)
-        view.mentor_list.adapter = adapter
+        getFirebaseMentors()
 
         return view
     }
 
+    private fun getFirebaseMentors() {
+        var adapter = Adapter(this.requireContext(), mentorsInList)
 
-    private fun generateDummies(): ArrayList<Mentor> {
-        var result = ArrayList<Mentor>()
+        ref.addValueEventListener(object: ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                mentorsInList.clear()
+                if (snapshot!!.exists()) {
+                    for (h in snapshot.children) {
+                        val mentor = h.getValue(Mentor::class.java)
+                        mentorsInList.add(mentor!!)
+                    }
+                    adapter.notifyDataSetChanged()
+                    listView.adapter = adapter
+                }
+            }
 
-        for (i in 0..2){
-            var user: Mentor = mentorsInList[i]
-            result.add(user)
-        }
+            override fun onCancelled(p0: DatabaseError) {
+                Toast.makeText(requireContext(), R.string.firebaseListError, Toast.LENGTH_LONG).show()
+            }
+        })
 
-        return result
+
+
     }
 
 
-
     private class Adapter(context: Context, private val mentorsInList: ArrayList<Mentor>): BaseAdapter() {
-
         private val mContext: Context
 
-        init {
-            mContext = context
-        }
+        init { mContext = context }
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val main = layoutInflater.inflate(R.layout.mentor_list_item, parent, false)
-            
+            val main = layoutInflater.inflate(R.layout.mentor_list_item, parent,false)
+
             val mentor = getItem(position) as Mentor
             main.mentor_img.setImageResource(R.drawable.cv_foto)
             main.mentor_name.text = mentor.getUsername()
             main.mentor_descr.text = mentor.getTeaser()
-            
             return main
         }
 
@@ -99,7 +113,6 @@ class FragmentMentors : Fragment() {
         override fun getItem(position: Int): Any {
             return mentorsInList[position]
         }
-
     }
 
 

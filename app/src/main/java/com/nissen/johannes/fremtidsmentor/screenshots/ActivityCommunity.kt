@@ -23,33 +23,38 @@ class ActivityCommunity : FragmentActivity() {
             when (it.itemId) {
                 R.id.home -> {
                     val selectedFragment = FragmentCommunity()
-                    supportFragmentManager.beginTransaction()
-                        .replace(R.id.community_fragment, selectedFragment)
-                        .commit()
+                    supportFragmentManager.popBackStack()
+                    supportFragmentManager.popBackStack()
+                    supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                        .addToBackStack(null).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                   R.id.discover -> {
                       val selectedFragment = FragmentDiscover()
+                      supportFragmentManager.popBackStack()
                       supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
-                          .commit()
+                          .addToBackStack(null).commit()
                       return@OnNavigationItemSelectedListener true
                       }
                 R.id.Mentor -> {
                     val selectedFragment = FragmentMentors()
+                    supportFragmentManager.popBackStack()
                     supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
-                        .commit()
+                        .addToBackStack(null).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.community -> {
                     val selectedFragment = FragmentCommunityForum()
+                    supportFragmentManager.popBackStack()
                     supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
-                        .commit()
+                        .addToBackStack(null).commit()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.profile -> {
                     val selectedFragment = FragmentProfile()
+                    supportFragmentManager.popBackStack()
                     supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
-                        .commit()
+                        .addToBackStack(null).commit()
                     return@OnNavigationItemSelectedListener true
                 }
             }
