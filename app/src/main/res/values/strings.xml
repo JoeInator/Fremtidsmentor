@@ -27,6 +27,8 @@
     <string name="home">HJEM</string>
     <string name="community">COMMUNITY</string>
     <string name="book">BOOK</string>
+    <string name="mentor">Er Mentor</string>
+    <string name="mentee">Skal bruge en Mentor</string>
 
     
     <!-- MentorSpecifications -->

@@ -12,7 +12,7 @@
         android:id="@+id/community_fragment"
         android:layout_width="0dp"
         android:layout_height="520dp"
-        android:background="@drawable/cloudy_background"
+        android:background="@drawable/frontpage"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
