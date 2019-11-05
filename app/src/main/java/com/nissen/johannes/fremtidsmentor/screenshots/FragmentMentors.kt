@@ -39,7 +39,7 @@ class FragmentMentors : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_mentor, container, false)
 
         ref = FirebaseDatabase.getInstance().getReference("users/mentor")
-        listView = view.findViewById(R.id.mentor_list)
+        listView = view.findViewById<ListView>(R.id.mentor_list)
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val selectedMentor = FragmentChosenMentor()

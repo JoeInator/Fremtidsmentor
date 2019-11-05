@@ -19,7 +19,7 @@ class FragmentCommunity : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_community_user, container, false)
 
         view.MentorBtn.setOnClickListener {
-            val newfragment = FragmentMentors()
+            val newfragment = FragmentFilter()
             activity!!.supportFragmentManager.popBackStack()
             activity!!.supportFragmentManager.beginTransaction()
             .replace(R.id.community_fragment, newfragment)
