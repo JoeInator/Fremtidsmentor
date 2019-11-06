@@ -35,7 +35,7 @@ class ActivityCommunity : FragmentActivity() {
                       return@OnNavigationItemSelectedListener true
                       }
                 R.id.Mentor -> {
-                    val selectedFragment = FragmentMentors()
+                    val selectedFragment = FragmentFilter()
                     supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
                     supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
                         .addToBackStack(null).commit()
