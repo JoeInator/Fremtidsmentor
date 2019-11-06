@@ -1,18 +1,21 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
+import android.app.ProgressDialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
-import kotlinx.android.synthetic.main.fragment_chosen_mentor.*
 import kotlinx.android.synthetic.main.fragment_chosen_mentor.view.*
 import java.lang.StringBuilder
 
@@ -32,24 +35,29 @@ class FragmentChosenMentor: Fragment() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
         ref = FirebaseDatabase.getInstance().getReference("users/mentor")
+        val loading = ProgressDialog(requireContext())
+        loading.setMessage("\t".plus(resources.getString(R.string.load_info)))
+        loading.setCancelable(false)
+        loading.show()
 
         getMentorFromFirebase(arguments!!.getString("name"))
-        Handler().postDelayed({
-            loadPage(view)
-        }, 1000)
+        view.setBackgroundColor(resources.getColor(R.color.semiTransGrey)) //Some darker color
+        view.subsribe_btn.visibility = View.GONE
+        view.bookingBtn.visibility = View.GONE
 
+        Handler().postDelayed({
+            view.background = resources.getDrawable(R.drawable.frontpage, null)
+            loading.dismiss()
+            loadPage(view)
+            view.mentor_competencies.text = resources.getString(R.string.key_competencies)
+        }, 5000)
 
         return view
     }
 
     private fun FillLists(comps: ArrayList<String>) {
         for (i in 0 until comps.size/2) {
-            //if (i <= comps.size / 2) {
-                compList1.add(comps[i])
-            //}
-//            else if (i > comps.size / 2){
-//                compList2.add(comps[i])
-//            }
+            compList1.add(comps[i])
         }
         for (i in comps.size/2+1 until comps.size) {
             compList2.add(comps[i])
@@ -77,6 +85,8 @@ class FragmentChosenMentor: Fragment() {
 
         view.InfoView.vertical_scroll.mentor_description.text = mentor.getDescription()
         view.mentor_basicinfo.text = mentor.getTeaser()
+        view.subsribe_btn.visibility = View.VISIBLE
+        view.bookingBtn.visibility = View.VISIBLE
 
         view.bookingBtn.setOnClickListener{
             Toast.makeText(this.requireContext(), R.string.calendarView_under_construction, Toast.LENGTH_SHORT).show()
@@ -101,6 +111,5 @@ class FragmentChosenMentor: Fragment() {
             }
         })
     }
-
 
 }
