@@ -79,7 +79,7 @@ class FragmentLogin : Fragment() {
 
     private fun getFirebaseUser(username: String, password: String) {
 
-        ref.addValueEventListener(object: ValueEventListener {
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_LONG).show()
             }
