@@ -21,25 +21,27 @@ import kotlinx.android.synthetic.main.mentor_list_item.view.*
 class FragmentMentors : Fragment() {
 
     private val mentorsInList = arrayListOf<Mentor>(
-            Mentor("Joe Biden", "nissen.johannes@gmail.com", "balle159", "Denne bruger har en gennemgående erfaring med Java",
-                "Some deeper description of the mentors backgroud", arrayListOf<String>("JAVA", "C#", "MySQL", "Domæne analyse", "kldd", "kmlml", "ikjlkoojoj", "jijljlj")),
-            Mentor("Poul Nissen", "poul@gmail.com","PoulRavnNissen", "Poul er teknisk chef i nordea-Danmark,\n" +
-                    "og har derfor meget erfaring med projektsyring","Some deeper description of the mentors backgroud", arrayListOf<String>(
-                "Projekt styring", "Python", "DNS", "Datakommunikation")),
-            Mentor("Jakob Melbye","jakobRocks@gmail.com","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
-                    "omkring netværkssikkerhed","Some deeper description of the mentors backgroud", arrayListOf<String>(
-                "Netværkssikkerhed", "Process og innovation", "Programmering i C", "Front-end developement"
-            ))
+//            Mentor("Joe Biden", "nissen.johannes@gmail.com", "balle159", "Denne bruger har en gennemgående erfaring med Java",
+//                "Some deeper description of the mentors backgroud", arrayListOf<String>("JAVA", "C#", "MySQL", "Domæne analyse", "kldd", "kmlml", "ikjlkoojoj", "jijljlj")),
+//            Mentor("Poul Nissen", "poul@gmail.com","PoulRavnNissen", "Poul er teknisk chef i nordea-Danmark,\n" +
+//                    "og har derfor meget erfaring med projektsyring","Some deeper description of the mentors backgroud", arrayListOf<String>(
+//                "Projekt styring", "Python", "DNS", "Datakommunikation")),
+//            Mentor("Jakob Melbye","jakobRocks@gmail.com","Netværkssikkerhed_Styrer","Jakob har en gennemgående viden\n" +
+//                    "omkring netværkssikkerhed","Some deeper description of the mentors backgroud", arrayListOf<String>(
+//                "Netværkssikkerhed", "Process og innovation", "Programmering i C", "Front-end developement"
+//            ))
     )
 
     lateinit var ref: DatabaseReference
     lateinit var listView: ListView
+    lateinit var category: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_mentor, container, false)
 
         ref = FirebaseDatabase.getInstance().getReference("users/mentor")
         listView = view.findViewById<ListView>(R.id.mentor_list)
+        category = arguments!!.getString("Filter")
 
         listView.setOnItemClickListener { parent, view, position, id ->
             val selectedMentor = FragmentChosenMentor()
@@ -68,8 +70,10 @@ class FragmentMentors : Fragment() {
                 mentorsInList.clear()
                 if (snapshot!!.exists()) {
                     for (h in snapshot.children) {
-                        val mentor = h.getValue(Mentor::class.java)
-                        mentorsInList.add(mentor!!)
+                        if (h.hasChild("comps/".plus(category.toLowerCase()))) {
+                            val mentor = h.getValue(Mentor::class.java)
+                            mentorsInList.add(mentor!!)
+                        }
                     }
                     adapter.notifyDataSetChanged()
                     listView.adapter = adapter
