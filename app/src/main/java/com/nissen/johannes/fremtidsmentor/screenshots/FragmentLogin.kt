@@ -44,30 +44,22 @@ class FragmentLogin : Fragment() {
         ref = FirebaseDatabase.getInstance().getReference(path)
         remember_me = view.findViewById<CheckBox>(R.id.remember_me)
 
-        rememberedUser = mPrefs.getBoolean("remember", false)
-        if (rememberedUser) {
-            val intent = Intent(requireContext(), ActivityCommunity::class.java).apply({})
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        } else {
-            prefsEditor.clear().commit()
-            view.loginBtn.setOnClickListener {
-                Login()
-            }
-
-            view.sign_up_option.setOnClickListener {
-                signUp()
-            }
-
-            view.forgot_password.setOnClickListener {
-                Toast.makeText(this.context, R.string.Not_Implemented, Toast.LENGTH_SHORT).show()
-            }
-
-            view.sign_up_option.getPaint().setUnderlineText(true)
-
-            view.forgot_password.getPaint().setUnderlineText(true)
-
+        prefsEditor.clear().commit()
+        view.loginBtn.setOnClickListener {
+            Login()
         }
+
+        view.sign_up_option.setOnClickListener {
+            signUp()
+        }
+
+        view.forgot_password.setOnClickListener {
+            Toast.makeText(this.context, R.string.Not_Implemented, Toast.LENGTH_SHORT).show()
+        }
+
+        view.sign_up_option.getPaint().setUnderlineText(true)
+
+        view.forgot_password.getPaint().setUnderlineText(true)
         return view
     }
 

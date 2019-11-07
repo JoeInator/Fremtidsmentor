@@ -82,6 +82,7 @@ class FragmentSignUp : Fragment() {
         ref.child(keyInt!!).setValue(newUser)
             .addOnCompleteListener {
             prefsEditor.putString("name", newUser!!.getUsername())
+            prefsEditor.putString("userID", keyInt)
             prefsEditor.apply()
             prefsEditor.commit()
             nextAct()
