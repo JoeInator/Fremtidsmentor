@@ -91,12 +91,12 @@ class FragmentLogin : Fragment() {
                         and h.child("password").getValue(String::class.java).equals(password)) {
                             user = h.getValue(NormalPerson::class.java)
                             userApproved = true
-                            println("User: " + user!!.getUsername())
 
                             if (remember_me.isChecked) { prefsEditor.putBoolean("remember", true) }
                             else { prefsEditor.putBoolean("remember", false) }
 
                             prefsEditor.putString("name", user!!.getUsername())
+                            prefsEditor.putString("userID", user!!.getId())
                             prefsEditor.apply()
                             prefsEditor.commit()
                             if (isAdded) {

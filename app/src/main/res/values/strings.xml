@@ -36,6 +36,7 @@
     <string name="calendarView_under_construction">Her kommer der et CalendarView, hvor det bliver muligt at vælge en dag</string>
     <string name="subscribe">Følg Mentor</string>
     <string name="load_info">Henter info...</string>
+    <string name="dismiss_calendar">Fortryd</string>
 
     <!-- Settings -->
     <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
@@ -80,15 +81,14 @@
         <string name="confirm_delete">Er du sikker på at du vil slette din bruger.\n Det kan ikke gøres om</string>
 
     <!-- Calendar -->
-    <string name="current_date">June, 2016</string>
     <string name="add_event">ADD CALENDAR EVENT</string>
-    <string name="sun">SUN</string>
     <string name="mon">MON</string>
     <string name="tue">TUE</string>
     <string name="wed">WED</string>
     <string name="thu">THU</string>
     <string name="fri">FRI</string>
     <string name="sat">SAT</string>
+    <string name="sun">SUN</string>
     <string name="last_date">30</string>
 
     <!-- FireBase messages -->
