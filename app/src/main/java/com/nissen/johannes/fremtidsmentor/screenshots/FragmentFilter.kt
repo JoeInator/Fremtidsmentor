@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
-import com.nissen.johannes.fremtidsmentor.entities.Categories
-import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import kotlinx.android.synthetic.main.fragment_mentor_filter.view.*
 
 class FragmentFilter : Fragment() {
