@@ -2,6 +2,8 @@
 <resources>
     <color name="color_btnStart">#02aab0</color>
     <color name="color_btnEnd">#00cdac</color>
+    <color name="color_btnStart_selected">#005154</color>
+    <color name="color_btnEnd_selected">#007865</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
@@ -28,4 +30,5 @@
     <color name="colorDarkerRed">#8c1111</color>
     <color name="colorDarkRed">#9f1717</color>
     <color name="colorTest">#D86060</color>
+    <color name="semiTransGrey">#CC808080</color>
 </resources>

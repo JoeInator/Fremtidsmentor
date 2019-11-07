@@ -28,17 +28,20 @@ class FragmentLogin : Fragment() {
     private var remember: Boolean = false
     private var rememberedUser: Boolean = false
     private var userApproved: Boolean = false
+    private var path: String = "user/normalUser"
     private lateinit var remember_me: CheckBox
     private lateinit var mPrefs: SharedPreferences
     private lateinit var prefsEditor: SharedPreferences.Editor
     private lateinit var ref: DatabaseReference
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         // Inflate the layout for this fragment
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
-        ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
+        path = arguments!!.getString("userType")
+        ref = FirebaseDatabase.getInstance().getReference(path)
         remember_me = view.findViewById<CheckBox>(R.id.remember_me)
 
         rememberedUser = mPrefs.getBoolean("remember", false)
@@ -76,7 +79,7 @@ class FragmentLogin : Fragment() {
 
     private fun getFirebaseUser(username: String, password: String) {
 
-        ref.addValueEventListener(object: ValueEventListener {
+        ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_LONG).show()
             }
@@ -88,12 +91,12 @@ class FragmentLogin : Fragment() {
                         and h.child("password").getValue(String::class.java).equals(password)) {
                             user = h.getValue(NormalPerson::class.java)
                             userApproved = true
-                            println("User: " + user!!.getUsername())
 
                             if (remember_me.isChecked) { prefsEditor.putBoolean("remember", true) }
                             else { prefsEditor.putBoolean("remember", false) }
 
                             prefsEditor.putString("name", user!!.getUsername())
+                            prefsEditor.putString("userID", user!!.getId())
                             prefsEditor.apply()
                             prefsEditor.commit()
                             if (isAdded) {

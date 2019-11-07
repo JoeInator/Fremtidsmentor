@@ -8,9 +8,9 @@ class Mentor() : User() {
     private var email: String? = null
     private var username: String? = null
     private var password: String? = null
-    private var competencies: ArrayList<String>? = null
+    private var competencies: HashMap<String, ArrayList<String>>? = null
     
-    constructor(username: String, email: String, password: String, teaser: String, descr: String, competencies: ArrayList<String>) : this() {
+    constructor(username: String, email: String, password: String, teaser: String, descr: String, competencies: HashMap<String, ArrayList<String>>) : this() {
         this.email = email
         this.username = username
         this.password = password
@@ -19,11 +19,11 @@ class Mentor() : User() {
         this.competencies = competencies
     }
 
-    constructor(id: String, username: String, password: String, descr: String) : this() {
+    constructor(id: String, username: String, email: String, password: String) : this() {
         this.id = id
         this.username = username
+        this.email = email
         this.password = password
-        this.description = descr
     }
 
     fun getDescription(): String? {
@@ -66,22 +66,28 @@ class Mentor() : User() {
         this.teaser = teaser
     }
 
-    fun getComps(): ArrayList<String>? {
+    fun getComps(): HashMap<String, ArrayList<String>>? {
         return competencies
     }
 
-    fun setComps(comps: ArrayList<String>) {
+    fun setComps(comps: HashMap<String, ArrayList<String>>) {
         this.competencies = comps
     }
 
     fun addToComps(newComp: String) {
-        if (!competencies!!.contains(newComp))
-            competencies!!.add(newComp)
+        for (h in competencies!!) {
+            if ((!h.value.contains(newComp))) {
+                h.value.add(newComp)
+            }
+        }
     }
 
     fun RemoveComps(comp: String) {
-        if(competencies!!.contains(comp))
-            competencies!!.remove(comp)
+        for (h in competencies!!) {
+            if (h.value.contains(comp)) {
+                h.value.remove(comp)
+            }
+        }
     }
 
     fun getEmail(): String? {

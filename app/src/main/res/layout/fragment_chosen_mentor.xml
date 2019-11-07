@@ -7,21 +7,10 @@
     android:background="@android:color/transparent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mentors_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/transparent">
-
-        <Button
-            android:id="@+id/bookingBtn"
-            android:layout_width="168dp"
-            android:layout_height="68dp"
-            android:background="@drawable/layout_btn"
-            android:text="@string/book"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InfoView" />
 
         <ImageView
             android:id="@+id/mentors_pic"
@@ -43,17 +32,48 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="28dp"
             android:layout_marginRight="28dp"
+            android:textColor="@color/colorWhite"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toEndOf="@+id/mentors_pic"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/bookingBtn"
+            android:layout_width="148dp"
+            android:layout_height="64dp"
+            android:background="@drawable/layout_btn"
+            android:text="@string/book"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/InfoView"
+            app:layout_constraintVertical_bias="0.518" />
+
+        <Button
+            android:id="@+id/subsribe_btn"
+            android:layout_width="148dp"
+            android:layout_height="64dp"
+            android:layout_marginEnd="48dp"
+            android:background="@drawable/layout_btn"
+            android:text="@string/subscribe"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/bookingBtn"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/InfoView"
+            app:layout_constraintVertical_bias="0.518" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/InfoView"
             android:layout_width="0dp"
             android:layout_height="248dp"
             android:layout_marginTop="16dp"
+            android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -61,8 +81,8 @@
 
             <ScrollView
                 android:id="@+id/infoView"
-                android:layout_width="383dp"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -83,7 +103,7 @@
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="24dp"
-                        android:text="Some Detailed Description of mentor"
+                        android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
 
                     <TextView
@@ -91,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
-                        android:text="@string/key_competencies"
+                        android:textColor="@color/colorWhite"
                         android:textSize="18sp" />
 
                     <LinearLayout
@@ -104,13 +124,15 @@
                             android:id="@+id/comp_list1"
                             android:layout_width="143dp"
                             android:layout_height="match_parent"
-                            android:layout_marginLeft="16dp" />
+                            android:layout_marginLeft="16dp"
+                            android:textColor="@color/colorWhite" />
 
                         <TextView
                             android:id="@+id/comp_list2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="16dp" />
+                            android:layout_marginLeft="16dp"
+                            android:textColor="@color/colorWhite" />
 
                     </LinearLayout>
 
@@ -120,18 +142,49 @@
             </ScrollView>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <Button
-            android:id="@+id/Følg"
-            android:layout_width="168dp"
-            android:layout_height="68dp"
-            android:layout_marginEnd="48dp"
-            android:layout_marginRight="48dp"
-            android:background="@drawable/layout_btn"
-            android:text="Button"
+        <LinearLayout
+            android:id="@+id/calendar_view"
+            android:layout_width="293dp"
+            android:layout_height="416dp"
+            android:orientation="vertical"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/bookingBtn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.592"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InfoView" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.231">
+
+            <CalendarView
+                android:id="@+id/calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/back_btn"
+                    android:layout_width="55dp"
+                    android:layout_height="65dp"
+                    android:layout_marginRight="60dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_btn"
+                    android:text="@string/dismiss_calendar" />
+
+                <Button
+                    android:id="@+id/book_btn"
+                    android:layout_width="55dp"
+                    android:layout_height="65dp"
+                    android:layout_marginLeft="60dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/layout_btn"
+                    android:text="@string/book" />
+            </LinearLayout>
+
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

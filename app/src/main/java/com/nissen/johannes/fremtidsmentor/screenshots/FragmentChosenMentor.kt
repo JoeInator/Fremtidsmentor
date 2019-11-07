@@ -1,20 +1,28 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
+import android.app.ProgressDialog
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Handler
+import android.os.SystemClock
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
-import kotlinx.android.synthetic.main.fragment_chosen_mentor.*
+import com.nissen.johannes.fremtidsmentor.entities.Schedule
 import kotlinx.android.synthetic.main.fragment_chosen_mentor.view.*
 import java.lang.StringBuilder
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 class FragmentChosenMentor: Fragment() {
 
@@ -25,6 +33,7 @@ class FragmentChosenMentor: Fragment() {
     lateinit var prefsEditor: SharedPreferences.Editor
     lateinit var ref: DatabaseReference
     lateinit var mentor: Mentor
+    lateinit var date: String
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_chosen_mentor, container, false)
@@ -32,33 +41,46 @@ class FragmentChosenMentor: Fragment() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
         ref = FirebaseDatabase.getInstance().getReference("users/mentor")
+        val loading = ProgressDialog(requireContext())
+        loading.setMessage("\t".plus(resources.getString(R.string.load_info)))
+        loading.setCancelable(false)
+        loading.show()
 
         getMentorFromFirebase(arguments!!.getString("name"))
-        Handler().postDelayed({
-            loadPage(view)
-        }, 1000)
+        view.setBackgroundColor(resources.getColor(R.color.semiTransGrey)) //Some darker color
+        view.subsribe_btn.visibility = View.GONE
+        view.bookingBtn.visibility = View.GONE
+        view.calendar_view.visibility = View.GONE
 
+        Handler().postDelayed({
+            view.background = resources.getDrawable(R.drawable.frontpage, null)
+            loading.dismiss()
+            loadPage(view)
+            view.mentor_competencies.text = resources.getString(R.string.key_competencies)
+        }, 500)
 
         return view
     }
 
-    private fun FillLists(comps: ArrayList<String>) {
-        for (i in 0 until comps.size/2) {
-            //if (i <= comps.size / 2) {
-                compList1.add(comps[i])
-            //}
-//            else if (i > comps.size / 2){
-//                compList2.add(comps[i])
-//            }
+    private fun FillLists(comps: HashMap<String, ArrayList<String>>) {
+
+        val compsList = ArrayList<String>()
+
+        for (h in comps) {
+            compsList.addAll(h.value)
         }
-        for (i in comps.size/2+1 until comps.size) {
-            compList2.add(comps[i])
+
+        for (i in 0 until compsList.size/2) {
+            compList1.add(compsList[i])
+        }
+        for (i in compsList.size/2 until compsList.size) {
+            compList2.add(compsList[i])
         }
     }
 
     private fun loadPage(view: View) {
         view.mentors_pic.setImageResource(R.drawable.cv_foto)
-        val comps: ArrayList<String> = mentor.getComps()!!
+        val comps: HashMap<String, ArrayList<String>> = mentor.getComps()!!
         builder = StringBuilder()
         builder.append("")
 
@@ -77,16 +99,18 @@ class FragmentChosenMentor: Fragment() {
 
         view.InfoView.vertical_scroll.mentor_description.text = mentor.getDescription()
         view.mentor_basicinfo.text = mentor.getTeaser()
+        view.subsribe_btn.visibility = View.VISIBLE
+        view.bookingBtn.visibility = View.VISIBLE
 
         view.bookingBtn.setOnClickListener{
-            Toast.makeText(this.requireContext(), R.string.calendarView_under_construction, Toast.LENGTH_SHORT).show()
+            loadCalendar(view)
         }
     }
 
     /* Retrive the mentor from firebase */
     private fun getMentorFromFirebase(mentorName: String) {
 
-        ref.addValueEventListener(object: ValueEventListener  {
+        ref.addListenerForSingleValueEvent(object: ValueEventListener  {
             override fun onCancelled(p0: DatabaseError) {
                 Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_SHORT).show()
                 activity!!.supportFragmentManager.popBackStack()
@@ -102,5 +126,70 @@ class FragmentChosenMentor: Fragment() {
         })
     }
 
+    private fun viewCalendar(view: View) {
+        view.subsribe_btn.visibility = View.GONE
+        view.bookingBtn.visibility = View.GONE
+        view.infoView.visibility = View.GONE
+        view.mentors_pic.visibility = View.GONE
+        view.mentor_basicinfo.visibility = View.GONE
+        view.calendar_view.visibility = View.VISIBLE
+        view.calendar_view.setBackgroundColor(resources.getColor(R.color.colorWhite))
+        view.setBackgroundColor(resources.getColor(R.color.semiTransGrey))
+        view.calendar_view.setBackgroundColor(resources.getColor(R.color.colorWhite))
+    }
+
+    private fun dismissCalender(view: View) {
+        view.subsribe_btn.visibility = View.VISIBLE
+        view.bookingBtn.visibility = View.VISIBLE
+        view.infoView.visibility = View.VISIBLE
+        view.mentors_pic.visibility = View.VISIBLE
+        view.mentor_basicinfo.visibility = View.VISIBLE
+        view.calendar_view.visibility = View.GONE
+        view.background = resources.getDrawable(R.drawable.frontpage, null)
+    }
+
+    private fun bookDay(schedule: Schedule) {
+        val ID = mPrefs.getString("userID", "")
+        val tempRef = FirebaseDatabase.getInstance().getReference("users/normalUser/".plus(ID))
+        schedule.ScheduleID = tempRef.push().getKey()
+        schedule.ScheduleMentor = mentor.getUsername()
+        schedule.ScheduleMentorID = mentor.getId()
+        schedule.ScheduleMentee = mPrefs.getString("name","")
+        schedule.ScheduleMenteeID = mPrefs.getString("userID", "")
+        schedule.ScheduleDate = date
+
+        tempRef.child("Schedules/".plus(schedule.ScheduleID)).setValue(schedule)
+            .addOnCompleteListener {
+                Toast.makeText(requireContext(), mentor.getId(), Toast.LENGTH_SHORT).show()
+            }
+
+        val tempRef2 = FirebaseDatabase.getInstance().getReference("users/mentor/".plus(mentor.getId()))
+        tempRef2.child("Schedules/".plus(schedule.ScheduleID)).setValue(schedule)
+
+    }
+
+    private fun loadCalendar(view: View) {
+        viewCalendar(view)
+//        val sdf = SimpleDateFormat("dd/M/yyyy")
+//        val currentDate = sdf.format(Date())
+//        System.out.println(" C DATE is  "+currentDate)
+        view.calendar.minDate = Calendar.getInstance().timeInMillis + (24 * 60 * 60 * 1000 * 3)
+        view.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            // Note that months are indexed from 0. So, 0 means January, 1 means february, 2 means march etc.
+            date = dayOfMonth.toString().plus("/").plus(month + 1).plus("/").plus(year)
+            Toast.makeText(requireContext(), date, Toast.LENGTH_SHORT).show()
+        }
+
+        view.setOnClickListener {
+            dismissCalender(view)
+        }
+        view.book_btn.setOnClickListener {
+            bookDay(Schedule())
+            dismissCalender(view)
+        }
+        view.back_btn.setOnClickListener {
+            dismissCalender(view)
+        }
+    }
 
 }
