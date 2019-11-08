@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/SETTINGS_Btn"
+        android:id="@+id/SCHEDULES_Btn"
         android:layout_width="111dp"
         android:layout_height="47dp"
         android:layout_marginTop="24dp"
