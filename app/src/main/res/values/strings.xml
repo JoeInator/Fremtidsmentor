@@ -31,6 +31,8 @@
     <string name="mentor">Er Mentor</string>
     <string name="mentee">Skal bruge en Mentor</string>
 
+    <!-- Schedule -->
+    <string name="schedule_header">Aftaler med mentorer</string>
     
     <!-- MentorSpecifications -->
     <string name="key_competencies">Primære komtencer\n</string>
