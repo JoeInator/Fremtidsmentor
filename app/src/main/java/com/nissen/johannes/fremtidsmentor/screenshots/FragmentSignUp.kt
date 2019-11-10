@@ -11,6 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.FirebaseDatabase
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
+import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.view.*
@@ -21,6 +24,7 @@ class FragmentSignUp : Fragment() {
 
     lateinit var mPrefs: SharedPreferences
     lateinit var prefsEditor: SharedPreferences.Editor
+    lateinit var FBC: IFirebase
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
@@ -77,7 +81,7 @@ class FragmentSignUp : Fragment() {
 
         val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
         val keyInt = ref.push().getKey()
-        val newUser = NormalPerson(keyInt!!, username, email, password, interests)
+        val newUser = NormalPerson(username, email, password, interests)
 
         ref.child(keyInt!!).setValue(newUser)
             .addOnCompleteListener {
@@ -93,7 +97,6 @@ class FragmentSignUp : Fragment() {
                         .show()
                 }
             }
-
     }
 
 }
