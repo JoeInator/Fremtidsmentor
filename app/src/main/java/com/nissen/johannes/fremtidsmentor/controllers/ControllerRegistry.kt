@@ -1,7 +1,7 @@
 package com.nissen.johannes.fremtidsmentor.controllers
 
-import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.FirebaseController
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
 
 class ControllerRegistry {
 
