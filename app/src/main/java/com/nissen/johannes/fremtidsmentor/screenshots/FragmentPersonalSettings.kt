@@ -162,6 +162,9 @@ class FragmentPersonalSettings: Fragment() {
             val option = getItem(position) as String
             main.optionsBtn.text = option
             main.optionsBtn.id = getItemId(position).toInt()
+            if (option.equals(Settings[4]) or option.equals(Settings[3]) or option.isEmpty()) {
+                main.skibable.visibility = View.GONE
+            }
             return main
         }
 
