@@ -13,8 +13,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
+            android:fontFamily="@font/header"
             android:text="@string/personal_info"
-            android:textSize="22sp"
+            android:textColor="@color/colordarkEggwhite"
+            android:textSize="45sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
