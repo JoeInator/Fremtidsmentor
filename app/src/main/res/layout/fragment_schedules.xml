@@ -15,18 +15,40 @@
             android:layout_marginTop="48dp"
             android:fontFamily="@font/header"
             android:text="@string/schedule_header"
+            android:textColor="@color/colordarkEggwhite"
             android:textSize="50dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="282dp"
-            android:layout_height="441dp"
-            android:layout_marginBottom="24dp"
+            android:id="@+id/schedulesList"
+            android:layout_width="300dp"
+            android:layout_height="350dp"
+            android:layout_marginBottom="60dp"
+            android:background="@android:color/transparent"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.513"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/conText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="140dp"
+            android:gravity="center"
+            android:text="THIS PART IS UNDER CONSTRUCTION.\nDER KOMMER EN LISTE HVOR MAN KAN SE FLG.\nMentorens Navn\nMentee's navn\nHvornår der er
+                            \nDet bliver på nuværende tidspunkt gemt i databasen. Det skal bare lige vises :)"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

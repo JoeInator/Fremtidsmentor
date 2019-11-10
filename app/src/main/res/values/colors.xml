@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Gradient colors-->
     <color name="color_btnStart">#02aab0</color>
     <color name="color_btnEnd">#00cdac</color>
     <color name="color_btnStart_selected">#005154</color>
@@ -31,4 +33,5 @@
     <color name="colorDarkRed">#9f1717</color>
     <color name="colorTest">#D86060</color>
     <color name="semiTransGrey">#CC808080</color>
+    <color name="colorGrey">#808080</color>
 </resources>
