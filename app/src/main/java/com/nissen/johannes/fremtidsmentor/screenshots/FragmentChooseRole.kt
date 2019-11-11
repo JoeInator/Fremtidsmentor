@@ -89,11 +89,7 @@ class FragmentChooseRole : Fragment() {
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        return if (!enter) {
-            MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
-        } else {
-            CubeAnimation.create(CubeAnimation.LEFT, enter, 1000)
-        }
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
     }
 
     private fun animation(view: View) {

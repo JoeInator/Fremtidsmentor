@@ -19,10 +19,10 @@ class ActivityCommunity : FragmentActivity() {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this)
 
-        if (mPrefs.getString("userType","") == "user/normalUser") {
-            community_layout.setBackground(resources.getDrawable(R.drawable.mentee))
-        } else {
+        if (mPrefs.getString("userType","") == "user/mentor") {
             community_layout.setBackground(resources.getDrawable(R.drawable.mentor))
+        } else {
+            community_layout.setBackground(resources.getDrawable(R.drawable.mentee))
         }
 
         val fragment = FragmentCommunity()

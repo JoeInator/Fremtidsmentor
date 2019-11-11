@@ -7,10 +7,13 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
+import com.labo.kaji.fragmentanimations.CubeAnimation
+import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -117,6 +120,10 @@ class FragmentLogin : Fragment() {
         fragmentTransaction.replace(R.id.login_fragment, newfragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+    }
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
     }
 
 
