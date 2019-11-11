@@ -1,6 +1,8 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.nissen.johannes.fremtidsmentor.R
@@ -9,9 +11,19 @@ import kotlinx.android.synthetic.main.fragment_community_user.*
 
 class ActivityCommunity : FragmentActivity() {
 
+    private lateinit var mPrefs: SharedPreferences
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
+
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(this)
+
+        if (mPrefs.getString("userType","") == "user/normalUser") {
+            community_layout.setBackground(resources.getDrawable(R.drawable.mentee))
+        } else {
+            community_layout.setBackground(resources.getDrawable(R.drawable.mentor))
+        }
 
         val fragment = FragmentCommunity()
         supportFragmentManager.beginTransaction()

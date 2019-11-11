@@ -9,9 +9,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.daimajia.androidanimations.library.Techniques
+import com.daimajia.androidanimations.library.YoYo
 import com.nissen.johannes.fremtidsmentor.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_choose_role.*
 import kotlinx.android.synthetic.main.fragment_choose_role.view.*
+import com.labo.kaji.fragmentanimations.CubeAnimation
+import com.labo.kaji.fragmentanimations.MoveAnimation
+import android.view.animation.Animation
+
 
 class FragmentChooseRole : Fragment() {
 
@@ -35,21 +42,29 @@ class FragmentChooseRole : Fragment() {
         }
 
         view.mentee_btn.setOnClickListener {
-            role_args.putString("userType","users/normalUser")
-            prefsEditor.putString("userType","users/normalUser")
-            nextFragment.setArguments(role_args)
-            view.move_on.isEnabled = true
-            view.mentee_btn.isSelected = true
-            view.mentor_btn.isSelected = false
+            if (!view.mentee_btn.isSelected) {
+                activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentee))
+                animation(view.mentee_btn)
+                role_args.putString("userType", "users/normalUser")
+                prefsEditor.putString("userType", "users/normalUser")
+                nextFragment.setArguments(role_args)
+                view.move_on.isEnabled = true
+                view.mentee_btn.isSelected = true
+                view.mentor_btn.isSelected = false
+            }
         }
 
         view.mentor_btn.setOnClickListener {
-            role_args.putString("userType","users/mentor")
-            prefsEditor.putString("userType","users/mentor")
-            nextFragment.setArguments(role_args)
-            view.move_on.isEnabled = true
-            view.mentor_btn.isSelected = true
-            view.mentee_btn.isSelected = false
+            if (!view.mentor_btn.isSelected) {
+                activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentor))
+                animation(view.mentor_btn)
+                role_args.putString("userType", "users/mentor")
+                prefsEditor.putString("userType", "users/mentor")
+                nextFragment.setArguments(role_args)
+                view.move_on.isEnabled = true
+                view.mentor_btn.isSelected = true
+                view.mentee_btn.isSelected = false
+            }
         }
 
         view.move_on.setOnClickListener {
@@ -71,6 +86,29 @@ class FragmentChooseRole : Fragment() {
             .replace(R.id.login_fragment, nextFragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return if (!enter) {
+            MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
+        } else {
+            CubeAnimation.create(CubeAnimation.LEFT, enter, 1000)
+        }
+    }
+
+    private fun animation(view: View) {
+        when (view.id) {
+            R.id.mentor_btn -> {
+                YoYo.with(Techniques.SlideInRight)
+                    .duration(500)
+                    .playOn(activity!!.findViewById(R.id.main_layout))
+            }
+            R.id.mentee_btn -> {
+                YoYo.with(Techniques.SlideInLeft)
+                    .duration(500)
+                    .playOn(activity!!.findViewById(R.id.main_layout))
+            }
+        }
     }
 
 
