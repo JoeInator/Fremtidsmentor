@@ -81,7 +81,7 @@ class FragmentSignUp : Fragment() {
 
         val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
         val keyInt = ref.push().getKey()
-        val newUser = NormalPerson(username, email, password, interests)
+        val newUser = NormalPerson(keyInt!!, username, email, password, interests)
 
         ref.child(keyInt!!).setValue(newUser)
             .addOnCompleteListener {

@@ -18,12 +18,12 @@ class NormalPerson(): User() {
         this.Interests = interests
     }
 
-    constructor(username: String, email: String, password: String, interests: ArrayList<String>) : this() {
-        this.email = email
-        this.username = username
-        this.password = password
-        this.Interests = interests
-    }
+//    constructor(username: String, email: String, password: String, interests: ArrayList<String>) : this() {
+//        this.email = email
+//        this.password = password
+//        this.username = username
+//        this.Interests = interests
+//    }
 
     fun getId(): String? {
         return id
