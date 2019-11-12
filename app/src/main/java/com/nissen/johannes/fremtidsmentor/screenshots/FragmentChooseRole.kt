@@ -25,14 +25,12 @@ class FragmentChooseRole : Fragment() {
     private var nextFragment: Fragment = FragmentLogin()
     private lateinit var role_args: Bundle
     private lateinit var mPrefs: SharedPreferences
-    private lateinit var prefsEditor: SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_choose_role, container,  false)
 
         role_args = Bundle()
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        prefsEditor = mPrefs.edit()
         view.move_on.isEnabled = false
 
         if (mPrefs.getBoolean("remember", false)) {
@@ -46,7 +44,6 @@ class FragmentChooseRole : Fragment() {
                 activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentee))
                 animation(view.mentee_btn)
                 role_args.putString("userType", "users/normalUser")
-                prefsEditor.putString("userType", "users/normalUser")
                 nextFragment.setArguments(role_args)
                 view.move_on.isEnabled = true
                 view.mentee_btn.isSelected = true
@@ -59,7 +56,6 @@ class FragmentChooseRole : Fragment() {
                 activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentor))
                 animation(view.mentor_btn)
                 role_args.putString("userType", "users/mentor")
-                prefsEditor.putString("userType", "users/mentor")
                 nextFragment.setArguments(role_args)
                 view.move_on.isEnabled = true
                 view.mentor_btn.isSelected = true
@@ -69,8 +65,6 @@ class FragmentChooseRole : Fragment() {
 
         view.move_on.setOnClickListener {
             if (view.mentee_btn.isSelected){
-                prefsEditor.apply()
-                prefsEditor.commit()
                 toLogin()
             }
             else if (view.mentor_btn.isSelected) {
@@ -89,7 +83,11 @@ class FragmentChooseRole : Fragment() {
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
+        return if (!enter) {
+            MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
+        } else {
+            MoveAnimation.create(MoveAnimation.RIGHT, enter, 1000)
+        }
     }
 
     private fun animation(view: View) {
