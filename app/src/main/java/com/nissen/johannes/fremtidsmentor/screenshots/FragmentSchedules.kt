@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Schedule
-import kotlinx.android.synthetic.main.fragment_schedules.*
 import kotlinx.android.synthetic.main.fragment_schedules.view.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 class FragmentSchedules: Fragment() {
@@ -91,7 +89,7 @@ class FragmentSchedules: Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
             val listeelementViews =
-                layoutInflater.inflate(R.layout.schedules_list_item, parent, false)
+                layoutInflater.inflate(R.layout.list_schedules_item, parent, false)
             return ListeelemViewholder(listeelementViews)
         }
 
@@ -120,5 +118,7 @@ class FragmentSchedules: Fragment() {
             Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
         }
     }
+
+    //https://android-arsenal.com/details/1/7886 -- Use this library instead (same, but allows for dropdown)
 
 }

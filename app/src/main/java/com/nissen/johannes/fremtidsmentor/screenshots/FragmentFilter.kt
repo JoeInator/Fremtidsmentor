@@ -76,7 +76,7 @@ class FragmentFilter : Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
             val listeelementViews =
-                layoutInflater.inflate(R.layout.category_item, parent, false)
+                layoutInflater.inflate(R.layout.list_filter_item, parent, false)
             return ListeelemViewholder(listeelementViews)
         }
 

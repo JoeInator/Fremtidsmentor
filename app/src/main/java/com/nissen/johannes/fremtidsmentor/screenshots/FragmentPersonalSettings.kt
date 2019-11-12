@@ -1,13 +1,11 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.os.Handler
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
@@ -15,13 +13,12 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_personal_settings.view.*
-import kotlinx.android.synthetic.main.personal_option_item.view.*
+import kotlinx.android.synthetic.main.list_personal_option_item.view.*
 
 class FragmentPersonalSettings: Fragment() {
 
@@ -158,7 +155,7 @@ class FragmentPersonalSettings: Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val main = layoutInflater.inflate(R.layout.personal_option_item, parent, false)
+            val main = layoutInflater.inflate(R.layout.list_personal_option_item, parent, false)
             val option = getItem(position) as String
             main.optionsBtn.text = option
             main.optionsBtn.id = getItemId(position).toInt()
