@@ -43,7 +43,7 @@ class FragmentSchedules: Fragment() {
             loading.show()
 
             Handler().postDelayed({
-                view.background = resources.getDrawable(R.drawable.frontpage, null)
+                view.setBackgroundColor(resources.getColor(android.R.color.transparent))
 //                view.schedulesList.adapter = ListeelemAdapter()
                 loading.dismiss()
             },500)

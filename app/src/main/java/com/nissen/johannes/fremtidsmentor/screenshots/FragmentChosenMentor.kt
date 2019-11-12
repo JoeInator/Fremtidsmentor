@@ -53,7 +53,7 @@ class FragmentChosenMentor: Fragment() {
         view.calendar_view.visibility = View.GONE
 
         Handler().postDelayed({
-            view.background = resources.getDrawable(R.drawable.frontpage, null)
+            view.setBackgroundColor(resources.getColor(android.R.color.transparent))
             loading.dismiss()
             loadPage(view)
             view.mentor_competencies.text = resources.getString(R.string.key_competencies)
@@ -145,7 +145,7 @@ class FragmentChosenMentor: Fragment() {
         view.mentors_pic.visibility = View.VISIBLE
         view.mentor_basicinfo.visibility = View.VISIBLE
         view.calendar_view.visibility = View.GONE
-        view.background = resources.getDrawable(R.drawable.frontpage, null)
+        view.setBackgroundColor(resources.getColor(android.R.color.transparent))
     }
 
     private fun bookDay(schedule: Schedule) {
