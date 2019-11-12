@@ -22,8 +22,8 @@
                     <corners android:radius="20dp"/>
                     <gradient
                         android:angle="0"
-                        android:endColor="@color/color_btnEnd_selected"
-                        android:startColor="@color/color_btnStart_selected"
+                        android:endColor="@color/colorwarmGrey"
+                        android:startColor="@color/colorwarmDarkGrey"
                         android:type="linear" />
                 </shape>
             </item>
