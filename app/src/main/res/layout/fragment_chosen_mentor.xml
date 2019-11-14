@@ -44,27 +44,18 @@
             android:background="@drawable/layout_btn"
             android:text="@string/book"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InfoView"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoView" />
 
         <Button
             android:id="@+id/subsribe_btn"
             android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_marginEnd="48dp"
             android:background="@drawable/layout_btn"
             android:text="@string/subscribe"
             android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/bookingBtn"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/InfoView"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintTop_toBottomOf="@+id/InfoView" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/InfoView"

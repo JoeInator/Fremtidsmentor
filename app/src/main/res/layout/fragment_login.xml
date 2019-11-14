@@ -20,7 +20,6 @@
             android:id="@+id/remember_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
             android:checked="false"
             android:text="Forbliv logget ind"
@@ -46,9 +45,11 @@
 
         <EditText
             android:id="@+id/UserName_text"
-            android:layout_width="260dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="68dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="30dp"
             android:ems="10"
             android:hint="UserName"
             android:textColor="@color/colorWhite"
@@ -60,14 +61,16 @@
 
         <EditText
             android:id="@+id/passwordText"
-            android:layout_width="260dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="48dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="30dp"
             android:ems="10"
             android:hint="Password"
+            android:inputType="textPassword"
             android:textColor="@color/colorWhite"
             android:textColorHint="@color/colorWhite"
-            android:inputType="textPassword"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -75,26 +78,26 @@
 
         <Button
             android:id="@+id/loginBtn"
-            android:layout_width="304dp"
-            android:layout_height="49dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginRight="10dp"
             android:background="@drawable/layout_btn"
             android:text="@string/Login"
             android:textColor="@color/colorWhite"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/passwordText"
-            app:layout_constraintVertical_bias="0.397" />
+            app:layout_constraintTop_toBottomOf="@id/passwordText" />
 
         <TextView
             android:id="@+id/sign_up_option"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
             android:text="@string/orsignup"
             android:textStyle=""
-            app:layout_constraintEnd_toStartOf="@+id/forgot_password"
-            app:layout_constraintHorizontal_bias="0.551"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
 
@@ -102,8 +105,7 @@
             android:id="@+id/forgot_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="52dp"
-            android:layout_marginRight="52dp"
+            android:layout_marginEnd="20dp"
             android:text="@string/forgotpassword"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/loginBtn" />
