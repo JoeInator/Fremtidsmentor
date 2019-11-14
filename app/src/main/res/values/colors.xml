@@ -2,8 +2,8 @@
 <resources>
 
     <!-- Gradient colors-->
-    <color name="color_btnStart">#02aab0</color>
-    <color name="color_btnEnd">#00cdac</color>
+    <color name="color_btnStart">#1e3c72</color>
+    <color name="color_btnEnd">#2a5298</color>
     <color name="color_btnStart_selected">#005154</color>
     <color name="color_btnEnd_selected">#007865</color>
 
