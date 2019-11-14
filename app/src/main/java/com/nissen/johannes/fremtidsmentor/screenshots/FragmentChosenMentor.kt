@@ -2,6 +2,7 @@ package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.app.ProgressDialog
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
@@ -12,6 +13,8 @@ import android.view.ViewGroup
 import android.widget.CalendarView
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.graphics.drawable.RoundedBitmapDrawable
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
@@ -79,7 +82,13 @@ class FragmentChosenMentor: Fragment() {
     }
 
     private fun loadPage(view: View) {
-        view.mentors_pic.setImageResource(R.drawable.cv_foto)
+
+        //Set round picture of mentor
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.cv_foto)
+        val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
+        roundedBitmapDrawable.isCircular = true
+        view.mentors_pic.setImageDrawable(roundedBitmapDrawable)
+
         val comps: HashMap<String, ArrayList<String>> = mentor.getComps()!!
         builder = StringBuilder()
         builder.append("")

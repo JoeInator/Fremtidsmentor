@@ -14,12 +14,11 @@
 
         <ImageView
             android:id="@+id/mentors_pic"
-            android:layout_width="160dp"
-            android:layout_height="160dp"
+            android:layout_width="191dp"
+            android:layout_height="183dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.475"
+            app:layout_constraintHorizontal_bias="0.471"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
@@ -71,7 +70,7 @@
             android:id="@+id/InfoView"
             android:layout_width="0dp"
             android:layout_height="265dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="-10dp"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"

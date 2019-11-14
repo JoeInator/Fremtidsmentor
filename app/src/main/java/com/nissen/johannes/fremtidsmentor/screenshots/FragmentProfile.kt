@@ -3,6 +3,7 @@ package com.nissen.johannes.fremtidsmentor.screenshots
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.preference.PreferenceManager
@@ -12,10 +13,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
+import kotlinx.android.synthetic.main.list_mentor_tem.view.*
 import java.util.ArrayList
 
 
@@ -30,6 +33,11 @@ class FragmentProfile : Fragment() {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.cv_foto)
+        val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
+        roundedBitmapDrawable.isCircular = true
+        view.profileImg.setImageDrawable(roundedBitmapDrawable)
 
         view.personal_info_botton.setOnClickListener {
             val newfragment = FragmentPersonalSettings()
