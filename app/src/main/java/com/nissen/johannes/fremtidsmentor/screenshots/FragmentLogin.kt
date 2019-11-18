@@ -21,15 +21,9 @@ import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class FragmentLogin : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     private lateinit var Username: String
     private lateinit var Password: String
     private var user: NormalPerson? = null
-    private var remember: Boolean = false
-    private var rememberedUser: Boolean = false
     private var userApproved: Boolean = false
     private var path: String = "user/normalUser"
     private lateinit var remember_me: CheckBox
@@ -92,6 +86,7 @@ class FragmentLogin : Fragment() {
 
                             prefsEditor.putString("name", user!!.getUsername())
                             prefsEditor.putString("userID", user!!.getId())
+                            prefsEditor.putString("userType", path)
                             prefsEditor.apply()
                             prefsEditor.commit()
                             if (isAdded) {
