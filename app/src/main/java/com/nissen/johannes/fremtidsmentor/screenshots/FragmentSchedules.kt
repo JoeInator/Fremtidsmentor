@@ -95,6 +95,9 @@ class FragmentSchedules: Fragment() {
 
         override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
             vh.sched.text = "   ".plus(Schedules.get(position).ScheduleDate)
+            vh.info.text = /*"Date: ".plus(Schedules.get(position).ScheduleDate).plus("\n")*/
+                "MENTOR: ".plus(Schedules.get(position).ScheduleMentor).plus("\n")
+                .plus("MENTEE: ").plus(Schedules.get(position).ScheduleMentee)
             Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
         }
     }
@@ -102,20 +105,27 @@ class FragmentSchedules: Fragment() {
     internal inner class ListeelemViewholder: RecyclerView.ViewHolder, View.OnClickListener {
 
         var sched: Button
-//        var layout: FrameLayout
+        var info: TextView
 
         constructor(listeelementViews: View) : super(listeelementViews) {
-//            layout = listeelementViews.findViewById(R.id.schedule_list_frame)
             sched = listeelementViews.findViewById(R.id.date_btn)
-            // Gør listeelementer klikbare og vis det ved at deres baggrunsfarve ændrer sig ved berøring
-//            layout.setBackgroundColor(android.R.drawable.list_selector_background)
-            sched.setBackground(resources.getDrawable(R.drawable.layout_schedule_btn))
-//            layout.setOnClickListener {this}
+            info = listeelementViews.findViewById(R.id.schedule_info)
+
+            // Sætter listeelementernes indhold og synlighed baggrunsfarve ændrer sig ved berøring
+            sched.background = resources.getDrawable(R.drawable.layout_schedule_btn)
+            info.background = resources.getDrawable(R.drawable.layout_schedule_btn)
+            info.visibility = View.GONE
+
+            // Gør listeelementer klikbare
+            info.setOnClickListener(this)
             sched.setOnClickListener(this)
         }
 
         override fun onClick(v: View?) {
-            Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
+            when (info.visibility) {
+                View.GONE -> { info.visibility = View.VISIBLE }
+                View.VISIBLE -> { info.visibility = View.GONE }
+            }
         }
     }
 

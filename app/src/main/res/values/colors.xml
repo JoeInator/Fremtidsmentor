@@ -33,6 +33,7 @@
     <color name="colorDarkRed">#9f1717</color>
     <color name="colorTest">#D86060</color>
     <color name="semiTransGrey">#CC808080</color>
+    <color name="semiTransWhite">#CCffffff</color>
     <color name="fullTransWhite">#ffffffff</color>
     <color name="colorGrey">#808080</color>
 </resources>
