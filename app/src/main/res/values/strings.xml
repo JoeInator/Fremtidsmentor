@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">Fremtidsmentor</string>
+    <!-- Application header -->
+    <string name="app_name">OutGro</string>
+    <string name="punchLine1">Eliminate the gap between the future and now</string>
+    <string name="punchLine2">Eliminate the generation gap</string>
 
     <!-- Good to have -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -31,6 +34,9 @@
     <string name="mentor">Er Mentor</string>
     <string name="mentee">Skal bruge en Mentor</string>
 
+    <!-- Schedule -->
+    <string name="schedule_header">Aftaler med mentorer</string>
+    <string name="no_schedules">Du har på nuværende tidspunkt ikke nogen aftaler med en mentor</string>
     
     <!-- MentorSpecifications -->
     <string name="key_competencies">Primære komtencer\n</string>
@@ -51,6 +57,7 @@
     <string name="language">VÆLG SPROG</string>
     <string name="logout">LOG UD</string>
     <string name="following_noone">Du følger på nuværende tidspunkt ikke nogen mentorer</string>
+    <string name="no_intersts_yet">Du har i øjeblikket ikke nogen specifikke interesser</string>
 
         <!-- Change settings -->
         <string name="change_password">Ny Kode</string>
@@ -80,17 +87,6 @@
         <string name="wrong_email">Du skal indtaste din nuværnde e-mail</string>
 
         <string name="confirm_delete">Er du sikker på at du vil slette din bruger.\n Det kan ikke gøres om</string>
-
-    <!-- Calendar -->
-    <string name="add_event">ADD CALENDAR EVENT</string>
-    <string name="mon">MON</string>
-    <string name="tue">TUE</string>
-    <string name="wed">WED</string>
-    <string name="thu">THU</string>
-    <string name="fri">FRI</string>
-    <string name="sat">SAT</string>
-    <string name="sun">SUN</string>
-    <string name="last_date">30</string>
 
     <!-- FireBase messages -->
     <string name="firebaseListError">Kunne ikke hente listen fra databasen</string>

@@ -16,7 +16,7 @@
             android:layout_width="120dp"
             android:layout_height="103dp"
             android:layout_marginBottom="84dp"
-            android:background="@drawable/type_btn_selector"
+            android:background="@drawable/layout_type_selector"
             android:text="@string/mentor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/mentee_btn"
@@ -30,7 +30,7 @@
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="84dp"
-            android:background="@drawable/type_btn_selector"
+            android:background="@drawable/layout_type_selector"
             android:text="@string/mentee"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -40,7 +40,7 @@
             android:layout_width="276dp"
             android:layout_height="34dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/layout_btn"
+            android:background="@drawable/layout_type_btn_moveon"
             android:text="Videre"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,9 +49,9 @@
 
         <TextView
             android:id="@+id/textView20"
-            android:layout_width="250dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/header"
             android:text="@string/app_name"
             android:textColor="@color/colordarkEggwhite"

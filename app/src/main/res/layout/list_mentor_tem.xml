@@ -7,7 +7,7 @@
     android:paddingBottom="2dp">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -39,8 +39,8 @@
                 android:layout_height="50dp"
                 android:gravity="end"
                 android:text="Simon Steen Pedersen"
-                android:textColor="@color/colorWhite"
                 android:textAlignment="center"
+                android:textColor="@color/colorWhite"
                 android:textSize="24sp" />
 
             <TextView
@@ -49,8 +49,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
-                android:textColor="@color/colorWhite"
                 android:text="ID: p1"
+                android:textColor="@color/colorWhite"
                 android:textSize="16sp"
                 android:textStyle="italic" />
         </LinearLayout>

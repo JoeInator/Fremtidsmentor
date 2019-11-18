@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="color_btnStart">#02aab0</color>
-    <color name="color_btnEnd">#00cdac</color>
+
+    <!-- Gradient colors-->
+    <color name="color_btnStart">#1e3c72</color>
+    <color name="color_btnEnd">#2a5298</color>
     <color name="color_btnStart_selected">#005154</color>
     <color name="color_btnEnd_selected">#007865</color>
 
@@ -31,4 +33,7 @@
     <color name="colorDarkRed">#9f1717</color>
     <color name="colorTest">#D86060</color>
     <color name="semiTransGrey">#CC808080</color>
+    <color name="semiTransWhite">#CCffffff</color>
+    <color name="fullTransWhite">#ffffffff</color>
+    <color name="colorGrey">#808080</color>
 </resources>

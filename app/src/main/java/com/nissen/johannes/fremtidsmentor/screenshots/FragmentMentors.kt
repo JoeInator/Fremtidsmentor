@@ -1,22 +1,21 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.content.Context
+import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ListView
-import android.widget.TextView
 import android.widget.Toast
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
-import kotlinx.android.synthetic.*
-import kotlinx.android.synthetic.main.fragment_mentor.*
-import kotlinx.android.synthetic.main.fragment_mentor.view.*
-import kotlinx.android.synthetic.main.mentor_list_item.view.*
+import kotlinx.android.synthetic.main.fragment_chosen_mentor.view.*
+import kotlinx.android.synthetic.main.list_mentor_tem.view.*
 
 class FragmentMentors : Fragment() {
 
@@ -97,10 +96,16 @@ class FragmentMentors : Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val main = layoutInflater.inflate(R.layout.mentor_list_item, parent,false)
+            val main = layoutInflater.inflate(R.layout.list_mentor_tem, parent,false)
 
             val mentor = getItem(position) as Mentor
-            main.mentor_img.setImageResource(R.drawable.cv_foto)
+
+            val bitmap = BitmapFactory.decodeResource(main.resources, R.drawable.cv_foto)
+            val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(main.resources, bitmap)
+            roundedBitmapDrawable.isCircular = true
+            main.mentor_img.setImageDrawable(roundedBitmapDrawable)
+
+//            main.mentor_img.setImageResource(R.drawable.cv_foto)
             main.mentor_name.text = mentor.getUsername()
             main.mentor_descr.text = mentor.getTeaser()
             return main

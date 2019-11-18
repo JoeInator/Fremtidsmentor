@@ -1,11 +1,13 @@
 package com.nissen.johannes.fremtidsmentor.controllers
 
-import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.FirebaseController
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
+import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IUserController
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.UserController
 
 class ControllerRegistry {
 
-//    private var userController: IUserController? = null
+    private var userController: IUserController? = null
 //    private var dataController: IDataController? = null
     private var firebaseController: IFirebase? = null
 
@@ -13,11 +15,11 @@ class ControllerRegistry {
         // Needs to be here to prevent instantiation.
     }
 
-//    fun getUserController(): IUserController {
-//        if (userController == null) userController = UserController()
-//        return userController
-//    }
-//
+    fun getUserController(): IUserController {
+        if (userController == null) userController = UserController()
+        return userController as IUserController
+    }
+
 //    fun getDataController(): IDataController {
 //        if (dataController == null) dataController = DataController()
 //        return dataController

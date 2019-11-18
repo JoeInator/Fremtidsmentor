@@ -7,10 +7,13 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
 import android.widget.CheckBox
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
+import com.labo.kaji.fragmentanimations.CubeAnimation
+import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -18,15 +21,9 @@ import kotlinx.android.synthetic.main.fragment_login.view.*
 
 class FragmentLogin : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     private lateinit var Username: String
     private lateinit var Password: String
     private var user: NormalPerson? = null
-    private var remember: Boolean = false
-    private var rememberedUser: Boolean = false
     private var userApproved: Boolean = false
     private var path: String = "user/normalUser"
     private lateinit var remember_me: CheckBox
@@ -89,6 +86,7 @@ class FragmentLogin : Fragment() {
 
                             prefsEditor.putString("name", user!!.getUsername())
                             prefsEditor.putString("userID", user!!.getId())
+                            prefsEditor.putString("userType", path)
                             prefsEditor.apply()
                             prefsEditor.commit()
                             if (isAdded) {
@@ -117,6 +115,10 @@ class FragmentLogin : Fragment() {
         fragmentTransaction.replace(R.id.login_fragment, newfragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
+    }
+
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
     }
 
 

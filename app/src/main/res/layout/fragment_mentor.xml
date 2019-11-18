@@ -17,13 +17,12 @@
         <ListView
             android:id="@+id/mentor_list"
             android:layout_width="0dp"
-            android:layout_height="389dp"
+            android:layout_height="0dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="36dp"
             android:layout_marginRight="20dp"
-            android:background="@android:color/transparent"
+            android:layout_marginBottom="60dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView">
 
@@ -33,13 +32,12 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="13dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             android:text="MENTORS"
             android:textSize="28sp"
             app:layout_constraintBottom_toTopOf="@+id/mentor_list"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -45,8 +45,13 @@ class FragmentCommunity : Fragment() {
         view.UpgradeBtn.setOnClickListener{
             notImplemented()
         }
-        view.SETTINGS_Btn.setOnClickListener{
-            notImplemented()
+        view.SCHEDULES_Btn.setOnClickListener{
+            val newfragment = FragmentSchedules()
+            activity!!.supportFragmentManager.popBackStack()
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.community_fragment, newfragment)
+                .addToBackStack(null)
+                .commit()
         }
         /*
         In the middle goes all the code to be executed in the OnCreateView
