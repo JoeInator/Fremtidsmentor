@@ -59,7 +59,8 @@ class FragmentPersonalSettings: Fragment() {
                 goToNextFrag(nextFrag)
 
             } else if (next.contains(resources.getString(R.string.interests))) {
-                notImplemented()
+                nextFrag = FragmentInterests()
+                goToNextFrag(nextFrag)
 
             } else if (next.contains(resources.getString(R.string.delete_account))) {
                 deleteUser()
