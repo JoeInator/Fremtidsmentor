@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -30,9 +31,9 @@ class FragmentInterests: Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_list_of_interests, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
-        Uid = mPrefs.getString("UserID","")
+        Uid = mPrefs.getString("userID","")
         ref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
-
+        Toast.makeText(requireContext(),mPrefs.getString("userID","Der er en fejl"),Toast.LENGTH_SHORT).show()
         acquireComps(view)
 
         view.add_interests.setOnClickListener {
@@ -56,7 +57,7 @@ class FragmentInterests: Fragment() {
 
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
-                for (h in p0.child("/".plus(Uid).plus("/interests")).children) {
+                for (h in p0.child(Uid.plus("/interests")).children) {
                     val interest = h.value.toString()
                     Interests.add(interest)
                 }
@@ -77,12 +78,13 @@ class FragmentInterests: Fragment() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
             val listeelementViews =
-                layoutInflater.inflate(R.layout.list_schedules_item, parent, false)
+                layoutInflater.inflate(R.layout.list_interests_item, parent, false)
             return ListeelemViewholder(listeelementViews)
         }
 
         override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
             vh.interestsTextView.text = "   ".plus(Interests[position])
+            if (position == Interests.lastIndex){ vh.separetor.visibility = View.VISIBLE }
             Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
         }
     }
@@ -90,12 +92,12 @@ class FragmentInterests: Fragment() {
     internal inner class ListeelemViewholder: RecyclerView.ViewHolder {
 
         var interestsTextView: TextView
+        var separetor: ImageView
 
         constructor(listeelementViews: View) : super(listeelementViews) {
             interestsTextView = listeelementViews.findViewById(R.id.interest_view)
+            separetor = listeelementViews.findViewById(R.id.separetor)
 
-            // Sætter listeelementernes indhold og synlighed baggrunsfarve ændrer sig ved berøring
-//            interestsTextView.background = resources.getDrawable(R.drawable.layout_schedule_btn)
         }
 
     }
