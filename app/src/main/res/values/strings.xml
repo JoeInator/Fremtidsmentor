@@ -59,6 +59,10 @@
     <string name="following_noone">Du følger på nuværende tidspunkt ikke nogen mentorer</string>
     <string name="no_intersts_yet">Du har i øjeblikket ikke nogen specifikke interesser</string>
 
+        <!-- Change Interests -->
+        <string name="cancel_changes">Fortryd ændinger</string>
+        <string name="confirm_changes">Bekræft ændringer</string>
+
         <!-- Change settings -->
         <string name="change_password">Ny Kode</string>
         <string name="current_password">Nuværende kode</string>

@@ -6,7 +6,6 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -14,7 +13,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
-import com.google.gson.Gson
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_list_of_interests.view.*
 
@@ -38,7 +36,7 @@ class FragmentInterests: Fragment() {
 
         view.add_interests.setOnClickListener {
             activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.community_fragment, FragmentInterstsAdd())
+                .replace(R.id.community_fragment, FragmentInterestsAdd())
                 .addToBackStack(null)
                 .commit()
         }
