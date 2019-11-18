@@ -30,7 +30,7 @@ class FragmentSchedules: Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_schedules, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
+        ref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
 //        Toast.makeText(requireContext(),mPrefs.getString("userType","Der er en fejl"),Toast.LENGTH_SHORT).show()
         if (1+1==2) {
             view.conText.visibility = View.GONE
