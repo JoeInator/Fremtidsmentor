@@ -43,6 +43,7 @@
             android:layout_height="60dp"
             android:background="@drawable/layout_btn"
             android:text="@string/book"
+            android:textColor="@color/colorWhite"
             android:visibility="visible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/InfoView" />
@@ -53,6 +54,7 @@
             android:layout_height="60dp"
             android:background="@drawable/layout_btn"
             android:text="@string/subscribe"
+            android:textColor="@color/colorWhite"
             android:visibility="visible"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/InfoView" />
@@ -161,7 +163,8 @@
                     android:layout_marginRight="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/layout_btn"
-                    android:text="@string/dismiss_calendar" />
+                    android:text="@string/dismiss_calendar"
+                    android:textColor="@color/colorWhite" />
 
                 <Button
                     android:id="@+id/book_btn"
@@ -170,7 +173,8 @@
                     android:layout_marginLeft="60dp"
                     android:layout_weight="1"
                     android:background="@drawable/layout_btn"
-                    android:text="@string/book" />
+                    android:text="@string/book"
+                    android:textColor="@color/colorWhite" />
             </LinearLayout>
 
         </LinearLayout>

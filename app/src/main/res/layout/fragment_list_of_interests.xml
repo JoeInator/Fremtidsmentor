@@ -47,6 +47,7 @@
                 android:layout_height="53dp"
                 android:background="@drawable/new_interest_layout"
                 android:text="+"
+                android:textColor="@color/colorWhite"
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
