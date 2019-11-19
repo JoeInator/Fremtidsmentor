@@ -36,6 +36,10 @@ class FragmentInterestsAdd: Fragment() {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         Uid = mPrefs.getString("userID","")
+
+        /**
+         * Defines two paths in the Firebase Database
+         */
         ref = FirebaseDatabase.getInstance().getReference("interests")
         pushref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
 
@@ -45,10 +49,12 @@ class FragmentInterestsAdd: Fragment() {
         return view
     }
 
+    //Loading both all the possible interests, and the users current ones
     fun loadListOfPossibleInterests(view: View) {
         Interests = ArrayList<String>()
         checkedInterests = ArrayList<String>()
 
+        //Loading users current interests
         pushref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 val h = p0.child(mPrefs.getString("userID","").plus("/interests"))
@@ -61,6 +67,7 @@ class FragmentInterestsAdd: Fragment() {
             }
         })
 
+        //Loading both all the possible interests
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 for (h in p0.children) {
@@ -70,12 +77,6 @@ class FragmentInterestsAdd: Fragment() {
                 }
                 view.all_interests_possible.setLayoutManager(LinearLayoutManager(requireContext()))
                 view.all_interests_possible.adapter = ListeelemAdapter()
-                for (h in Interests) {
-                    Log.d("INTERESTS", h)
-                }
-                for (h in checkedInterests) {
-                    Log.d("CHECKEDINTERESTS", h)
-                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -84,6 +85,7 @@ class FragmentInterestsAdd: Fragment() {
         })
     }
 
+    //Animation on enter and exit
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         return if (!enter) {
             MoveAnimation.create(MoveAnimation.DOWN, enter, 250)
@@ -92,6 +94,7 @@ class FragmentInterestsAdd: Fragment() {
         }
     }
 
+    //Setting the actual functions for the list components
     internal inner class ListeelemAdapter : RecyclerView.Adapter<ListeelemViewholder>() {
         override fun getItemCount(): Int {
             return Interests.size
@@ -110,36 +113,30 @@ class FragmentInterestsAdd: Fragment() {
             //in some cases, it will prevent unwanted situations
             vh.checkBox.setOnCheckedChangeListener(null)
 
+            //Setting the initial checked state of the checkboxes
             vh.checkBox.isChecked = checkedInterests.contains(item)
 
+            //used for setting the checked state of a given checkbox
             vh.checkBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
                 override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-                    //set your object's last status
+                    //setting a given checkbox's status
                     vh.checkBox.setSelected(isChecked)
                     if (isChecked) {
                         checkedInterests.add(vh.checkBox.text.toString())
                     } else {
                         checkedInterests.remove(vh.checkBox.text.toString())
                     }
-                    Log.d("TAG","BULLER".plus(checkedInterests.toString()))
                 }
             })
         }
     }
 
+    //Used for defining the checkbox of in the list
     internal inner class ListeelemViewholder: RecyclerView.ViewHolder {
         var checkBox: CheckBox
 
         constructor(listeelementViews: View) : super(listeelementViews) {
             checkBox = listeelementViews.findViewById(R.id.checkBox)
-//            checkBox.setOnClickListener {
-//                if (checkBox.isChecked) {
-//                    checkedInterests.add(checkBox.text.toString())
-//                } else {
-//                    checkedInterests.remove(checkBox.text.toString())
-//                }
-////                Log.d("TAG","BULLER".plus(checkedInterests.toString()))
-//            }
         }
     }
 }
