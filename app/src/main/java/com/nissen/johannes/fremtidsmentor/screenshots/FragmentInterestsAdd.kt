@@ -37,6 +37,10 @@ class FragmentInterestsAdd: Fragment() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         Uid = mPrefs.getString("userID","")
 
+        view.button.setOnClickListener {
+            onConfirm()
+        }
+
         /**
          * Defines two paths in the Firebase Database
          */
@@ -47,6 +51,20 @@ class FragmentInterestsAdd: Fragment() {
         loadListOfPossibleInterests(view)
 
         return view
+    }
+
+    private fun onConfirm() {
+        pushref.child(mPrefs.getString("userID","").plus("/interests")).removeValue()
+
+        pushref.child(mPrefs.getString("userID","").plus("/interests")).setValue(checkedInterests)
+            .addOnCompleteListener {
+                Toast.makeText(requireContext(), "SUCCES!!", Toast.LENGTH_SHORT).show()
+                activity!!.supportFragmentManager.popBackStack()
+            }
+            .addOnCanceledListener {
+                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
+            }
+
     }
 
     //Loading both all the possible interests, and the users current ones
