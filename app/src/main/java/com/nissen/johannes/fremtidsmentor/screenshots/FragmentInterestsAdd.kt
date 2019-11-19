@@ -81,7 +81,8 @@ class FragmentInterestsAdd: Fragment() {
                 }
             }
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
+                activity!!.supportFragmentManager.popBackStack()
             }
         })
 
@@ -98,7 +99,8 @@ class FragmentInterestsAdd: Fragment() {
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
+                activity!!.supportFragmentManager.popBackStack()
             }
         })
     }
