@@ -45,7 +45,7 @@ class FragmentCommunity : Fragment() {
         view.UpgradeBtn.setOnClickListener{
             notImplemented()
         }
-        view.SCHEDULES_Btn.setOnClickListener{
+        view.SchedulesBtn.setOnClickListener{
             val newfragment = FragmentSchedules()
             activity!!.supportFragmentManager.popBackStack()
             activity!!.supportFragmentManager.beginTransaction()
