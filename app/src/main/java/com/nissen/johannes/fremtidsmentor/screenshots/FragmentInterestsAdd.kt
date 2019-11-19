@@ -18,6 +18,9 @@ import com.google.firebase.database.*
 import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_add_interests.view.*
+import android.widget.CompoundButton
+import kotlinx.android.synthetic.main.list_all_interests_possible_item.*
+
 
 class FragmentInterestsAdd: Fragment() {
 
@@ -67,6 +70,12 @@ class FragmentInterestsAdd: Fragment() {
                 }
                 view.all_interests_possible.setLayoutManager(LinearLayoutManager(requireContext()))
                 view.all_interests_possible.adapter = ListeelemAdapter()
+                for (h in Interests) {
+                    Log.d("INTERESTS", h)
+                }
+                for (h in checkedInterests) {
+                    Log.d("CHECKEDINTERESTS", h)
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -95,12 +104,26 @@ class FragmentInterestsAdd: Fragment() {
         }
 
         override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            vh.checkBox.text = Interests[position]
+            val item = Interests[position]
+            vh.checkBox.text = item
 
-            if (checkedInterests.contains(Interests[position])) {
-                vh.checkBox.isChecked = true
-            }
-            Log.d("TAG","BULLER".plus(checkedInterests.toString()))
+            //in some cases, it will prevent unwanted situations
+            vh.checkBox.setOnCheckedChangeListener(null)
+
+            vh.checkBox.isChecked = checkedInterests.contains(item)
+
+            vh.checkBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
+                override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+                    //set your object's last status
+                    vh.checkBox.setSelected(isChecked)
+                    if (isChecked) {
+                        checkedInterests.add(vh.checkBox.text.toString())
+                    } else {
+                        checkedInterests.remove(vh.checkBox.text.toString())
+                    }
+                    Log.d("TAG","BULLER".plus(checkedInterests.toString()))
+                }
+            })
         }
     }
 
@@ -109,14 +132,14 @@ class FragmentInterestsAdd: Fragment() {
 
         constructor(listeelementViews: View) : super(listeelementViews) {
             checkBox = listeelementViews.findViewById(R.id.checkBox)
-            checkBox.setOnClickListener {
-                if (checkBox.isChecked) {
-                    checkedInterests.add(checkBox.text.toString())
-                } else {
-                    checkedInterests.remove(checkBox.text.toString())
-                }
-                Log.d("TAG","BULLER".plus(checkedInterests.toString()))
-            }
+//            checkBox.setOnClickListener {
+//                if (checkBox.isChecked) {
+//                    checkedInterests.add(checkBox.text.toString())
+//                } else {
+//                    checkedInterests.remove(checkBox.text.toString())
+//                }
+////                Log.d("TAG","BULLER".plus(checkedInterests.toString()))
+//            }
         }
     }
 }
