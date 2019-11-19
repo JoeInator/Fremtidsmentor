@@ -35,8 +35,15 @@ class FragmentInterests: Fragment() {
         acquireComps(view)
 
         view.add_interests.setOnClickListener {
+            val nextFrag = FragmentInterestsAdd()
+            val args = Bundle()
+
+            //Sending current intersts to the next fragment
+            args.putStringArrayList("currentINTS", Interests)
+            nextFrag.arguments = args
+
             activity!!.supportFragmentManager.beginTransaction()
-                .replace(R.id.community_fragment, FragmentInterestsAdd())
+                .replace(R.id.community_fragment, nextFrag)
                 .addToBackStack(null)
                 .commit()
         }
@@ -59,12 +66,17 @@ class FragmentInterests: Fragment() {
                     val interest = h.value.toString()
                     Interests.add(interest)
                 }
-                view.list_interests.setLayoutManager(LinearLayoutManager(requireContext()))
-                view.list_interests.adapter = ListeelemAdapter()
+                if (!Interests.isEmpty()) {
+                    view.list_interests.setLayoutManager(LinearLayoutManager(requireContext()))
+                    view.list_interests.adapter = ListeelemAdapter()
+                } else {
+                    view.no_interests.visibility = View.VISIBLE
+                }
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
+                activity!!.supportFragmentManager.popBackStack()
             }
         })
     }
@@ -81,9 +93,9 @@ class FragmentInterests: Fragment() {
         }
 
         override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            vh.interestsTextView.text = "   ".plus(Interests[position])
+            vh.interestsTextView.text = Interests[position]
+            vh.interestsTextView.textSize = 22F
             if (position == Interests.lastIndex){ vh.separetor.visibility = View.VISIBLE }
-            Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 

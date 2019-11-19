@@ -36,6 +36,10 @@ class FragmentInterestsAdd: Fragment() {
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         Uid = mPrefs.getString("userID","")
+        checkedInterests = ArrayList<String>()
+
+        //Loading users current interests
+        checkedInterests = arguments!!.getStringArrayList("currentINTS")
 
         view.button.setOnClickListener {
             onConfirm()
@@ -67,24 +71,9 @@ class FragmentInterestsAdd: Fragment() {
 
     }
 
-    //Loading both all the possible interests, and the users current ones
+    //Loading all the possible interests
     fun loadListOfPossibleInterests(view: View) {
         Interests = ArrayList<String>()
-        checkedInterests = ArrayList<String>()
-
-        //Loading users current interests
-        pushref.addListenerForSingleValueEvent(object: ValueEventListener {
-            override fun onDataChange(p0: DataSnapshot) {
-                val h = p0.child(mPrefs.getString("userID","").plus("/interests"))
-                for (j in h.children) {
-                    checkedInterests.add(j.value.toString())
-                }
-            }
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
-                activity!!.supportFragmentManager.popBackStack()
-            }
-        })
 
         //Loading both all the possible interests
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
