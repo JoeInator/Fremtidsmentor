@@ -19,31 +19,39 @@ class FragmentCommunity : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_community_user, container, false)
 
         view.MentorBtn.setOnClickListener {
-            val newfragment = FragmentMentors()
-            val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.community_fragment, newfragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            val newfragment = FragmentFilter()
+            activity!!.supportFragmentManager.popBackStack()
+            activity!!.supportFragmentManager.beginTransaction()
+            .replace(R.id.community_fragment, newfragment)
+            .addToBackStack(null)
+            .commit()
         }
         view.ProfilBtn.setOnClickListener{
             val newfragment = FragmentProfile()
-            val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.community_fragment, newfragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            activity!!.supportFragmentManager.popBackStack()
+            activity!!.supportFragmentManager.beginTransaction()
+            .replace(R.id.community_fragment, newfragment)
+            .addToBackStack(null)
+            .commit()
         }
         view.DiscoverBtn.setOnClickListener{
             val newfragment = FragmentDiscover()
-            val fragmentTransaction = activity!!.supportFragmentManager.beginTransaction()
-            fragmentTransaction.replace(R.id.community_fragment, newfragment)
-            fragmentTransaction.addToBackStack(null)
-            fragmentTransaction.commit()
+            activity!!.supportFragmentManager.popBackStack()
+            activity!!.supportFragmentManager.beginTransaction()
+            .replace(R.id.community_fragment, newfragment)
+            .addToBackStack(null)
+            .commit()
         }
         view.UpgradeBtn.setOnClickListener{
             notImplemented()
         }
-        view.SETTINGS_Btn.setOnClickListener{
-            notImplemented()
+        view.SchedulesBtn.setOnClickListener{
+            val newfragment = FragmentSchedules()
+            activity!!.supportFragmentManager.popBackStack()
+            activity!!.supportFragmentManager.beginTransaction()
+                .replace(R.id.community_fragment, newfragment)
+                .addToBackStack(null)
+                .commit()
         }
         /*
         In the middle goes all the code to be executed in the OnCreateView
@@ -51,14 +59,10 @@ class FragmentCommunity : Fragment() {
 
         return view
     }
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-    }
-
 
 
     private fun notImplemented() {
-        Toast.makeText(this.context, "Ikke implementeret", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this.context, R.string.Not_Implemented, Toast.LENGTH_SHORT).show()
     }
 
 }

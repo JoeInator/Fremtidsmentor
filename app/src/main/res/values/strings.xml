@@ -1,13 +1,29 @@
 <resources>
-    <string name="app_name">Fremtidsmentor</string>
+    <!-- Application header -->
+    <string name="app_name">OutGro</string>
+    <string name="punchLine1">Eliminate the gap between the future and now</string>
+    <string name="punchLine2">Eliminate the generation gap</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <!-- Good to have -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="empty_string"> </string>
+
+    <!-- Login, new User and Pick_Role -->
     <string name="Login">Login</string>
+    <string name="forgotpassword">Glemt adgangskode</string>
+    <string name="orsignup">Registrer her</string>
+    <string name="invalid_user">Ugyldigt brugernavn eller adgangskode</string>
+
+    <string name="newUsesr">Opret bruger</string>
+    <string name="RegisterUser">Registrer</string>
+    <string name="noMatchOnPassword">Kodeorderne skal være ens</string>
+    <string name="fillEntireForm">Alle felter skal være fyldt ud</string>
+    <string name="CheckBox">Opret dig som Comunity bruger</string>
+    <string name="role_not_chosen">Du skal angive om du er Mentor eller Mentee</string>
 
     <!-- Menu and Frontpage -->
     <string name="Upgrade">Opgrader til Community</string>
-    <string name="Settings">INDSTILLINGER</string>
+    <string name="Schedule">AFTALER</string>
     <string name="Find_Mentor">MENTOR</string>
     <string name="Discover">DISCOVER</string>
     <string name="ProfileBtn">PROFIL</string>
@@ -15,15 +31,74 @@
     <string name="home">HJEM</string>
     <string name="community">COMMUNITY</string>
     <string name="book">BOOK</string>
+    <string name="mentor">Er Mentor</string>
+    <string name="mentee">Skal bruge en Mentor</string>
+
+    <!-- Schedule -->
+    <string name="schedule_header">Aftaler med mentorer</string>
+    <string name="no_schedules">Du har på nuværende tidspunkt ikke nogen aftaler med en mentor</string>
+    
+    <!-- MentorSpecifications -->
+    <string name="key_competencies">Primære komtencer\n</string>
+    <string name="calendarView_under_construction">Her kommer der et CalendarView, hvor det bliver muligt at vælge en dag</string>
+    <string name="subscribe">Følg Mentor</string>
+    <string name="load_info">Henter info...</string>
+    <string name="dismiss_calendar">Fortryd</string>
 
     <!-- Settings -->
     <string name="personal_info">PERSONLIGE OPLYSNINGER</string>
     <string name="notifications">NOTIFIKATIONER</string>
     <string name="subscriptions">SUBSCRIPTIONS</string>
+    <string name="email">EMAIL</string>
+    <string name="name">BRUGERNAVN</string>
+    <string name="password">KODEORD</string>
+    <string name="interests">INTERESSER</string>
+    <string name="delete_account">SLET BRUGER</string>
+    <string name="language">VÆLG SPROG</string>
+    <string name="logout">LOG UD</string>
+    <string name="following_noone">Du følger på nuværende tidspunkt ikke nogen mentorer</string>
+    <string name="no_intersts_yet">Du har i øjeblikket ikke nogen specifikke interesser</string>
 
+        <!-- Change Interests -->
+        <string name="cancel_changes">Fortryd ændinger</string>
+        <string name="confirm_changes">Bekræft ændringer</string>
+
+        <!-- Change settings -->
+        <string name="change_password">Ny Kode</string>
+        <string name="current_password">Nuværende kode</string>
+        <string name="new_password">Nyt kode</string>
+        <string name="repeat_new_password">Gentag ny kode</string>
+        <string name="old_email">Nuværende mail addresse</string>
+        <string name="new_email">Ny mail addresse</string>
+        <string name="confirm_with_password">Bekræft med adgangskode</string>
+        <string name="old_username">Nuværende Brugernavn</string>
+        <string name="new_username">Nyt Brugernavn</string>
+        <string name="change_email">Skift e-mail</string>
+        <string name="change_username">Skift Brugernavn</string>
+        <string name="change">Skift</string>
+        <string name="change_hint">(Skift)</string>
+
+        <!-- Change errors -->
+        <string name="wrong_username">Du skrive det rigtige brugernavn</string>
+        <string name="username_are_equal">Du må ikke vælge det samme brugernavn</string>
+
+        <string name="wrong_password">Forkert adgagnskode</string>
+        <string name="passwords_are_equal">Du må ikke skifte til den samme adgangskode</string>
+        <string name="new_passwords_not_matching">Du skal bekræfte med den samme adgangskode</string>
+        <string name="password_not_confirmed">Du SKAL bekræfte den nye adgangskode ved at skrive den igen</string>
+
+        <string name="emails_are_the_same">Du kan ikke skifte til den nuværende amil addresse</string>
+        <string name="wrong_email">Du skal indtaste din nuværnde e-mail</string>
+
+        <string name="confirm_delete">Er du sikker på at du vil slette din bruger.\n Det kan ikke gøres om</string>
+
+    <!-- FireBase messages -->
+    <string name="firebaseListError">Kunne ikke hente listen fra databasen</string>
+    <string name="firebaseError">Noget gik galt - Prøv igen</string>
 
     <!-- Message for triggering unimplemented methods -->
     <string name="Not_Implemented">Endnu ikke implementeret</string>
-    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fjøjtende fis og han ved ikke hvad han laver</string>
+    <string name="dummyPersonName">Kasket Karl</string>
+    <string name="dummyPersonDescription">Denne person er en mega klaphat. Han kan ikke finde af en fløjtende fis og han ved ikke hvad han laver</string>
 
 </resources>

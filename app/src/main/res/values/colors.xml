@@ -1,10 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Gradient colors-->
+    <color name="color_btnStart">#1e3c72</color>
+    <color name="color_btnEnd">#2a5298</color>
+    <color name="color_btnStart_selected">#005154</color>
+    <color name="color_btnEnd_selected">#007865</color>
+
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorMaroon">#800000</color>
+    <color name="bottomNavigationcolor">#4682B4</color>
+    <color name="colorDarkBlue">#071064</color>
     <color name="FragmentBackground">#010E1D</color>
     <color name="colorButton">#4682B4</color>
     <color name="coloreggLightwhite">#ffffff</color>
@@ -24,4 +33,8 @@
     <color name="colorDarkerRed">#8c1111</color>
     <color name="colorDarkRed">#9f1717</color>
     <color name="colorTest">#D86060</color>
+    <color name="semiTransGrey">#CC808080</color>
+    <color name="semiTransWhite">#CCffffff</color>
+    <color name="fullTransWhite">#ffffffff</color>
+    <color name="colorGrey">#808080</color>
 </resources>
