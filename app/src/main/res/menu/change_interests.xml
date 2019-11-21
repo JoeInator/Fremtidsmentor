@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/cancel_changes"
+        android:title="@string/cancel_changes"
+        android:layout_height="match_parent"/>
+
+    <item
+        android:id="@+id/confirm_changes"
+        android:title="@string/confirm_changes"
+        android:layout_height="match_parent"/>
+
+</menu>

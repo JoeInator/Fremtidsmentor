@@ -20,6 +20,7 @@
             android:layout_marginRight="60dp"
             android:background="@drawable/layout_btn"
             android:text="@string/RegisterUser"
+            android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
