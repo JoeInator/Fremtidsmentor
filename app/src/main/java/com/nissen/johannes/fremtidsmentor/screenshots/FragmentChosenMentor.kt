@@ -179,10 +179,10 @@ class FragmentChosenMentor: Fragment() {
 
     private fun loadCalendar(view: View) {
         viewCalendar(view)
-//        val sdf = SimpleDateFormat("dd/M/yyyy")
-//        val currentDate = sdf.format(Date())
-//        System.out.println(" C DATE is  "+currentDate)
         view.calendar.minDate = Calendar.getInstance().timeInMillis + (24 * 60 * 60 * 1000 * 3)
+        val sdf = SimpleDateFormat("dd/M/yyyy")
+        val currentDate = sdf.format(Date())
+        date = currentDate
         view.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             // Note that months are indexed from 0. So, 0 means January, 1 means february, 2 means march etc.
             date = dayOfMonth.toString().plus("/").plus(month + 1).plus("/").plus(year)

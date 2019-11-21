@@ -82,13 +82,12 @@ class FragmentChooseRole : Fragment() {
             .commit()
     }
 
-//    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-//        return if (!enter) {
-//            MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
+    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
 //        } else {
 //            MoveAnimation.create(MoveAnimation.RIGHT, enter, 1000)
 //        }
-//    }
+    }
 
     private fun animation(view: View) {
         when (view.id) {
