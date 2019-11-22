@@ -158,8 +158,7 @@ class FragmentChosenMentor: Fragment() {
     }
 
     private fun bookDay(schedule: Schedule) {
-        val ID = mPrefs.getString("userID", "")
-        val tempRef = FirebaseDatabase.getInstance().getReference("users/normalUser/".plus(ID))
+        val tempRef = FirebaseDatabase.getInstance().getReference("bookings")
         schedule.ScheduleID = tempRef.push().getKey()
         schedule.ScheduleMentor = mentor.getUsername()
         schedule.ScheduleMentorID = mentor.getId()
@@ -167,13 +166,13 @@ class FragmentChosenMentor: Fragment() {
         schedule.ScheduleMenteeID = mPrefs.getString("userID", "")
         schedule.ScheduleDate = date
 
-        tempRef.child("Schedules/".plus(schedule.ScheduleID)).setValue(schedule)
+        tempRef.child(schedule.ScheduleID!!).setValue(schedule)
             .addOnCompleteListener {
                 Toast.makeText(requireContext(), mentor.getId(), Toast.LENGTH_SHORT).show()
             }
 
-        val tempRef2 = FirebaseDatabase.getInstance().getReference("users/mentor/".plus(mentor.getId()))
-        tempRef2.child("Schedules/".plus(schedule.ScheduleID)).setValue(schedule)
+//        val tempRef2 = FirebaseDatabase.getInstance().getReference("users/mentor/".plus(mentor.getId()))
+//        tempRef2.child("Schedules/".plus(schedule.ScheduleID)).setValue(schedule)
 
     }
 
