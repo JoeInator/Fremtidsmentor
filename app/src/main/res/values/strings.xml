@@ -39,7 +39,8 @@
     <string name="no_schedules">Du har på nuværende tidspunkt ikke nogen aftaler med en mentor</string>
     
     <!-- MentorSpecifications -->
-    <string name="key_competencies">Primære komtencer\n</string>
+    <string name="key_competencies">Denne mentor er specialist i:\n</string>
+    <string name="mentor_description">Denne mentor er/har været:</string>
     <string name="calendarView_under_construction">Her kommer der et CalendarView, hvor det bliver muligt at vælge en dag</string>
     <string name="subscribe">Følg Mentor</string>
     <string name="load_info">Henter info...</string>
