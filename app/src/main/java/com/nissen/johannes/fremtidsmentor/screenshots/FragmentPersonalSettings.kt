@@ -96,8 +96,8 @@ class FragmentPersonalSettings: Fragment() {
                                 resources.getString(R.string.name).plus(": ").plus(Username),
                                 resources.getString(R.string.password).plus(": ").plus(Password),
                                 resources.getString(R.string.interests),
-                                resources.getString(R.string.delete_account),
-                                resources.getString(R.string.empty_string)
+                                resources.getString(R.string.delete_account)
+                                //resources.getString(R.string.empty_string)
                             )
                             var adapter = Adapter(context, optionsList)
                             adapter.notifyDataSetChanged()

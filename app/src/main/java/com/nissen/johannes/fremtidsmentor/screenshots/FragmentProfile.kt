@@ -1,25 +1,21 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
-import android.net.Uri
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
-
+import androidx.fragment.app.Fragment
 import com.nissen.johannes.fremtidsmentor.R
-import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.fragment_profile.view.*
-import kotlinx.android.synthetic.main.list_mentor_tem.view.*
-import java.util.ArrayList
 
 
 class FragmentProfile : Fragment() {
@@ -38,6 +34,7 @@ class FragmentProfile : Fragment() {
         val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
         roundedBitmapDrawable.isCircular = true
         view.profileImg.setImageDrawable(roundedBitmapDrawable)
+        view.Basbasic_info_text.text = mPrefs.getString("name", "0")
 
         view.personal_info_botton.setOnClickListener {
             val newfragment = FragmentPersonalSettings()
@@ -62,7 +59,22 @@ class FragmentProfile : Fragment() {
                 .commit()
         }
 
+        view.notifocation_botton.setOnClickListener {
+            view.switch1.toggle()
+//            if (view.switch1.isChecked) {
+//                view.switch1.isChecked = false
+//            } else {
+//                view.switch1.isChecked = true
+//            }
+        }
+
         return view
     }
 
+//    fun switchColor(checked: Boolean, view: View) {
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//            view.switch1.getThumbDrawable().setColorFilter(checked ? resources . getColor (R.color.colorDarkBlue), PorterDuff.Mode.MULTIPLY)
+//            view.switch1.getTrackDrawable().setColorFilter(!checked ? Color . BLACK : Color . WHITE, PorterDuff.Mode.MULTIPLY)
+//        }
+//    }
 }

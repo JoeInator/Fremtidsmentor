@@ -87,8 +87,6 @@ class FragmentFilter : Fragment() {
             vh.Area.setText(cats.get(position))
             val layoutParams = vh.logo.layoutParams
             vh.logo.setBackgroundResource(img[position])
-            Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
-//            vh.logo.setImageResource(img.get(position))
         }
     }
 

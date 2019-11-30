@@ -34,10 +34,9 @@
                 android:gravity="center|left"
                 android:src="?attr/selectableItemBackground"
                 android:text="@string/personal_info"
-                android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/seperator6" />
+                app:layout_constraintTop_toTopOf="@+id/constraintLayout3" />
 
             <Button
                 android:id="@+id/subscription_button"
@@ -48,10 +47,9 @@
                 android:gravity="center|left"
                 android:src="?attr/selectableItemBackground"
                 android:text="@string/subscriptions"
-                android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/separetor" />
+                app:layout_constraintTop_toBottomOf="@id/notifocation_botton" />
 
 
             <Button
@@ -63,10 +61,9 @@
                 android:gravity="center|left"
                 android:src="?attr/selectableItemBackground"
                 android:text="@string/notifications"
-                android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/seperator2" />
+                app:layout_constraintTop_toBottomOf="@+id/personal_info_botton" />
 
             <Button
                 android:id="@+id/logoutBtn"
@@ -77,70 +74,18 @@
                 android:gravity="center|left"
                 android:src="?attr/selectableItemBackground"
                 android:text="@string/logout"
-                android:textColor="@color/colorWhite"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/seperator5" />
-
-            <ImageView
-                android:id="@+id/separetor6"
-                android:layout_width="300dp"
-                android:layout_height="2dp"
-                android:background="@color/colordarkEggwhite"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/logoutBtn" />
-
-            <ImageView
-                android:id="@+id/seperator5"
-                android:layout_width="300dp"
-                android:layout_height="2dp"
-                android:background="@color/colordarkEggwhite"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/subscription_button" />
-
-            <ImageView
-                android:id="@+id/seperator2"
-                android:layout_width="300dp"
-                android:layout_height="2dp"
-                android:background="@color/colordarkEggwhite"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/personal_info_botton" />
-
-            <ImageView
-                android:id="@+id/separetor"
-                android:layout_width="300dp"
-                android:layout_height="2dp"
-                android:background="@color/colordarkEggwhite"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/notifocation_botton" />
-
-            <ImageView
-                android:id="@+id/seperator6"
-                android:layout_width="300dp"
-                android:layout_height="2dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/colordarkEggwhite"
-                android:visibility="gone"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.491"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <Switch
                 android:id="@+id/switch1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
-                android:shadowColor="@color/colorWhite"
+                android:thumbTint="@drawable/layout_notification_switch"
+                android:trackTint="@android:color/black"
                 app:layout_constraintBottom_toBottomOf="@id/notifocation_botton"
                 app:layout_constraintEnd_toEndOf="@id/notifocation_botton"
                 app:layout_constraintTop_toTopOf="@id/notifocation_botton" />
@@ -150,40 +95,45 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
-            android:layout_width="261dp"
-            android:layout_height="99dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/layout_bg"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.902"
+            app:layout_constraintHorizontal_bias="0.70"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.1">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/Basbasic_info_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="4dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
                 android:text="Some basic info about\n yourself goes here I guess"
                 android:textColor="@color/colorlightBlack"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.508" />
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/profileImg"
-            android:layout_width="115dp"
-            android:layout_height="165dp"
-
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="111dp"
+            android:layout_height="148dp"
             android:src="@drawable/cv_foto"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.10"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.005" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

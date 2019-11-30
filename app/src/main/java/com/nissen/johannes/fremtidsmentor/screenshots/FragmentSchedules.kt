@@ -59,6 +59,27 @@ class FragmentSchedules: Fragment() {
 
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
+//            lateinit var scheduleKeyword: String
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                Schedules = ArrayList<Schedule>()
+//                if (mPrefs.getString("userType", "").equals("user/normalUser")) {
+//                    scheduleKeyword = "scheduleMentee"
+//                } else {
+//                    scheduleKeyword = "scheduleMentor"
+//                }
+//                for (h in p0.children) {
+//                    if (h.child(scheduleKeyword).getValue(String::class.java).equals(mPrefs.getString("name", ""))) {
+////                        for (i in h.child("Schedules").children) {
+//                        val schedule = h.getValue(Schedule::class.java)
+//                        Schedules.add(schedule!!)
+////                        }
+//                    }
+//                }
+//                view.schedulesList.setLayoutManager(LinearLayoutManager(requireContext()))
+//                view.schedulesList.adapter = ListeelemAdapter()
+//            }
+
             override fun onDataChange(p0: DataSnapshot) {
                 Schedules = ArrayList<Schedule>()
                 for (h in p0.children) {

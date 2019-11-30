@@ -39,8 +39,8 @@
     <string name="no_schedules">Du har på nuværende tidspunkt ikke nogen aftaler med en mentor</string>
     
     <!-- MentorSpecifications -->
-    <string name="key_competencies">Denne mentor er specialist i:\n</string>
-    <string name="mentor_description">Denne mentor er/har været:</string>
+    <string name="key_competencies"> er specialist i:\n</string>
+    <string name="mentor_description"> er/har været:\n</string>
     <string name="calendarView_under_construction">Her kommer der et CalendarView, hvor det bliver muligt at vælge en dag</string>
     <string name="subscribe">Følg Mentor</string>
     <string name="load_info">Henter info...</string>
@@ -78,6 +78,7 @@
         <string name="change_username">Skift Brugernavn</string>
         <string name="change">Skift</string>
         <string name="change_hint">(Skift)</string>
+        <string name="confirm_delete">Er du sikker på at du vil slette din bruger?\nDet kan ikke gøres om...</string>
 
         <!-- Change errors -->
         <string name="wrong_username">Du skrive det rigtige brugernavn</string>
@@ -88,10 +89,8 @@
         <string name="new_passwords_not_matching">Du skal bekræfte med den samme adgangskode</string>
         <string name="password_not_confirmed">Du SKAL bekræfte den nye adgangskode ved at skrive den igen</string>
 
-        <string name="emails_are_the_same">Du kan ikke skifte til den nuværende amil addresse</string>
-        <string name="wrong_email">Du skal indtaste din nuværnde e-mail</string>
-
-        <string name="confirm_delete">Er du sikker på at du vil slette din bruger.\n Det kan ikke gøres om</string>
+        <string name="emails_are_the_same">Du kan ikke skifte til den nuværende mail addresse</string>
+        <string name="wrong_email">Du skal indtaste din nuværende e-mail</string>
 
     <!-- FireBase messages -->
     <string name="firebaseListError">Kunne ikke hente listen fra databasen</string>

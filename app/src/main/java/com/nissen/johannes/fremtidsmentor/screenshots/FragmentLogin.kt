@@ -37,7 +37,7 @@ class FragmentLogin : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
-        path = arguments!!.getString("userType")
+        path = "users/normalUser"//arguments!!.getString("userType")
         ref = FirebaseDatabase.getInstance().getReference(path)
         remember_me = view.findViewById<CheckBox>(R.id.remember_me)
 

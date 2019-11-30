@@ -59,7 +59,8 @@ class FragmentChosenMentor: Fragment() {
             view.setBackgroundColor(resources.getColor(android.R.color.transparent))
             loading.dismiss()
             loadPage(view)
-            view.mentor_competencies.text = resources.getString(R.string.key_competencies)
+            view.description_header.text = "\n".plus(mentor.getUsername()).plus(" ").plus(resources.getString(R.string.mentor_description))
+            view.mentor_competencies.text = mentor.getUsername().plus(" ").plus(resources.getString(R.string.key_competencies))
         }, 500)
 
         return view
@@ -96,13 +97,13 @@ class FragmentChosenMentor: Fragment() {
         FillLists(comps)
 
         for (i in 0 until compList1.size) {
-            builder.append(compList1[i]+"\n")
+            builder.append(compList1[i]+"\n\n")
         }
         view.InfoView.vertical_scroll.horisontal_scroll.comp_list1.text = builder.toString()
 
         builder.clear()
         for (i in 0 until compList2.size) {
-            builder.append(compList2[i]+"\n")
+            builder.append(compList2[i]+"\n\n")
         }
         view.InfoView.vertical_scroll.horisontal_scroll.comp_list2.text = builder.toString()
 
