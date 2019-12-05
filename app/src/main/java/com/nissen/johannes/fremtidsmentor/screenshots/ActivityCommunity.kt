@@ -30,10 +30,12 @@ class ActivityCommunity : FragmentActivity() {
             cl.community_fragment.setBackgroundResource(R.drawable.mentee)
         }
 
-        val fragment = FragmentCommunity()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.community_fragment, fragment)
-            .commit()
+        if (savedInstanceState == null) {
+            val fragment = FragmentCommunity()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.community_fragment, fragment)
+                .commit()
+        }
 
 
         //https://android-arsenal.com/details/1/7544 -- Implement this bottom navigationView if there is time
