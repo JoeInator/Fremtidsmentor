@@ -31,7 +31,7 @@ class FragmentInterests: Fragment() {
         prefsEditor = mPrefs.edit()
         Uid = mPrefs.getString("userID","")
         ref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
-        Toast.makeText(requireContext(),mPrefs.getString("userID","Der er en fejl"),Toast.LENGTH_SHORT).show()
+
         acquireComps(view)
 
         view.add_interests.setOnClickListener {

@@ -37,4 +37,5 @@
     <color name="semiTransWhite">#CCffffff</color>
     <color name="fullTransWhite">#ffffffff</color>
     <color name="colorGrey">#808080</color>
+<!--    <color name="colorArea">#6f86d6</color>-->
 </resources>

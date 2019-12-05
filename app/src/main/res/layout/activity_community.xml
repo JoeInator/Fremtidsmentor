@@ -6,41 +6,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/coloreggwhite"
+    android:orientation="vertical"
     tools:context=".screenshots.ActivityCommunity">
 
 
     <FrameLayout
         android:id="@+id/community_fragment"
-        android:layout_width="0dp"
-        android:layout_height="520dp"
-        android:background="@drawable/frontpage"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/mentee"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigation"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/buttom_navigation_background"
+        app:itemIconTint="@color/colorWhite"
+        app:itemTextColor="@color/colorWhite"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/community_fragment">
-
-
-        <com.google.android.material.bottomnavigation.BottomNavigationView
-            android:id="@+id/bottomNavigation"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/buttom_navigation_background"
-            app:itemIconTint="@color/colorWhite"
-            app:itemTextColor="@color/colorWhite"
-            app:labelVisibilityMode="labeled"
-            app:menu="@menu/navigation" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:menu="@menu/navigation"
+        tools:layout_editor_absoluteY="334dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,8 +10,8 @@
 
                     <gradient
                         android:angle="0"
-                        android:endColor="@android:color/holo_blue_bright"
-                        android:startColor="@android:color/holo_blue_bright"
+                        android:endColor="@color/color_btnEnd"
+                        android:startColor="@color/color_btnStart"
                         android:type="linear" />
 
                 </shape>
