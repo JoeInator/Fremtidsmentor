@@ -32,7 +32,7 @@
     <string name="community">COMMUNITY</string>
     <string name="book">BOOK</string>
     <string name="mentor">Er Mentor</string>
-    <string name="mentee">Skal bruge en Mentor</string>
+    <string name="mentee">Skal bruge en\nMentor</string>
 
     <!-- Schedule -->
     <string name="schedule_header">Aftaler med mentorer</string>
