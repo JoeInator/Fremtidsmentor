@@ -12,7 +12,7 @@ android {
         applicationId "com.nissen.johannes.fremtidsmentor"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 3
+        versionCode 5
         versionName "2-beta"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
