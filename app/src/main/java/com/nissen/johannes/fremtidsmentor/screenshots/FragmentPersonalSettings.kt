@@ -16,6 +16,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.adapters.PersonalSettingsAdapter
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_personal_settings.view.*
 import kotlinx.android.synthetic.main.list_personal_option_item.view.*
@@ -113,7 +114,7 @@ class FragmentPersonalSettings: Fragment() {
                                 resources.getString(R.string.delete_account)
                                 //resources.getString(R.string.empty_string)
                             )
-                            var adapter = Adapter(context, optionsList)
+                            var adapter = PersonalSettingsAdapter(context, optionsList)
                             adapter.notifyDataSetChanged()
                             listView.adapter = adapter
                         }
@@ -163,39 +164,4 @@ class FragmentPersonalSettings: Fragment() {
                 startActivity(intent)
             }
     }
-
-    private class Adapter (context: Context, private val Settings: ArrayList<String>): BaseAdapter() {
-
-        private val mContext: Context
-
-        init {
-            mContext = context
-        }
-
-        override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-            val layoutInflater = LayoutInflater.from(mContext)
-            val main = if (convertView==null) { layoutInflater.inflate(R.layout.list_mentor_tem, parent,false) } else { convertView }
-            val option = getItem(position) as String
-            main.optionsBtn.text = option
-            main.optionsBtn.id = getItemId(position).toInt()
-            if (option.equals(Settings[4]) or option.equals(Settings[3]) or option.isEmpty()) {
-                main.skibable.visibility = View.GONE
-            }
-            return main
-        }
-
-        override fun getItem(position: Int): Any {
-            return Settings[position]
-        }
-
-        override fun getItemId(position: Int): Long {
-            return position.toLong()
-        }
-
-        override fun getCount(): Int {
-            return Settings.size
-        }
-
-    }
-
 }

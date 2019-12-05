@@ -19,6 +19,7 @@ import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_add_interests.view.*
 import android.widget.CompoundButton
+import com.nissen.johannes.fremtidsmentor.adapters.AllInterestsAdapter
 import kotlinx.android.synthetic.main.list_all_interests_possible_item.*
 
 
@@ -84,7 +85,7 @@ class FragmentInterestsAdd: Fragment() {
                     }
                 }
                 view.all_interests_possible.setLayoutManager(LinearLayoutManager(requireContext()))
-                view.all_interests_possible.adapter = ListeelemAdapter()
+                view.all_interests_possible.adapter = AllInterestsAdapter(requireContext(), Interests, checkedInterests)
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -103,49 +104,4 @@ class FragmentInterestsAdd: Fragment() {
         }
     }
 
-    //Setting the actual functions for the list components
-    internal inner class ListeelemAdapter : RecyclerView.Adapter<ListeelemViewholder>() {
-        override fun getItemCount(): Int {
-            return Interests.size
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
-            val listeelementViews =
-                layoutInflater.inflate(R.layout.list_all_interests_possible_item, parent, false)
-            return ListeelemViewholder(listeelementViews)
-        }
-
-        override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            val item = Interests[position]
-            vh.checkBox.text = item
-
-            //in some cases, it will prevent unwanted situations
-            vh.checkBox.setOnCheckedChangeListener(null)
-
-            //Setting the initial checked state of the checkboxes
-            vh.checkBox.isChecked = checkedInterests.contains(item)
-
-            //used for setting the checked state of a given checkbox
-            vh.checkBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-                override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-                    //setting a given checkbox's status
-                    vh.checkBox.setSelected(isChecked)
-                    if (isChecked) {
-                        checkedInterests.add(vh.checkBox.text.toString())
-                    } else {
-                        checkedInterests.remove(vh.checkBox.text.toString())
-                    }
-                }
-            })
-        }
-    }
-
-    //Used for defining the checkbox of in the list
-    internal inner class ListeelemViewholder: RecyclerView.ViewHolder {
-        var checkBox: CheckBox
-
-        constructor(listeelementViews: View) : super(listeelementViews) {
-            checkBox = listeelementViews.findViewById(R.id.checkBox)
-        }
-    }
 }

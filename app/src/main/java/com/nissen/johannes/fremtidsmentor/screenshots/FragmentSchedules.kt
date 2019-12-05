@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.adapters.SchedulesAdapter
 import com.nissen.johannes.fremtidsmentor.entities.Schedule
 import kotlinx.android.synthetic.main.fragment_schedules.view.*
 import kotlin.collections.ArrayList
@@ -91,7 +92,7 @@ class FragmentSchedules: Fragment() {
                     }
                 }
                 view.schedulesList.setLayoutManager(LinearLayoutManager(requireContext()))
-                view.schedulesList.adapter = ListeelemAdapter()
+                view.schedulesList.adapter = SchedulesAdapter(requireContext(), Schedules)
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -102,53 +103,4 @@ class FragmentSchedules: Fragment() {
 
 
     }
-
-    internal inner class ListeelemAdapter : RecyclerView.Adapter<ListeelemViewholder>() {
-        override fun getItemCount(): Int {
-            return Schedules.size
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
-            val listeelementViews =
-                layoutInflater.inflate(R.layout.list_schedules_item, parent, false)
-            return ListeelemViewholder(listeelementViews)
-        }
-
-        override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            vh.sched.text = "   ".plus(Schedules.get(position).ScheduleDate)
-            vh.info.text = /*"Date: ".plus(Schedules.get(position).ScheduleDate).plus("\n")*/
-                "MENTOR: ".plus(Schedules.get(position).ScheduleMentor).plus("\n")
-                .plus("MENTEE: ").plus(Schedules.get(position).ScheduleMentee)
-        }
-    }
-
-    internal inner class ListeelemViewholder: RecyclerView.ViewHolder, View.OnClickListener {
-
-        var sched: Button
-        var info: TextView
-
-        constructor(listeelementViews: View) : super(listeelementViews) {
-            sched = listeelementViews.findViewById(R.id.date_btn)
-            info = listeelementViews.findViewById(R.id.schedule_info)
-
-            // Sætter listeelementernes indhold og synlighed baggrunsfarve ændrer sig ved berøring
-            sched.background = resources.getDrawable(R.drawable.layout_schedule_btn)
-            info.background = resources.getDrawable(R.drawable.layout_schedule_btn)
-            info.visibility = View.GONE
-
-            // Gør listeelementer klikbare
-            info.setOnClickListener(this)
-            sched.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View?) {
-            when (info.visibility) {
-                View.GONE -> { info.visibility = View.VISIBLE }
-                View.VISIBLE -> { info.visibility = View.GONE }
-            }
-        }
-    }
-
-    //https://android-arsenal.com/details/1/7886 -- Use this library instead (same, but allows for dropdown)
-
 }

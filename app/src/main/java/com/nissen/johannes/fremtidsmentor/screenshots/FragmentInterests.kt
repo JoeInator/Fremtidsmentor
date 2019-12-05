@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.adapters.InterestsAdapter
 import kotlinx.android.synthetic.main.fragment_list_of_interests.view.*
 
 class FragmentInterests: Fragment() {
@@ -68,7 +69,7 @@ class FragmentInterests: Fragment() {
                 }
                 if (!Interests.isEmpty()) {
                     view.list_interests.setLayoutManager(LinearLayoutManager(requireContext()))
-                    view.list_interests.adapter = ListeelemAdapter()
+                    view.list_interests.adapter = InterestsAdapter(requireContext(), Interests)
                 } else {
                     view.no_interests.visibility = View.VISIBLE
                 }
@@ -79,37 +80,6 @@ class FragmentInterests: Fragment() {
                 activity!!.supportFragmentManager.popBackStack()
             }
         })
-    }
-
-    internal inner class ListeelemAdapter : RecyclerView.Adapter<ListeelemViewholder>() {
-        override fun getItemCount(): Int {
-            return Interests.size
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
-            val listeelementViews =
-                layoutInflater.inflate(R.layout.list_interests_item, parent, false)
-            return ListeelemViewholder(listeelementViews)
-        }
-
-        override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            vh.interestsTextView.text = Interests[position]
-            vh.interestsTextView.textSize = 22F
-            if (position == Interests.lastIndex){ vh.separetor.visibility = View.VISIBLE }
-        }
-    }
-
-    internal inner class ListeelemViewholder: RecyclerView.ViewHolder {
-
-        var interestsTextView: TextView
-        var separetor: ImageView
-
-        constructor(listeelementViews: View) : super(listeelementViews) {
-            interestsTextView = listeelementViews.findViewById(R.id.interest_view)
-            separetor = listeelementViews.findViewById(R.id.separetor)
-
-        }
-
     }
 
 }
