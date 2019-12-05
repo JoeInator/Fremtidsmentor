@@ -44,24 +44,30 @@ class FragmentSignUp : Fragment() {
             "password not the same" -> Toast.makeText(this.context, R.string.noMatchOnPassword, Toast.LENGTH_SHORT).show()
             "not all are filled" -> Toast.makeText(this.context, R.string.fillEntireForm, Toast.LENGTH_SHORT).show()
             "approved" -> saveUser()
+            "username unavailable" -> Toast.makeText(requireContext(), "The username is reserved", Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun checkContent(): String {
 
-        if (!signup_typepassword.text.toString().equals(signup_confpassword.text.toString()))
-            return "password not the same"
+        return if (signup_username.text.toString().toLowerCase().contains("test")) {
+            "username unavailable"
+        } else {
 
-        if(!signup_username.text.toString().equals("")){
-            if(!signup_email.text.toString().equals("")) {
-             if(!signup_typepassword.text.toString().equals("")){
-                 if (!signup_confpassword.text.toString().equals(""))
-                     return "approved"
-             }
+            if (!signup_typepassword.text.toString().equals(signup_confpassword.text.toString()))
+                return "password not the same"
+
+            if (!signup_username.text.toString().equals("")) {
+                if (!signup_email.text.toString().equals("")) {
+                    if (!signup_typepassword.text.toString().equals("")) {
+                        if (!signup_confpassword.text.toString().equals(""))
+                            return "approved"
+                    }
+                }
+
             }
-
+            return "not all are filled"
         }
-        return "not all are filled"
     }
 
     private fun nextAct() {
@@ -77,7 +83,7 @@ class FragmentSignUp : Fragment() {
         val username = signup_username.text.toString().trim()
         val email = signup_email.text.toString().trim()
         val password = signup_typepassword.text.toString().trim()
-        val interests : ArrayList<String> = arrayListOf("hjkl", "fghjklæ")
+        val interests : ArrayList<String> = arrayListOf()
 
         val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
         val keyInt = ref.push().getKey()

@@ -42,9 +42,10 @@ class FragmentCommunity : Fragment() {
             .addToBackStack(null)
             .commit()
         }
-        view.UpgradeBtn.setOnClickListener{
-            notImplemented()
-        }
+//        view.UpgradeBtn.setOnClickListener{
+//            notImplemented()
+//        }
+        view.UpgradeBtn.isEnabled = false
         view.SchedulesBtn.setOnClickListener{
             val newfragment = FragmentSchedules()
             activity!!.supportFragmentManager.popBackStack()

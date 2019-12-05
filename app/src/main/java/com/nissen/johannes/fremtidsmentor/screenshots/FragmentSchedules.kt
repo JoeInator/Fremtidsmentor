@@ -30,7 +30,7 @@ class FragmentSchedules: Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_schedules, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
 
-        ref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
+        ref = FirebaseDatabase.getInstance().getReference("bookings")
 //        Toast.makeText(requireContext(),mPrefs.getString("userType","Der er en fejl"),Toast.LENGTH_SHORT).show()
         if (1+1==2) {
             view.conText.visibility = View.GONE
@@ -59,14 +59,35 @@ class FragmentSchedules: Fragment() {
 
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
 
+//            lateinit var scheduleKeyword: String
+//
+//            override fun onDataChange(p0: DataSnapshot) {
+//                Schedules = ArrayList<Schedule>()
+//                if (mPrefs.getString("userType", "").equals("user/normalUser")) {
+//                    scheduleKeyword = "scheduleMentee"
+//                } else {
+//                    scheduleKeyword = "scheduleMentor"
+//                }
+//                for (h in p0.children) {
+//                    if (h.child(scheduleKeyword).getValue(String::class.java).equals(mPrefs.getString("name", ""))) {
+////                        for (i in h.child("Schedules").children) {
+//                        val schedule = h.getValue(Schedule::class.java)
+//                        Schedules.add(schedule!!)
+////                        }
+//                    }
+//                }
+//                view.schedulesList.setLayoutManager(LinearLayoutManager(requireContext()))
+//                view.schedulesList.adapter = ListeelemAdapter()
+//            }
+
             override fun onDataChange(p0: DataSnapshot) {
                 Schedules = ArrayList<Schedule>()
                 for (h in p0.children) {
-                    if (h.child("username").getValue(String::class.java).equals(mPrefs.getString("name", ""))) {
-                        for (i in h.child("Schedules").children) {
-                            val schedule = i.getValue(Schedule::class.java)
+                    if (h.child("scheduleMentee").getValue(String::class.java).equals(mPrefs.getString("name", ""))) {
+//                        for (i in h.child("Schedules").children) {
+                            val schedule = h.getValue(Schedule::class.java)
                             Schedules.add(schedule!!)
-                        }
+//                        }
                     }
                 }
                 view.schedulesList.setLayoutManager(LinearLayoutManager(requireContext()))
@@ -98,7 +119,6 @@ class FragmentSchedules: Fragment() {
             vh.info.text = /*"Date: ".plus(Schedules.get(position).ScheduleDate).plus("\n")*/
                 "MENTOR: ".plus(Schedules.get(position).ScheduleMentor).plus("\n")
                 .plus("MENTEE: ").plus(Schedules.get(position).ScheduleMentee)
-            Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 

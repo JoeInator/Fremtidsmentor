@@ -48,25 +48,39 @@ class FragmentPersonalSettings: Fragment() {
 
             if (next.contains(resources.getString(R.string.email))) {
                 nextFrag = FragmentChangeEmail()
-                goToNextFrag(nextFrag)
+                if (!Username.equals("Test123")) {
+                    goToNextFrag(nextFrag)
+                } else {
+                    notAvailable()
+                }
 
             } else if (next.contains(resources.getString(R.string.name))) {
                 nextFrag = FragmentChangeUsername()
-                goToNextFrag(nextFrag)
+                if (!Username.equals("Test123")) {
+                    goToNextFrag(nextFrag)
+                } else {
+                    notAvailable()
+                }
 
             } else if (next.contains(resources.getString(R.string.password))) {
                 nextFrag = FragmentChangePassword()
-                goToNextFrag(nextFrag)
+                if (!Username.equals("Test123")) {
+                    goToNextFrag(nextFrag)
+                } else {
+                    notAvailable()
+                }
 
             } else if (next.contains(resources.getString(R.string.interests))) {
                 nextFrag = FragmentInterests()
-                goToNextFrag(nextFrag)
+                    goToNextFrag(nextFrag)
 
             } else if (next.contains(resources.getString(R.string.delete_account))) {
-                deleteUser()
-
+                if (!Username.equals("Test123")) {
+                    deleteUser()
+                } else {
+                    notAvailable()
+                }
             }
-
         }
 
         return view
@@ -96,8 +110,8 @@ class FragmentPersonalSettings: Fragment() {
                                 resources.getString(R.string.name).plus(": ").plus(Username),
                                 resources.getString(R.string.password).plus(": ").plus(Password),
                                 resources.getString(R.string.interests),
-                                resources.getString(R.string.delete_account),
-                                resources.getString(R.string.empty_string)
+                                resources.getString(R.string.delete_account)
+                                //resources.getString(R.string.empty_string)
                             )
                             var adapter = Adapter(context, optionsList)
                             adapter.notifyDataSetChanged()
@@ -115,6 +129,10 @@ class FragmentPersonalSettings: Fragment() {
             .replace(R.id.community_fragment, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun notAvailable() {
+        Toast.makeText(requireContext(), "Sevice not available on Test account", Toast.LENGTH_SHORT).show()
     }
 
     private fun notImplemented() {

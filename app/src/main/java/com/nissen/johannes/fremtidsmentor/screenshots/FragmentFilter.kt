@@ -19,7 +19,10 @@ import kotlinx.android.synthetic.main.fragment_mentor_filter.view.*
 class FragmentFilter : Fragment() {
 
     var cats = arrayListOf<String>("online marketing", "online branding", "chatbots", "UX and UI", "social media", "gamification")
-    var img = arrayListOf<Int>()
+    var img = arrayListOf<Int>(R.drawable.icon_online_marketing, R.drawable.icon_online_branding,
+        R.drawable.icon_chatbot, R.drawable.icon_ux, R.drawable.icon_social_media, R.drawable.icon_gamification,
+        R.drawable.icon_science, R.drawable.icon_social, R.drawable.icon_humanities, R.drawable.icon_software, R.drawable.icon_chemistry,
+        R.drawable.icon_database, R.drawable.icon_management, R.drawable.icon_management)
     var filter = Bundle()
     lateinit var ref: DatabaseReference
 
@@ -82,9 +85,8 @@ class FragmentFilter : Fragment() {
 
         override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
             vh.Area.setText(cats.get(position))
-            vh.logo.setImageResource(android.R.drawable.btn_star)
-            Toast.makeText(requireContext(), itemCount.toString(), Toast.LENGTH_SHORT).show()
-//            vh.logo.setImageResource(img.get(position))
+            val layoutParams = vh.logo.layoutParams
+            vh.logo.setBackgroundResource(img[position])
         }
     }
 

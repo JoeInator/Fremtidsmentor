@@ -28,10 +28,12 @@ class ActivityMain : FragmentActivity() {
                 }
         }
 
-        val fragment = FragmentChooseRole()
-        supportFragmentManager.beginTransaction()
-            .add(R.id.login_fragment, fragment)
-            .commit()
+        if (savedInstanceState == null) {
+            val fragment = FragmentChooseRole()
+            supportFragmentManager.beginTransaction()
+                .add(R.id.login_fragment, fragment)
+                .commit()
+        }
 
     }
 }

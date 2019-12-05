@@ -8,19 +8,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+
         <TextView
             android:id="@+id/textView8"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
+            android:layout_marginTop="40dp"
             android:fontFamily="@font/header"
             android:text="@string/personal_info"
             android:textColor="@color/colordarkEggwhite"
-            android:textSize="45sp"
+            android:textSize="25sp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.500"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
 
         <ImageView
             android:id="@+id/seperator"
@@ -34,180 +35,26 @@
         <ListView
             android:id="@+id/option_list"
             android:layout_width="0dp"
-            android:layout_height="468dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginBottom="32dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="30dp"
+            app:layout_constraintBottom_toTopOf="@id/seperator3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8"
+            app:layout_constraintVertical_bias="1.0">
+
+        </ListView>
+
+        <ImageView
+            android:id="@+id/seperator3"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/colordarkEggwhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView8">
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator10"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                android:visibility="visible"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/emailBtn"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="81dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:gravity="left|center_vertical"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:text="@string/email"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/colordarkEggwhite"-->
-<!--                android:textSize="18sp" />-->
-
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator9"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/usernameBtn"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="81dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:gravity="left|center_vertical"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:text="@string/name"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/colordarkEggwhite"-->
-<!--                android:textSize="18sp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator12"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/passwordBtn"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="81dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:gravity="left|center_vertical"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:text="@string/password"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/colordarkEggwhite"-->
-<!--                android:textSize="18sp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator11"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/interestBtn"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="81dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:gravity="left|center_vertical"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:text="@string/interests"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/colordarkEggwhite"-->
-<!--                android:textSize="18sp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator14"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/delete_account"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="81dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:gravity="left|center_vertical"-->
-<!--                android:paddingLeft="16dp"-->
-<!--                android:text="@string/delete_account"-->
-<!--                android:textAllCaps="false"-->
-<!--                android:textColor="@color/colordarkEggwhite"-->
-<!--                android:textSize="18sp" />-->
-
-<!--            <ImageView-->
-<!--                android:id="@+id/seperator13"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="2dp"-->
-<!--                android:layout_marginTop="10dp"-->
-<!--                android:layout_marginBottom="10dp"-->
-<!--                android:background="@color/colordarkEggwhite"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintHorizontal_bias="0.491"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent" />-->
-
-<!--            <Button-->
-<!--                android:id="@+id/thisbuttondoesnothing"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="60dp"-->
-<!--                android:background="@android:color/transparent"-->
-<!--                android:contentDescription="This button is only there for aligning the other button correctly" />-->
-        </ListView>
-
-
-
-<!--        <ScrollView-->
-<!--            android:id="@+id/scroller"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="468dp"-->
-<!--            android:layout_marginTop="120dp"-->
-<!--            android:layout_marginBottom="32dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/textView8">-->
-
-<!--            <LinearLayout-->
-<!--                android:id="@+id/viewholder"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="vertical">-->
-
-<!--                -->
-
-
-<!--            </LinearLayout>-->
-<!--        </ScrollView>-->
+            app:layout_constraintTop_toBottomOf="@+id/option_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

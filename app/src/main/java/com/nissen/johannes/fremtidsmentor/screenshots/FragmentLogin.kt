@@ -37,9 +37,13 @@ class FragmentLogin : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_login, container, false)
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
-        path = arguments!!.getString("userType")
+        path = "users/normalUser"//arguments!!.getString("userType")
         ref = FirebaseDatabase.getInstance().getReference(path)
         remember_me = view.findViewById<CheckBox>(R.id.remember_me)
+        view.UserName_text.setText("Test123")
+        view.UserName_text.maxLines = 1
+        view.passwordText.setText("Test321")
+
 
         prefsEditor.clear().commit()
         view.loginBtn.setOnClickListener {
@@ -63,7 +67,9 @@ class FragmentLogin : Fragment() {
     private fun Login() {
             Username = UserName_text.text.toString().trim()
             Password = passwordText.text.toString().trim()
+//        if (!Username.equals("Test123")) {
             getFirebaseUser(Username, Password)
+//        }
     }
 
     private fun getFirebaseUser(username: String, password: String) {
@@ -117,9 +123,9 @@ class FragmentLogin : Fragment() {
         fragmentTransaction.commit()
     }
 
-    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
-    }
+//    override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
+////        return MoveAnimation.create(MoveAnimation.LEFT, enter, 1000)
+////    }
 
 
 }
