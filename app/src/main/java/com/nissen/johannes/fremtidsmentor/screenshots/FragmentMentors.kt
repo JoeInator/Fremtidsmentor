@@ -71,7 +71,8 @@ class FragmentMentors : Fragment() {
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(requireContext(), R.string.firebaseListError, Toast.LENGTH_LONG).show()
+                Toast.makeText(requireActivity(), R.string.firebaseError, Toast.LENGTH_LONG).show()
+                activity!!.supportFragmentManager.popBackStack()
             }
         })
     }

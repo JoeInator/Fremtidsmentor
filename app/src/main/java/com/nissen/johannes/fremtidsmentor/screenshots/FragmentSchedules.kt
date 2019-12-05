@@ -96,11 +96,10 @@ class FragmentSchedules: Fragment() {
             }
 
             override fun onCancelled(p0: DatabaseError) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                Toast.makeText(requireActivity(), R.string.firebaseError, Toast.LENGTH_LONG).show()
+                activity!!.supportFragmentManager.popBackStack()
             }
 
         })
-
-
     }
 }
