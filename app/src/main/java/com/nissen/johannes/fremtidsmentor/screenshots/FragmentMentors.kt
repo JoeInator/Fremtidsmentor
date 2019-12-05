@@ -96,7 +96,7 @@ class FragmentMentors : Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val main = layoutInflater.inflate(R.layout.list_mentor_tem, parent,false)
+            val main = if (convertView==null) { layoutInflater.inflate(R.layout.list_mentor_tem, parent,false) } else { convertView }
 
             val mentor = getItem(position) as Mentor
 

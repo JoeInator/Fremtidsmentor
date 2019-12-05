@@ -174,7 +174,7 @@ class FragmentPersonalSettings: Fragment() {
 
         override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
             val layoutInflater = LayoutInflater.from(mContext)
-            val main = layoutInflater.inflate(R.layout.list_personal_option_item, parent, false)
+            val main = if (convertView==null) { layoutInflater.inflate(R.layout.list_mentor_tem, parent,false) } else { convertView }
             val option = getItem(position) as String
             main.optionsBtn.text = option
             main.optionsBtn.id = getItemId(position).toInt()
