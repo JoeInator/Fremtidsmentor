@@ -1,11 +1,35 @@
 package com.nissen.johannes.fremtidsmentor.controllers
 
+import android.provider.ContactsContract
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IUserController
 import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
 import com.nissen.johannes.fremtidsmentor.controllers.implementations.UserController
 
 class ControllerRegistry {
+
+    object databaseController {
+
+        var DatabaseController: IFirebase = FirebaseController()
+
+        fun getFirebaaseController(): IFirebase {
+            if (DatabaseController == null) { DatabaseController = FirebaseController() }
+            return DatabaseController as IFirebase
+        }
+
+    }
+
+    object usercontroller {
+
+        var UserController: IUserController = UserController()
+
+        fun getUseController(): IUserController {
+            if (UserController == null) { UserController = UserController() }
+            return UserController as IUserController
+        }
+
+
+    }
 
     private var userController: IUserController? = null
 //    private var dataController: IDataController? = null

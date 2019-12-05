@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -67,9 +68,7 @@ class FragmentLogin : Fragment() {
     private fun Login() {
             Username = UserName_text.text.toString().trim()
             Password = passwordText.text.toString().trim()
-//        if (!Username.equals("Test123")) {
             getFirebaseUser(Username, Password)
-//        }
     }
 
     private fun getFirebaseUser(username: String, password: String) {
@@ -84,23 +83,25 @@ class FragmentLogin : Fragment() {
                 for (h in p0.children) {
                     if (h.child("username").getValue(String::class.java).equals(username)
                         and h.child("password").getValue(String::class.java).equals(password)) {
-                            user = h.getValue(NormalPerson::class.java)
+                            val userID = h.child("id").value.toString()
+
                             userApproved = true
 
                             if (remember_me.isChecked) { prefsEditor.putBoolean("remember", true) }
                             else { prefsEditor.putBoolean("remember", false) }
 
-                            prefsEditor.putString("name", user!!.getUsername())
-                            prefsEditor.putString("userID", user!!.getId())
+                            prefsEditor.putString("name", Username)
+                            prefsEditor.putString("userID", userID)
                             prefsEditor.putString("userType", path)
                             prefsEditor.apply()
                             prefsEditor.commit()
                             if (isAdded) {
-                                val intent = Intent(requireContext(), ActivityCommunity::class.java).apply({})
+                                Log.d("DIE!!", "Does login start the intent??")
+                                val intent = Intent(requireContext(), ActivityCommunity::class.java)
                                 intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                 startActivity(intent)
+                                Log.d("DIE!!", "Does login start the intent??")
                             }
-
                     }
                 }
 

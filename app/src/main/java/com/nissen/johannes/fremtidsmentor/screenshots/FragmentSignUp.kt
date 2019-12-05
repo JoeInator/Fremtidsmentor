@@ -9,22 +9,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.google.firebase.database.FirebaseDatabase
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
-import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
-import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_signup.*
 import kotlinx.android.synthetic.main.fragment_signup.view.*
-import java.io.DataOutputStream
 
 
 class FragmentSignUp : Fragment() {
 
     lateinit var mPrefs: SharedPreferences
     lateinit var prefsEditor: SharedPreferences.Editor
-    lateinit var FBC: IFirebase
+    var userController = ControllerRegistry.usercontroller.UserController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_signup, container, false)
@@ -83,26 +79,17 @@ class FragmentSignUp : Fragment() {
         val username = signup_username.text.toString().trim()
         val email = signup_email.text.toString().trim()
         val password = signup_typepassword.text.toString().trim()
-        val interests : ArrayList<String> = arrayListOf()
+        var newUser = NormalPerson(username, email, password)
 
-        val ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
-        val keyInt = ref.push().getKey()
-        val newUser = NormalPerson(keyInt!!, username, email, password, interests)
+        userController.CreateUser(newUser)
+        newUser = userController.getUser()!!
 
-        ref.child(keyInt!!).setValue(newUser)
-            .addOnCompleteListener {
-            prefsEditor.putString("name", newUser!!.getUsername())
-            prefsEditor.putString("userID", keyInt)
-            prefsEditor.apply()
-            prefsEditor.commit()
-            nextAct()
-            }
-            .addOnCanceledListener {
-                if (isAdded) {
-                    Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_SHORT)
-                        .show()
-                }
-            }
+        prefsEditor.putString("name", newUser.getUsername())
+        prefsEditor.apply()
+        prefsEditor.commit()
+        userController.CreateUser(newUser)
+        nextAct()
+
     }
 
 }

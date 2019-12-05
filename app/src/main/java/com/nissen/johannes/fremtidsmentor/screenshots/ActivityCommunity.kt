@@ -3,26 +3,30 @@ package com.nissen.johannes.fremtidsmentor.screenshots
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.widget.LinearLayout
+import android.util.Log
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.*
 import kotlinx.android.synthetic.main.activity_community.*
 import kotlinx.android.synthetic.main.activity_community.view.*
-import kotlinx.android.synthetic.main.fragment_community_user.*
 
 class ActivityCommunity : FragmentActivity() {
 
     private lateinit var mPrefs: SharedPreferences
+    lateinit var FirebaseController: IFirebase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_community)
-
+        Log.d("DIE!!", "Does the commuityAct start??")
         mPrefs = PreferenceManager.getDefaultSharedPreferences(this)
         val cl = findViewById<ConstraintLayout>(R.id.community_layout)
         val path = mPrefs.getString("userType","")
+        FirebaseController = ControllerRegistry.databaseController.DatabaseController
+        FirebaseController.getUserFromFirebase(mPrefs.getString("userID",""))
 
         if (path == "user/mentor") {
             cl.community_fragment.setBackgroundResource(R.drawable.mentor)
