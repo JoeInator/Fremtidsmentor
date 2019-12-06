@@ -41,8 +41,12 @@ class UserController: IUserController {
         Log.d("HEK", currentUser.getEmail().toString())
     }
 
-    override fun getUser(): NormalPerson? {
+    override fun getUser(): NormalPerson {
         return currentUser
+    }
+
+    override fun getMentor(): Mentor {
+        return currentMentor
     }
 
 }

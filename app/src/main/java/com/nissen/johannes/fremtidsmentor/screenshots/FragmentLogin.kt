@@ -102,6 +102,7 @@ class FragmentLogin : Fragment() {
                                 startActivity(intent)
                                 Log.d("DIE!!", "Does login start the intent??")
                             }
+                        break
                     }
                 }
 

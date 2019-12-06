@@ -2,8 +2,10 @@ package com.nissen.johannes.fremtidsmentor.controllers
 
 import android.provider.ContactsContract
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
+import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.ISchedule
 import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IUserController
 import com.nissen.johannes.fremtidsmentor.controllers.implementations.FirebaseController
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.ScheduleController
 import com.nissen.johannes.fremtidsmentor.controllers.implementations.UserController
 
 class ControllerRegistry {
@@ -29,6 +31,15 @@ class ControllerRegistry {
         }
 
 
+    }
+
+    object schedulecontroller {
+        var ScheduleController: ISchedule = ScheduleController()
+
+        fun getUseController(): ISchedule {
+            if (ScheduleController == null) { ScheduleController = ScheduleController() }
+            return ScheduleController as ISchedule
+        }
     }
 
     private var userController: IUserController? = null

@@ -11,6 +11,7 @@ interface IUserController {
     fun DeleteUser(User: User)
     fun UpdateUser(User: NormalPerson)
     fun setUser(User: NormalPerson)
-    fun getUser(): NormalPerson?
+    fun getUser(): NormalPerson
+    fun getMentor(): Mentor?
 
 }

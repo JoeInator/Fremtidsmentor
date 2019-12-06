@@ -22,13 +22,10 @@ class FragmentProfile : Fragment() {
     private lateinit var prefsEditor: SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //Inflate the view
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
-
-        Log.d("HEJ", ControllerRegistry.usercontroller.UserController.getUser()!!.getEmail().toString())
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.cv_foto)
         val roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(resources, bitmap)
@@ -61,20 +58,9 @@ class FragmentProfile : Fragment() {
 
         view.notifocation_botton.setOnClickListener {
             view.switch1.toggle()
-//            if (view.switch1.isChecked) {
-//                view.switch1.isChecked = false
-//            } else {
-//                view.switch1.isChecked = true
-//            }
         }
 
         return view
     }
 
-//    fun switchColor(checked: Boolean, view: View) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//            view.switch1.getThumbDrawable().setColorFilter(checked ? resources . getColor (R.color.colorDarkBlue), PorterDuff.Mode.MULTIPLY)
-//            view.switch1.getTrackDrawable().setColorFilter(!checked ? Color . BLACK : Color . WHITE, PorterDuff.Mode.MULTIPLY)
-//        }
-//    }
 }

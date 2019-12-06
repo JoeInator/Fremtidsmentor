@@ -10,4 +10,6 @@ interface IFirebase {
     fun newCommunity(user: NormalPerson): NormalPerson
     fun updateUser(user: NormalPerson)
     fun deleteuser(path: String, id: String)
+    fun loadSchedules(menteeName: String, path: String)
+
 }

@@ -10,17 +10,23 @@ import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import java.util.ArrayList
 import android.util.Log
+import android.widget.Toast
+import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.entities.Schedule
 
 class FirebaseController : IFirebase {
 
-    var database = FirebaseDatabase.getInstance().getReference("")
+    var root = FirebaseDatabase.getInstance().getReference("")
+    var databaseScheds = FirebaseDatabase.getInstance().getReference("bookings")
     var databaseCats = FirebaseDatabase.getInstance().getReference("categories")
     var userBranch = FirebaseDatabase.getInstance().getReference("users/normalUser")
     var mentorBranch = FirebaseDatabase.getInstance().getReference("users/mentor")
     var UserController = ControllerRegistry.usercontroller.getUseController()
+    var scheduleController = ControllerRegistry.schedulecontroller.ScheduleController
 
     init {
+        databaseScheds.keepSynced(true)
         databaseCats.keepSynced(true)
         userBranch.keepSynced(true)
         mentorBranch.keepSynced(true)
@@ -28,7 +34,7 @@ class FirebaseController : IFirebase {
 
     override fun getUserFromFirebase(id: String) {
         val user = NormalPerson("hjk", "ghjk", "Ghjk")
-        Log.d("HEJ!!", id)
+        Log.d("HEJ!!", "Getting userdata")
         userBranch.child(id).addListenerForSingleValueEvent(object: ValueEventListener {
 
             override fun onCancelled(p0: DatabaseError) {
@@ -44,6 +50,7 @@ class FirebaseController : IFirebase {
                     user.addToInterests(h.value.toString().trim())
                 }
                 UserController.setUser(user)
+                loadSchedules(user.getUsername().toString(),"scheduleMentee")
             }
         })
     }
@@ -66,11 +73,6 @@ class FirebaseController : IFirebase {
             .addOnCanceledListener {
                 Log.d("FIREBASE","Failed to update user")
             }
-    }
-
-    fun getUserInfo(username: String): NormalPerson? {
-
-        return null
     }
 
     override fun newMentor(m: Mentor): Mentor {
@@ -128,4 +130,35 @@ class FirebaseController : IFirebase {
             mentorBranch.child(id).removeValue()
         }
     }
+
+    override fun loadSchedules(menteeName: String, path: String) {
+
+        databaseScheds.addListenerForSingleValueEvent(object: ValueEventListener{
+            val Schedules = ArrayList<Schedule>()
+            override fun onDataChange(p0: DataSnapshot) {
+                for (h in p0.children) {
+                    if (h.child(path).getValue(String::class.java).equals(menteeName)) {
+                        val schedule = Schedule()
+                        schedule.ScheduleDate = h.child("scheduleDate").value.toString().trim()
+                        schedule.ScheduleID = h.child("scheduleID").value.toString().trim()
+                        schedule.ScheduleMenteeID = h.child("scheduleMenteeID").value.toString().trim()
+                        schedule.ScheduleMentee = h.child("scheduleMentee").value.toString().trim()
+                        schedule.ScheduleMentorID = h.child("scheduleMentorID").value.toString().trim()
+                        schedule.ScheduleMentor = h.child("scheduleMentor").value.toString().trim()
+                        Schedules.add(schedule)
+                    }
+                }
+                scheduleController.setschedules(Schedules)
+            }
+
+            override fun onCancelled(p0: DatabaseError) {
+                Log.d("SCHEDULE!!!!", "Failed to retrieve schedules")
+            }
+        })
+    }
+
+    fun updateSchedules() {
+
+    }
+
 }
