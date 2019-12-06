@@ -87,9 +87,7 @@ class FragmentSignUp : Fragment() {
         prefsEditor.putString("name", newUser.getUsername())
         prefsEditor.apply()
         prefsEditor.commit()
-        userController.CreateUser(newUser)
         nextAct()
-
     }
 
 }
