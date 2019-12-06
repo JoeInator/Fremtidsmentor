@@ -17,11 +17,8 @@ import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_change_email.view.*
 
 class FragmentChangeEmail: Fragment() {
-    private lateinit var mPrefs: SharedPreferences
-    private lateinit var prefsEditor: SharedPreferences.Editor
-    private lateinit var ref: DatabaseReference
+
     private lateinit var operatingUser: NormalPerson
-//    private lateinit var Username: String
     private lateinit var Email: String
     private lateinit var NewEmail: String
     private lateinit var Password: String
