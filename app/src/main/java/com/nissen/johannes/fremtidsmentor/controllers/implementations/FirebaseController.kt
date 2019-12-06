@@ -52,6 +52,22 @@ class FirebaseController : IFirebase {
 
     }
 
+    override fun updateUser(user: NormalPerson) {
+        userBranch.child(user.getId()!!).setValue(user)
+            .addOnCompleteListener {
+                Log.d("FIREBASE","User is updated")
+            }
+            .addOnFailureListener {
+                Log.d("FIREBASE","Failed to update user")
+            }
+            .addOnSuccessListener {
+                Log.d("FIREBASE","User is updated")
+            }
+            .addOnCanceledListener {
+                Log.d("FIREBASE","Failed to update user")
+            }
+    }
+
     fun getUserInfo(username: String): NormalPerson? {
 
         return null
