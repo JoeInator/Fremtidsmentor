@@ -18,39 +18,37 @@ import com.google.firebase.database.*
 import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_add_interests.view.*
-import android.widget.CompoundButton
 import com.nissen.johannes.fremtidsmentor.adapters.AllInterestsAdapter
-import kotlinx.android.synthetic.main.list_all_interests_possible_item.*
+import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 
 
 class FragmentInterestsAdd: Fragment() {
 
     private lateinit var ref: DatabaseReference
-    private lateinit var pushref: DatabaseReference
-    private lateinit var mPrefs: SharedPreferences
-    private lateinit var Uid: String
     private lateinit var Interests: ArrayList<String>
     private lateinit var checkedInterests: ArrayList<String>
+    private lateinit var operatingUser: NormalPerson
+
+    private var userController = ControllerRegistry.usercontroller.UserController
+    private var firebaseController = ControllerRegistry.databaseController.DatabaseController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_add_interests, container, false)
-
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        Uid = mPrefs.getString("userID","")
+        operatingUser = userController.getUser()!!
         checkedInterests = ArrayList<String>()
 
         //Loading users current interests
-        checkedInterests = arguments!!.getStringArrayList("currentINTS")
+        checkedInterests = userController.getUser()!!.getInterests()!!
 
         view.button.setOnClickListener {
             onConfirm()
         }
 
         /**
-         * Defines two paths in the Firebase Database
+         * loads a path in the Firebase Database
          */
         ref = FirebaseDatabase.getInstance().getReference("interests")
-        pushref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
 
         view.setBackgroundColor(resources.getColor(R.color.semiTransWhite))
         loadListOfPossibleInterests(view)
@@ -59,24 +57,19 @@ class FragmentInterestsAdd: Fragment() {
     }
 
     private fun onConfirm() {
-        pushref.child(mPrefs.getString("userID","").plus("/interests")).removeValue()
-
-        pushref.child(mPrefs.getString("userID","").plus("/interests")).setValue(checkedInterests)
-            .addOnCompleteListener {
-                Toast.makeText(requireContext(), "SUCCES!!", Toast.LENGTH_SHORT).show()
-                activity!!.supportFragmentManager.popBackStack()
-            }
-            .addOnCanceledListener {
-                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
-            }
-
+        operatingUser.setInterests(checkedInterests)
+        userController.UpdateUser(operatingUser)
+        firebaseController.updateUser(operatingUser)
+        Log.d("SE HER", operatingUser.getUsername())
+        Log.d("SE HER", userController.getUser()!!.getUsername())
+        activity!!.supportFragmentManager.popBackStack()
     }
 
     //Loading all the possible interests
     fun loadListOfPossibleInterests(view: View) {
         Interests = ArrayList<String>()
 
-        //Loading both all the possible interests
+        //Loading all the possible interests from firebase and add them to the list shown
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 for (h in p0.children) {
