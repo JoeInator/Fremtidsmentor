@@ -2,15 +2,22 @@ package com.nissen.johannes.fremtidsmentor.entities
 
 import android.provider.ContactsContract
 
-class NormalPerson(): User() {
+class NormalPerson(username: String, email: String, password: String): User() {
 
     private var email: String? = null
     private var id: String? = null
     private var username: String? = null
     private var password: String? = null
-    private var Interests: ArrayList<String>? = null
+    private var Interests: ArrayList<String> = arrayListOf<String>()
 
-    constructor(id: String, username: String, email: String, password: String, interests: ArrayList<String>) : this() {
+
+    init {
+        this.email = email
+        this.username = username
+        this.password = password
+    }
+
+    constructor(id: String, username: String, email: String, password: String, interests: ArrayList<String>) : this(username, email, password) {
         this.id = id
         this.email = email
         this.username = username

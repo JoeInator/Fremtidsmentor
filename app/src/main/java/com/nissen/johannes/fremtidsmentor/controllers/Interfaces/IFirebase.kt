@@ -6,6 +6,10 @@ import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 interface IFirebase {
     fun getUserFromFirebase(id: String)
     fun setValueListener()
-    fun newMentor(m: Mentor): Boolean
-    fun newCommunity(user: NormalPerson): Boolean
+    fun newMentor(m: Mentor): Mentor
+    fun newCommunity(user: NormalPerson): NormalPerson
+    fun updateUser(user: NormalPerson)
+    fun deleteuser(path: String, id: String)
+    fun loadSchedules(menteeName: String, path: String)
+
 }

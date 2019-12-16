@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
-            android:color="@color/colorWhite">
+            android:color="@color/colorDarkBlue">
     <item>
         <selector>
 
@@ -9,8 +9,8 @@
                     <corners android:radius="20dp"/>
                     <gradient
                         android:angle="0"
-                        android:endColor="@color/semiTransWhite"
-                        android:startColor="@color/semiTransWhite"
+                        android:endColor="@color/colorWhite"
+                        android:startColor="@color/colorWhite"
                         android:type="linear" />
                 </shape>
             </item>

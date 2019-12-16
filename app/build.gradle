@@ -12,7 +12,7 @@ android {
         applicationId "com.nissen.johannes.fremtidsmentor"
         minSdkVersion 23
         targetSdkVersion 28
-        versionCode 5
+        versionCode 6
         versionName "2-beta"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         testInstrumentationRunnerArguments clearPackageData: 'true'
@@ -33,8 +33,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.core:core-ktx:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
@@ -50,20 +50,22 @@ dependencies {
 
     // For Unit testing
     testImplementation 'junit:junit:4.12'
-    testImplementation 'androidx.test:core:1.0.0'
+    testImplementation 'androidx.test:core:1.2.0'
     testImplementation 'org.mockito:mockito-core:1.10.19'
 
     // For Android testing
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'com.android.support:support-annotations:24.0.0'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test:rules:1.2.0'
 
     //Third part libraries
     implementation 'com.labo.kaji:fragmentanimations:0.1.1'
-    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.easing:library:2.1@aar'
     implementation 'com.daimajia.androidanimations:library:2.3@aar'
     implementation 'com.thoughtbot:expandablerecyclerview:1.3'
+//    implementation 'com.github.mohammadatif:Animatoo:master'
+//    implementation 'com.github.hajiyevelnur92:intentanimation:1.0'
 //    implementation 'com.airbnb.android:lottie:$lottieVersion'
 }
 

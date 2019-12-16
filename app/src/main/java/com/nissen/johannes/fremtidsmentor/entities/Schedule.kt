@@ -17,6 +17,4 @@ class Schedule() {
         this.ScheduleMentee = mentee
         this.ScheduleDate = date
     }
-
-
 }

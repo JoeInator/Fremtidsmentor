@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.SystemClock
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -169,7 +170,7 @@ class FragmentChosenMentor: Fragment() {
 
         tempRef.child(schedule.ScheduleID!!).setValue(schedule)
             .addOnCompleteListener {
-                Toast.makeText(requireContext(), mentor.getId(), Toast.LENGTH_SHORT).show()
+                Log.d("BOOK", "Mentor is now booked")
             }
 
 //        val tempRef2 = FirebaseDatabase.getInstance().getReference("users/mentor/".plus(mentor.getId()))
@@ -186,7 +187,6 @@ class FragmentChosenMentor: Fragment() {
         view.calendar.setOnDateChangeListener { view, year, month, dayOfMonth ->
             // Note that months are indexed from 0. So, 0 means January, 1 means february, 2 means march etc.
             date = dayOfMonth.toString().plus("/").plus(month + 1).plus("/").plus(year)
-            Toast.makeText(requireContext(), date, Toast.LENGTH_SHORT).show()
         }
 
         view.setOnClickListener {
