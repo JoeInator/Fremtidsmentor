@@ -17,7 +17,7 @@ import com.nissen.johannes.fremtidsmentor.entities.Schedule
 
 class FirebaseController : IFirebase {
 
-    var root = FirebaseDatabase.getInstance().getReference("")
+//    var root = FirebaseDatabase.getInstance().getReference("")
     var databaseScheds = FirebaseDatabase.getInstance().getReference("bookings")
     var databaseCats = FirebaseDatabase.getInstance().getReference("categories")
     var userBranch = FirebaseDatabase.getInstance().getReference("users/normalUser")
@@ -133,7 +133,7 @@ class FirebaseController : IFirebase {
 
     override fun loadSchedules(menteeName: String, path: String) {
 
-        databaseScheds.addListenerForSingleValueEvent(object: ValueEventListener{
+        databaseScheds.addValueEventListener(object: ValueEventListener{
             val Schedules = ArrayList<Schedule>()
             override fun onDataChange(p0: DataSnapshot) {
                 for (h in p0.children) {
