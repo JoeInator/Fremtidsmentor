@@ -13,11 +13,7 @@ import com.daimajia.androidanimations.library.Techniques
 import com.daimajia.androidanimations.library.YoYo
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_choose_role.*
 import kotlinx.android.synthetic.main.fragment_choose_role.view.*
-import com.labo.kaji.fragmentanimations.CubeAnimation
-import com.labo.kaji.fragmentanimations.MoveAnimation
-import android.view.animation.Animation
 
 
 class FragmentChooseRole : Fragment() {
@@ -77,6 +73,7 @@ class FragmentChooseRole : Fragment() {
 
     private fun toLogin() {
         activity!!.supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
             .replace(R.id.login_fragment, nextFragment)
             .addToBackStack(null)
             .commit()

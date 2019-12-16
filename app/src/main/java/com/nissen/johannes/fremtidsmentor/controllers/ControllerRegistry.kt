@@ -36,7 +36,7 @@ class ControllerRegistry {
     object schedulecontroller {
         var ScheduleController: ISchedule = ScheduleController()
 
-        fun getUseController(): ISchedule {
+        fun getscheduleController(): ISchedule {
             if (ScheduleController == null) { ScheduleController = ScheduleController() }
             return ScheduleController as ISchedule
         }

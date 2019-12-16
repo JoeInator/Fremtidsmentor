@@ -1,7 +1,6 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.app.AlertDialog
-import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.SharedPreferences
@@ -106,46 +105,9 @@ class FragmentPersonalSettings: Fragment() {
         return view
     }
 
-    private fun getUserInfoFromFirebase(username: String, context: Context) {
-
-        ref.addValueEventListener(object: ValueEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-                Toast.makeText(requireActivity(), R.string.firebaseError, Toast.LENGTH_LONG).show()
-                activity!!.supportFragmentManager.popBackStack()
-            }
-
-            override fun onDataChange(p0: DataSnapshot) {
-
-                for (h in p0.children) {
-                    if (h.child("username").getValue(String::class.java).equals(username)) {
-                        operatingUser = h.getValue(NormalPerson::class.java)!!
-
-                        Email = operatingUser.getEmail().toString().trim()
-                        Password = operatingUser.getPassword().toString().trim()
-                        Username = operatingUser.getUsername().toString().trim()
-
-                        if (isAdded) {
-                            optionsList = arrayListOf<String>(
-                                resources.getString(R.string.email).plus(": ").plus(Email),
-                                resources.getString(R.string.name).plus(": ").plus(Username),
-                                resources.getString(R.string.password).plus(": ").plus(Password),
-                                resources.getString(R.string.interests),
-                                resources.getString(R.string.delete_account)
-                                //resources.getString(R.string.empty_string)
-                            )
-                            var adapter = PersonalSettingsAdapter(context, optionsList)
-                            adapter.notifyDataSetChanged()
-                            listView.adapter = adapter
-                        }
-                    }
-                }
-
-            }
-        })
-    }
-
     private fun goToNextFrag(fragment: Fragment) {
         activity!!.supportFragmentManager.beginTransaction()
+            .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
             .replace(R.id.community_fragment, fragment)
             .addToBackStack(null)
             .commit()

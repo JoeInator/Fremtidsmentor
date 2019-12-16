@@ -17,6 +17,7 @@ class ActivityCommunity : FragmentActivity() {
 
     private lateinit var mPrefs: SharedPreferences
     lateinit var FirebaseController: IFirebase
+    private var onHome = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,37 +48,62 @@ class ActivityCommunity : FragmentActivity() {
             when (it.itemId) {
                 R.id.home -> {
                     val selectedFragment = FragmentCommunity()
+                    if (onHome == false) {
                     supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.enter_from_left, R.animator.exit_in_right)
+                        .replace(R.id.community_fragment, selectedFragment)
                         .addToBackStack(null).commit()
+                    }
+                    onHome = true
                     return@OnNavigationItemSelectedListener true
                 }
                   R.id.discover -> {
                       val selectedFragment = FragmentDiscover()
-                      supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                      supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                      if (onHome == false) {
+                          supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                      }
+                      supportFragmentManager.beginTransaction()
+                          .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                          .replace(R.id.community_fragment, selectedFragment)
                           .addToBackStack(null).commit()
+                      onHome = false
                       return@OnNavigationItemSelectedListener true
                       }
                 R.id.Mentor -> {
                     val selectedFragment = FragmentFilter()
-                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                    if (onHome == false) {
+                        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    }
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                        .replace(R.id.community_fragment, selectedFragment)
                         .addToBackStack(null).commit()
+                    onHome = false
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.community -> {
                     val selectedFragment = FragmentCommunityForum()
-                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                    if (onHome == false) {
+                        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                    }
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                        .replace(R.id.community_fragment, selectedFragment)
                         .addToBackStack(null).commit()
+                    onHome = false
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.profile -> {
                     val selectedFragment = FragmentProfile()
-                    supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    supportFragmentManager.beginTransaction().replace(R.id.community_fragment, selectedFragment)
+                    if (onHome == false) {
+                        supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        }
+                    supportFragmentManager.beginTransaction()
+                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                        .replace(R.id.community_fragment, selectedFragment)
                         .addToBackStack(null).commit()
+                    onHome = false
                     return@OnNavigationItemSelectedListener true
                 }
             }

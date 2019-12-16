@@ -1,22 +1,16 @@
 package com.nissen.johannes.fremtidsmentor.screenshots
 
-import android.content.Context
-import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.ListView
 import android.widget.Toast
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.adapters.MentorListAdapter
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
-import kotlinx.android.synthetic.main.fragment_chosen_mentor.view.*
-import kotlinx.android.synthetic.main.list_mentor_tem.view.*
 
 class FragmentMentors : Fragment() {
 
@@ -42,6 +36,7 @@ class FragmentMentors : Fragment() {
             selectedMentor.setArguments(pdf_args)
 
             activity!!.supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
                 .replace(R.id.community_fragment, selectedMentor)
                 .addToBackStack(null)
                 .commit()

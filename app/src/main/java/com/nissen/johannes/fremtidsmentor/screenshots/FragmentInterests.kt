@@ -6,12 +6,8 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.adapters.InterestsAdapter
@@ -52,6 +48,7 @@ class FragmentInterests: Fragment() {
             nextFrag.arguments = args
 
             activity!!.supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
                 .replace(R.id.community_fragment, nextFrag)
                 .addToBackStack(null)
                 .commit()
