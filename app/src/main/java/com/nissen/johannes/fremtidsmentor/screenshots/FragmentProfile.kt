@@ -2,11 +2,7 @@ package com.nissen.johannes.fremtidsmentor.screenshots
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.content.res.ColorStateList
 import android.graphics.BitmapFactory
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.os.Build
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.view.LayoutInflater
@@ -24,7 +20,6 @@ class FragmentProfile : Fragment() {
     private lateinit var prefsEditor: SharedPreferences.Editor
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        //Inflate the view
         val view: View = inflater.inflate(R.layout.fragment_profile, container, false)
 
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -36,14 +31,17 @@ class FragmentProfile : Fragment() {
         view.profileImg.setImageDrawable(roundedBitmapDrawable)
         view.Basbasic_info_text.text = mPrefs.getString("name", "0")
 
+        view.personal_info_botton.text = "       ".plus(resources.getString(R.string.personal_info))
         view.personal_info_botton.setOnClickListener {
             val newfragment = FragmentPersonalSettings()
             activity!!.supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
                 .replace(R.id.community_fragment, newfragment)
                 .addToBackStack(null)
                 .commit()
         }
 
+        view.logoutBtn.text = "       ".plus(resources.getString(R.string.logout))
         view.logoutBtn.setOnClickListener {
             prefsEditor.clear().commit()
             val intent = Intent(requireContext(), ActivityMain::class.java).apply({})
@@ -51,30 +49,22 @@ class FragmentProfile : Fragment() {
             startActivity(intent)
         }
 
+        view.subscription_button.text = "       ".plus(resources.getString(R.string.subscribe))
         view.subscription_button.setOnClickListener {
             val newfragment = FragmentSubscriptions()
             activity!!.supportFragmentManager.beginTransaction()
+                .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
                 .replace(R.id.community_fragment, newfragment)
                 .addToBackStack(null)
                 .commit()
         }
 
+        view.notifocation_botton.text = "       ".plus(resources.getString(R.string.notifications))
         view.notifocation_botton.setOnClickListener {
             view.switch1.toggle()
-//            if (view.switch1.isChecked) {
-//                view.switch1.isChecked = false
-//            } else {
-//                view.switch1.isChecked = true
-//            }
         }
 
         return view
     }
 
-//    fun switchColor(checked: Boolean, view: View) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//            view.switch1.getThumbDrawable().setColorFilter(checked ? resources . getColor (R.color.colorDarkBlue), PorterDuff.Mode.MULTIPLY)
-//            view.switch1.getTrackDrawable().setColorFilter(!checked ? Color . BLACK : Color . WHITE, PorterDuff.Mode.MULTIPLY)
-//        }
-//    }
 }

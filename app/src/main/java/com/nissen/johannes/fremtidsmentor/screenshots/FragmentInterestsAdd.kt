@@ -18,38 +18,37 @@ import com.google.firebase.database.*
 import com.labo.kaji.fragmentanimations.MoveAnimation
 import com.nissen.johannes.fremtidsmentor.R
 import kotlinx.android.synthetic.main.fragment_add_interests.view.*
-import android.widget.CompoundButton
-import kotlinx.android.synthetic.main.list_all_interests_possible_item.*
+import com.nissen.johannes.fremtidsmentor.adapters.AllInterestsAdapter
+import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 
 
 class FragmentInterestsAdd: Fragment() {
 
     private lateinit var ref: DatabaseReference
-    private lateinit var pushref: DatabaseReference
-    private lateinit var mPrefs: SharedPreferences
-    private lateinit var Uid: String
     private lateinit var Interests: ArrayList<String>
     private lateinit var checkedInterests: ArrayList<String>
+    private lateinit var operatingUser: NormalPerson
+
+    private var userController = ControllerRegistry.usercontroller.UserController
+    private var firebaseController = ControllerRegistry.databaseController.DatabaseController
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_add_interests, container, false)
-
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
-        Uid = mPrefs.getString("userID","")
+        operatingUser = userController.getUser()!!
         checkedInterests = ArrayList<String>()
 
         //Loading users current interests
-        checkedInterests = arguments!!.getStringArrayList("currentINTS")
+        checkedInterests = userController.getUser()!!.getInterests()!!
 
         view.button.setOnClickListener {
             onConfirm()
         }
 
         /**
-         * Defines two paths in the Firebase Database
+         * loads a path in the Firebase Database
          */
         ref = FirebaseDatabase.getInstance().getReference("interests")
-        pushref = FirebaseDatabase.getInstance().getReference(mPrefs.getString("userType",""))
 
         view.setBackgroundColor(resources.getColor(R.color.semiTransWhite))
         loadListOfPossibleInterests(view)
@@ -58,24 +57,19 @@ class FragmentInterestsAdd: Fragment() {
     }
 
     private fun onConfirm() {
-        pushref.child(mPrefs.getString("userID","").plus("/interests")).removeValue()
-
-        pushref.child(mPrefs.getString("userID","").plus("/interests")).setValue(checkedInterests)
-            .addOnCompleteListener {
-                Toast.makeText(requireContext(), "SUCCES!!", Toast.LENGTH_SHORT).show()
-                activity!!.supportFragmentManager.popBackStack()
-            }
-            .addOnCanceledListener {
-                Toast.makeText(requireContext(), resources.getString(R.string.firebaseError), Toast.LENGTH_SHORT).show()
-            }
-
+        operatingUser.setInterests(checkedInterests)
+        userController.UpdateUser(operatingUser)
+        firebaseController.updateUser(operatingUser)
+        Log.d("SE HER", operatingUser.getUsername())
+        Log.d("SE HER", userController.getUser()!!.getUsername())
+        activity!!.supportFragmentManager.popBackStack()
     }
 
     //Loading all the possible interests
     fun loadListOfPossibleInterests(view: View) {
         Interests = ArrayList<String>()
 
-        //Loading both all the possible interests
+        //Loading all the possible interests from firebase and add them to the list shown
         ref.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(p0: DataSnapshot) {
                 for (h in p0.children) {
@@ -84,7 +78,7 @@ class FragmentInterestsAdd: Fragment() {
                     }
                 }
                 view.all_interests_possible.setLayoutManager(LinearLayoutManager(requireContext()))
-                view.all_interests_possible.adapter = ListeelemAdapter()
+                view.all_interests_possible.adapter = AllInterestsAdapter(requireContext(), Interests, checkedInterests)
             }
 
             override fun onCancelled(p0: DatabaseError) {
@@ -94,7 +88,7 @@ class FragmentInterestsAdd: Fragment() {
         })
     }
 
-    //Animation on enter and exit
+    //Animation on enter and exit -- Imported from third party library
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         return if (!enter) {
             MoveAnimation.create(MoveAnimation.DOWN, enter, 250)
@@ -103,49 +97,4 @@ class FragmentInterestsAdd: Fragment() {
         }
     }
 
-    //Setting the actual functions for the list components
-    internal inner class ListeelemAdapter : RecyclerView.Adapter<ListeelemViewholder>() {
-        override fun getItemCount(): Int {
-            return Interests.size
-        }
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeelemViewholder {
-            val listeelementViews =
-                layoutInflater.inflate(R.layout.list_all_interests_possible_item, parent, false)
-            return ListeelemViewholder(listeelementViews)
-        }
-
-        override fun onBindViewHolder(vh: ListeelemViewholder, position: Int) {
-            val item = Interests[position]
-            vh.checkBox.text = item
-
-            //in some cases, it will prevent unwanted situations
-            vh.checkBox.setOnCheckedChangeListener(null)
-
-            //Setting the initial checked state of the checkboxes
-            vh.checkBox.isChecked = checkedInterests.contains(item)
-
-            //used for setting the checked state of a given checkbox
-            vh.checkBox.setOnCheckedChangeListener(object : CompoundButton.OnCheckedChangeListener {
-                override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
-                    //setting a given checkbox's status
-                    vh.checkBox.setSelected(isChecked)
-                    if (isChecked) {
-                        checkedInterests.add(vh.checkBox.text.toString())
-                    } else {
-                        checkedInterests.remove(vh.checkBox.text.toString())
-                    }
-                }
-            })
-        }
-    }
-
-    //Used for defining the checkbox of in the list
-    internal inner class ListeelemViewholder: RecyclerView.ViewHolder {
-        var checkBox: CheckBox
-
-        constructor(listeelementViews: View) : super(listeelementViews) {
-            checkBox = listeelementViews.findViewById(R.id.checkBox)
-        }
-    }
 }
