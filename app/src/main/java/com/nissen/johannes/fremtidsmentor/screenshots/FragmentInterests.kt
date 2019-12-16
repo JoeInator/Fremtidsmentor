@@ -48,7 +48,6 @@ class FragmentInterests: Fragment() {
             nextFrag.arguments = args
 
             activity!!.supportFragmentManager.beginTransaction()
-                .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
                 .replace(R.id.community_fragment, nextFrag)
                 .addToBackStack(null)
                 .commit()

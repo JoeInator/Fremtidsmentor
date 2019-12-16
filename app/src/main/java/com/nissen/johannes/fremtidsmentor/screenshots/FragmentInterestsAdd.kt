@@ -88,7 +88,7 @@ class FragmentInterestsAdd: Fragment() {
         })
     }
 
-    //Animation on enter and exit
+    //Animation on enter and exit -- Imported from third party library
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
         return if (!enter) {
             MoveAnimation.create(MoveAnimation.DOWN, enter, 250)
