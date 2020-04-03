@@ -55,6 +55,27 @@ class FirebaseController : IFirebase {
         })
     }
 
+    override fun getMentorFromFirebase(mentorName: String) {
+
+        mentorBranch.addListenerForSingleValueEvent(object: ValueEventListener  {
+            lateinit var mentor: Mentor
+            override fun onCancelled(p0: DatabaseError) {
+                //Toast.makeText(requireContext(), R.string.firebaseError, Toast.LENGTH_SHORT).show()
+                //activity!!.supportFragmentManager.popBackStack()
+            }
+
+            override fun onDataChange(p0: DataSnapshot) {
+                for (m in p0.children) {
+                    if (m.child("username").getValue(String::class.java).equals(mentorName)) {
+                        mentor = m.getValue(Mentor::class.java)!!
+                    }
+                }
+                UserController.setMentor(mentor)
+            }
+        })
+    }
+
+
     override fun setValueListener() {
 
     }

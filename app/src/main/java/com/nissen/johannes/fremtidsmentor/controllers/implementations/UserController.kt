@@ -45,6 +45,10 @@ class UserController: IUserController {
         return currentUser
     }
 
+    override fun setMentor(mentor: Mentor) {
+        currentMentor = mentor
+    }
+
     override fun getMentor(): Mentor {
         return currentMentor
     }

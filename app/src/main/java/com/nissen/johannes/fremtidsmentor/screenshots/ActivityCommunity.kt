@@ -62,48 +62,68 @@ class ActivityCommunity : FragmentActivity() {
                       val selectedFragment = FragmentDiscover()
                       if (onHome == false) {
                           supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                          supportFragmentManager.beginTransaction()
+                              .setCustomAnimations(R.animator.enter_from_left, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                              .replace(R.id.community_fragment, selectedFragment)
+                              .addToBackStack(null).commit()
+                      } else {
+                          supportFragmentManager.beginTransaction()
+                              .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                              .replace(R.id.community_fragment, selectedFragment)
+                              .addToBackStack(null).commit()
+                          onHome = false
                       }
-                      supportFragmentManager.beginTransaction()
-                          .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
-                          .replace(R.id.community_fragment, selectedFragment)
-                          .addToBackStack(null).commit()
-                      onHome = false
                       return@OnNavigationItemSelectedListener true
                       }
                 R.id.Mentor -> {
                     val selectedFragment = FragmentFilter()
                     if (onHome == false) {
                         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                    }
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
-                        .replace(R.id.community_fragment, selectedFragment)
-                        .addToBackStack(null).commit()
-                    onHome = false
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_left, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                    } else {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                        onHome = false
+                        }
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.community -> {
                     val selectedFragment = FragmentCommunityForum()
                     if (onHome == false) {
                         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_left, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                    }else {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                        onHome = false
                     }
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
-                        .replace(R.id.community_fragment, selectedFragment)
-                        .addToBackStack(null).commit()
-                    onHome = false
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.profile -> {
                     val selectedFragment = FragmentProfile()
                     if (onHome == false) {
                         supportFragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE)
-                        }
-                    supportFragmentManager.beginTransaction()
-                        .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
-                        .replace(R.id.community_fragment, selectedFragment)
-                        .addToBackStack(null).commit()
-                    onHome = false
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_left, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                    }else {
+                        supportFragmentManager.beginTransaction()
+                            .setCustomAnimations(R.animator.enter_from_right, R.animator.exit_in_left, R.animator.enter_from_left, R.animator.exit_in_right)
+                            .replace(R.id.community_fragment, selectedFragment)
+                            .addToBackStack(null).commit()
+                        onHome = false
+                    }
                     return@OnNavigationItemSelectedListener true
                 }
             }

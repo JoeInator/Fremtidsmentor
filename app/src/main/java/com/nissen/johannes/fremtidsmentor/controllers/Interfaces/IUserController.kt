@@ -12,6 +12,7 @@ interface IUserController {
     fun UpdateUser(User: NormalPerson)
     fun setUser(User: NormalPerson)
     fun getUser(): NormalPerson
+    fun setMentor(mentor: Mentor)
     fun getMentor(): Mentor?
 
 }

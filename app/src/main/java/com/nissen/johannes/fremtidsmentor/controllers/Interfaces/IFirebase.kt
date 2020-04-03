@@ -5,6 +5,7 @@ import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 
 interface IFirebase {
     fun getUserFromFirebase(id: String)
+    fun getMentorFromFirebase(mentorName: String)
     fun setValueListener()
     fun newMentor(m: Mentor): Mentor
     fun newCommunity(user: NormalPerson): NormalPerson

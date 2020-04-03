@@ -19,6 +19,8 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
+import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.controllers.Interfaces.IFirebase
 import com.nissen.johannes.fremtidsmentor.entities.Mentor
 import com.nissen.johannes.fremtidsmentor.entities.Schedule
 import kotlinx.android.synthetic.main.fragment_chosen_mentor.view.*
@@ -38,6 +40,8 @@ class FragmentChosenMentor: Fragment() {
     lateinit var ref: DatabaseReference
     lateinit var mentor: Mentor
     lateinit var date: String
+    var FirebaseController: IFirebase = ControllerRegistry.databaseController.DatabaseController
+    var UserController = ControllerRegistry.usercontroller.getUseController()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view: View = inflater.inflate(R.layout.fragment_chosen_mentor, container, false)
@@ -50,13 +54,15 @@ class FragmentChosenMentor: Fragment() {
         loading.setCancelable(false)
         loading.show()
 
-        getMentorFromFirebase(arguments!!.getString("name"))
+//        getMentorFromFirebase(arguments!!.getString("name"))
+        FirebaseController.getMentorFromFirebase(arguments!!.getString("name"))
         view.setBackgroundColor(resources.getColor(R.color.semiTransGrey)) //Some darker color
         view.subsribe_btn.visibility = View.GONE
         view.bookingBtn.visibility = View.GONE
         view.calendar_view.visibility = View.GONE
 
         Handler().postDelayed({
+            mentor = UserController.getMentor()!!
             view.setBackgroundColor(resources.getColor(android.R.color.transparent))
             loading.dismiss()
             loadPage(view)
@@ -181,6 +187,7 @@ class FragmentChosenMentor: Fragment() {
     private fun loadCalendar(view: View) {
         viewCalendar(view)
         view.calendar.minDate = Calendar.getInstance().timeInMillis + (24 * 60 * 60 * 1000 * 3)
+        view.calendar.maxDate = Calendar.getInstance().timeInMillis + (24 * 60 * 60 * 1000 * 21)
         val sdf = SimpleDateFormat("dd/M/yyyy")
         val currentDate = sdf.format(Date())
         date = currentDate

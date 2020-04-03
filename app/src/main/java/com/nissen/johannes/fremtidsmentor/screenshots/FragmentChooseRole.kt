@@ -38,7 +38,7 @@ class FragmentChooseRole : Fragment() {
         view.mentee_btn.setOnClickListener {
             if (!view.mentee_btn.isSelected) {
                 activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentee))
-                animation(view.mentee_btn)
+//                animation(view.mentee_btn)
                 role_args.putString("userType", "users/normalUser")
                 nextFragment.setArguments(role_args)
                 view.move_on.isEnabled = true
@@ -50,7 +50,7 @@ class FragmentChooseRole : Fragment() {
         view.mentor_btn.setOnClickListener {
             if (!view.mentor_btn.isSelected) {
                 activity!!.main_layout.setBackground(resources.getDrawable(R.drawable.mentor))
-                animation(view.mentor_btn)
+//                animation(view.mentor_btn)
                 role_args.putString("userType", "users/mentor")
                 nextFragment.setArguments(role_args)
                 view.move_on.isEnabled = true

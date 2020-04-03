@@ -59,7 +59,7 @@
         android:layout_marginRight="60dp"
         android:background="@drawable/layout_upgrade_btn"
         android:text="@string/Upgrade"
-        android:textColor="@color/colorDarkBlue"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

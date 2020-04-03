@@ -16,6 +16,7 @@ import com.google.firebase.database.*
 import com.nissen.johannes.fremtidsmentor.R
 import com.nissen.johannes.fremtidsmentor.adapters.PersonalSettingsAdapter
 import com.nissen.johannes.fremtidsmentor.controllers.ControllerRegistry
+import com.nissen.johannes.fremtidsmentor.controllers.implementations.UserController
 import com.nissen.johannes.fremtidsmentor.entities.NormalPerson
 import kotlinx.android.synthetic.main.fragment_personal_settings.view.*
 
@@ -38,15 +39,19 @@ class FragmentPersonalSettings: Fragment() {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         prefsEditor = mPrefs.edit()
         ref = FirebaseDatabase.getInstance().getReference("users/normalUser")
-        Username = mPrefs.getString("name", "0")
+        Username = userController.getUser().getUsername()!!
         listView = view.findViewById(R.id.option_list)
 
 //        getUserInfoFromFirebase(Username, requireContext())
         operatingUser = userController.getUser()!!
 
         Email = operatingUser.getEmail().toString().trim()
-        Password = operatingUser.getPassword().toString().trim()
+//        Password = operatingUser.getPassword().toString().trim()
         Username = operatingUser.getUsername().toString().trim()
+        Password = ""
+        for (i in 0..operatingUser.getPassword().toString().trim().length-1) {
+            Password += "*"
+        }
 
         if (isAdded) {
             optionsList = arrayListOf<String>(
