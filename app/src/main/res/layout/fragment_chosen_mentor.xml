@@ -23,20 +23,6 @@
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@tools:sample/avatars" />
 
-        <TextView
-            android:id="@+id/mentor_basicinfo"
-            android:layout_width="169dp"
-            android:layout_height="137dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="28dp"
-            android:textColor="@color/colorWhite"
-            android:textSize="14sp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.2"
-            app:layout_constraintStart_toEndOf="@+id/mentors_pic"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/InfoView"

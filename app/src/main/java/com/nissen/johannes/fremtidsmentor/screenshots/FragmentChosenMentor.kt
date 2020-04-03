@@ -115,7 +115,7 @@ class FragmentChosenMentor: Fragment() {
         view.InfoView.vertical_scroll.horisontal_scroll.comp_list2.text = builder.toString()
 
         view.InfoView.vertical_scroll.mentor_description.text = mentor.getDescription()
-        view.mentor_basicinfo.text = mentor.getTeaser()
+//        view.mentor_basicinfo.text = mentor.getTeaser()
         view.subsribe_btn.visibility = View.VISIBLE
         view.bookingBtn.visibility = View.VISIBLE
 
@@ -148,7 +148,7 @@ class FragmentChosenMentor: Fragment() {
         view.bookingBtn.visibility = View.GONE
         view.infoView.visibility = View.GONE
         view.mentors_pic.visibility = View.GONE
-        view.mentor_basicinfo.visibility = View.GONE
+//        view.mentor_basicinfo.visibility = View.GONE
         view.calendar_view.visibility = View.VISIBLE
         view.calendar_view.setBackgroundColor(resources.getColor(R.color.colorWhite))
         view.setBackgroundColor(resources.getColor(R.color.semiTransGrey))
@@ -160,7 +160,7 @@ class FragmentChosenMentor: Fragment() {
         view.bookingBtn.visibility = View.VISIBLE
         view.infoView.visibility = View.VISIBLE
         view.mentors_pic.visibility = View.VISIBLE
-        view.mentor_basicinfo.visibility = View.VISIBLE
+//        view.mentor_basicinfo.visibility = View.VISIBLE
         view.calendar_view.visibility = View.GONE
         view.setBackgroundColor(resources.getColor(android.R.color.transparent))
     }
